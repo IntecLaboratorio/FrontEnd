@@ -1,0 +1,32 @@
+.d-flex {
+  display: flex;
+}
+
+.align-around {
+  justify-content: space-around;
+}
+
+
+.calendario-cronograma {
+  width: 50%;
+}
+
+.formulario-cronograma {
+  padding: 0 20px;
+}
+
+@media (max-width: 767px) {
+  .justify-center-mobile {
+    display: flex;
+    justify-content: center;
+  }
+
+  .d-flex {
+    flex-direction: column;
+  }
+
+  .table-cronograma,
+  .formulario-cronograma {
+    width: 100%;
+  }
+}
