@@ -2,12 +2,10 @@ import React from 'react';
 import Logo from '../../Img/branco.png';
 import Navbar from '../../Components/Navbar/index.js';
 import './style.css';
-import Background from '../../Components/BackgroundAnimation/index.js';
 
 function LandingPage() {
     return (
         <>
-            <Background />
             <div className='container'>
                 <main>
                     <section className='section-1'>

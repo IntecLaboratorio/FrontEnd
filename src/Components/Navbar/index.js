@@ -30,10 +30,8 @@ function navbar() {
                 <Link className='dropdown-item' to="/cadastro-laboratorio">Cadastro de Laboratório</Link>
                 <Link className='dropdown-item' to="/cadastro-usuario">Cadastro de Usuário</Link>
               </NavDropdown>
-              <NavDropdown title="Cronogramas" id="basic-nav-dropdown">
-                <Link className='dropdown-item' to="/cronograma-lab">Cronograma de Laboratório</Link>
-                <Link className='dropdown-item' to="/cronograma-quadra">Cronograma de Quadra</Link>
-              </NavDropdown>
+              <Link className='nav-link' to="/cronograma-lab">Cronograma de Laboratório</Link>
+              {/* <Link to="/cronograma-quadra">Cronograma de Quadra</Link> */}
             </Nav>
           </Navbar.Collapse>
         </Container>
