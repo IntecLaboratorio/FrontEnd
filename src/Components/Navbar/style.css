@@ -64,3 +64,27 @@
   color: #0000008c;
   font-weight: bold;
 }
+
+@media screen and (max-width:410px) {
+  .container :is(.intec) {
+    display: none;
+  }
+}
+
+@media screen and (max-width:568px) {
+  .container :is(.intec) {
+    padding: 0;
+  }
+}
+
+
+@media screen and (max-width:313px) {
+  .btn-flex {
+    padding-top: 5px !important;
+  }
+
+  .container :is(.intec) {
+    padding: 0;
+    display: none;
+  }
+}

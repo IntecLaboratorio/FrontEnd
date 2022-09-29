@@ -34,3 +34,21 @@ body {
     flex-direction: column;
     text-align: center;
 }
+
+@media screen and (max-width:383px) {
+    .div_Img_Txt {
+        width: 60%;
+    }
+}
+
+@media screen and (max-width:468px) {
+    .div_Img_Txt {
+        width: 60%;
+    }
+}
+
+@media screen and (max-width:768px) {
+    .div_Img_Txt {
+        width: 60%;
+    }
+}

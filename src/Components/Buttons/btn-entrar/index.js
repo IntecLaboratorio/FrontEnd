@@ -58,7 +58,7 @@ function BtnEntrar() {
               '',
             ].map((variant) => (
               <Alert key={variant} variant={variant}>
-                <Alert.Link href="https://i0.wp.com/files.agro20.com.br/uploads/2019/06/burro-03.jpg?fit=1920%2C1440&ssl=1">Esqueceu sua senha?</Alert.Link>
+                <Alert.Link href="#">Esqueceu sua senha?</Alert.Link>
               </Alert>
             ))}
           </>
