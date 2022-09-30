@@ -1,14 +1,14 @@
-.d-flex-column {
+/* .d-flex-column {
   display: flex;
   flex-direction: column;
-}
+} */
 
-.form-container :where(label) {
+/* .form-container :where(label) {
   text-align: left;
   color: #fff;
-}
+} */
 
-.form-container :where(select, input) {
+/* .form-container :where(select, input) {
   margin: 5px 0;
 }
 
@@ -25,4 +25,4 @@ select {
 
 .form-container label .termos-uso {
   margin-right: 5px;
-}
+} */

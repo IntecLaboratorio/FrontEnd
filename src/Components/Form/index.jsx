@@ -25,85 +25,103 @@ function Index(props) {
     }
   }
   return (
-    <div className='form-container'>
-      <form className='d-flex-column' action="get">
-        {props.interruptor == false ?
-          <>
-            <label htmlFor="disciplina">Disciplina</label>
-            <select name="disciplina" id="disciplina"
-              className={disciplina !== "" ? "has-val input" : "input"}
-              type="text"
-              value={disciplina}
-              onChange={(e) => setDisciplina(e.target.value)}
-            >
-              <option value="selecione">Selecione</option>
-            </select>
-          </> : <div></div>}
+    <div className="container-cronograma secoes">
+        <form className="form-cronograma">
+          <section className="section-cronograma">
+            <div className="wrap-input">
+              <select name="select"
+                className={disciplina !== "" ? "has-val input" : "input"}
+                type="text"
+                value={disciplina}
+                onChange={(e) => setDisciplina(e.target.value)}
+              >
+                <option value="" disable selected></option>
+                <option value="Administração">Administração</option>
+                <option value="Contabilidade">Contabilidade</option>
+                <option value="Desenvolvimento de Sistemas">Desenvolvimento de Sistemas</option>
+                <option value="Eletroeletrônica">Eletroeletrônica</option>
+                <option value="Logística">Logística</option>
+                <option value="Redes de Computadores">Redes de Computadores</option>
+              </select>
+              <span className="focus-input" data-placeholder="Disciplina"></span>
+            </div>
 
-        <label htmlFor="turma">Turma</label>
-        <select name="turma" id="turma"
-          className={turma !== "" ? "has-val input" : "input"}
-          type="text"
-          value={turma}
-          onChange={(e) => setTurma(e.target.value)}>
-          <option value="selecione">Selecione</option>
-        </select>
+            <div className="wrap-input">
+              <select name="select"
+                className={turma !== "" ? "has-val input" : "input"}
+                type="text"
+                value={turma}
+                onChange={(e) => setTurma(e.target.value)}
+              >
+                <option value="" disable selected></option>
+              </select>
+              <span className="focus-input" data-placeholder="Turma"></span>
+            </div>
 
-        {props.interruptor == false ?
-          <>
-            <label htmlFor="bloco">Bloco</label>
-            <select name="bloco" id="bloco"
-              className={bloco !== "" ? "has-val input" : "input"}
-              type="text"
-              value={bloco}
-              onChange={(e) => setBloco(e.target.value)}>
-              <option value="selecione">Selecione</option>
-            </select>
-          </> : <div></div>}
+            <div className="wrap-input">
+              <select name="select"
+                className={bloco !== "" ? "has-val input" : "input"}
+                type="text"
+                value={bloco}
+                onChange={(e) => setBloco(e.target.value)}
+              >
+                <option value="" disable selected></option>
+                <option value="Coordenador">Primeiro Bloco</option>
+                <option value="Professor">Segundo Bloco</option>
+              </select>
+              <span className="focus-input" data-placeholder="Bloco"></span>
+            </div>
 
-        <label htmlFor="periodo">Período</label>
-        <select name="periodo" id="periodo"
-          className={periodo !== "" ? "has-val input" : "input"}
-          type="text"
-          value={periodo}
-          onChange={(e) => setPeriodo(e.target.value)}>
-          <option value="selecione">Selecione</option>
-        </select>
+            <div className="wrap-input">
+              <select name="select"
+                className={periodo !== "" ? "has-val input" : "input"}
+                type="text"
+                value={periodo}
+                onChange={(e) => setPeriodo(e.target.value)}
+              >
+                <option value="" disable selected></option>
+                <option value="Coordenador">Manhã</option>
+                <option value="Professor">Tarde</option>
+                <option value="Aluno">Noite</option>
+              </select>
+              <span className="focus-input" data-placeholder="Periodo"></span>
+            </div>
 
-        <section className='d-flex'>
-          <div>
-            <label htmlFor="data">Data</label>
-            <input type="date" htmlFor="data" />
-          </div>
+            <div className="wrap-input">
+              <select name="select"
+                className={date !== "" ? "has-val input" : "input"}
+                type="text"
+                value={date}
+                onChange={(e) => setDate(e.target.value)}
+              >
+                <option value="" disable selected></option>
+                <option value="Coordenador">Coordenador</option>
+                <option value="Professor">Professor</option>
+                <option value="Aluno">Aluno</option>
+              </select>
+              <span className="focus-input" data-placeholder="Data"></span>
+            </div>
 
-          <div className='horario'>
-            <label htmlFor="horario">Horário</label>
-            <input type="time" />
-          </div>
-        </section>
+            <div className="wrap-input">
+              <select name="select"
+                className={horario !== "" ? "has-val input" : "input"}
+                type="text"
+                value={horario}
+                onChange={(e) => setHorario(e.target.value)}
+              >
+                <option value="" disable selected></option>
+                <option value="Coordenador">Coordenador</option>
+                <option value="Professor">Professor</option>
+                <option value="Aluno">Aluno</option>
+              </select>
+              <span className="focus-input" data-placeholder="Horario"></span>
+            </div>
+            
+          </section>
+        </form>
 
-        {props.interruptor == true ?
-          <section>
-            <input type="radio" className='termos-uso' name="termos-uso" id="termos-uso" />
-            <label htmlFor='termos-uso'>Eu aceito os termos de uso</label>
-          </section> : <></>}
-
-        <button>Solicitar Agendamento</button>
-      </form>
-    </div>
+      </div>
   );
 }
 
 export default Index;
-
-
-{/* <select name="select"
-                className={verify !== "" ? "has-val input" : "input"}
-                type="text"
-                value={verify}
-                onChange={(e) => setVerify(e.target.value)}
-              >
-                <option value="" disable selected></option>
-                <option value="Ativo">Ativo</option>
-                <option value="Inativo">Inativo</option>
-              </select> */}
