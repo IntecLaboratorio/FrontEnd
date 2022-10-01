@@ -1,23 +1,22 @@
 import { Alert, Button, Modal } from 'react-bootstrap';
 import React, { useState } from 'react';
-import RecuperarSenha from '../../recuperarSenha/index.js';
-import Logo from '../../../Img/branco.png';
+import Logo from '../../Img/branco.png';
 import './style.css';
 
-function BtnEntrar() {
+function Senha() {
 
 
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [ConfirEmail, setConfirEmail] = useState("");
 
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   return (
     <>
-      <Button className='btn-fill' variant="primary" onClick={() => setShow(true)}>
-        Entrar
-      </Button>
+      <Alert.Link className='btn-senha' onClick={() => setShow(true)}>
+        Esqueceu sua senha?
+      </Alert.Link>
 
       <Modal
         show={show}
@@ -43,20 +42,17 @@ function BtnEntrar() {
 
             <div className="wrap-input">
               <input
-                className={password !== "" ? "has-val input" : "input"}
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                className={ConfirEmail !== "" ? "has-val input" : "input"}
+                type="email"
+                value={ConfirEmail}
+                onChange={(e) => setConfirEmail(e.target.value)}
               />
-              <span className="focus-input" data-placeholder="Senha"></span>
+              <span className="focus-input" data-placeholder="Confirme seu Email"></span>
             </div>
           </section>
         </Modal.Body>
         <Modal.Footer>
-          <button onClick={handleClose} className="button"> Entrar </button>
-          <>
-            <RecuperarSenha />
-          </>
+          <button onClick={handleClose} className="button"> Avançar </button>
         </Modal.Footer>
       </Modal>
     </>
@@ -64,4 +60,4 @@ function BtnEntrar() {
 }
 
 
-export default BtnEntrar
+export default Senha
