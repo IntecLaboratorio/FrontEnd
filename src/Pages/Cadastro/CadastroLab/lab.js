@@ -33,8 +33,6 @@ function Lab() {
 
             alert(` ${name_lab} cadastrado com sucesso!`)
 
-            window.location.reload(true);
-
         } catch (err) {
             alert(`Houve um problema: ${err}`)
         }
