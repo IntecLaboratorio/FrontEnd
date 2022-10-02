@@ -2,11 +2,12 @@ import { useState } from "react";
 import '../cadastro.css';
 import NavCadastro from '../../../Components/NavCadastro';
 import api from '../../../Service/api.js';
+import { IMaskInput } from "react-imask";
 
 function CadUsuario() {
 
   const [id_corporate, setId_corporate] = useState("")
-  const [addres, setAddres] = useState("");
+  const [address, setAddress] = useState("");
   const [name_user, setNome] = useState("");
   const [last_name, setSobrenome] = useState("");
   const [cpf, setCpf] = useState("");
@@ -15,14 +16,11 @@ function CadUsuario() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [verify, setVerify] = useState("");
-  // const [rm, setRm] = useState("");
-  // const [curso, setCurso] = useState("");
-
 
   async function createUser() {
     try {
       const data = {
-        id_corporate, addres, name_user, last_name, cpf, rg, phone, email, password, verify
+        id_corporate, address, name_user, last_name, cpf, rg, phone, email, password, verify
       }
 
       await api.post("/user", data)
@@ -54,10 +52,10 @@ function CadUsuario() {
 
             <div className="wrap-input">
               <input
-                className={addres !== "" ? "has-val input" : "input"}
+                className={address !== "" ? "has-val input" : "input"}
                 type="text"
-                value={addres}
-                onChange={(e) => setAddres(e.target.value)}
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
               />
               <span className="focus-input" data-placeholder="Endereço"></span>
             </div>
@@ -84,9 +82,9 @@ function CadUsuario() {
             </div>
 
             <div className="wrap-input">
-              <input
+              <IMaskInput
                 className={cpf !== "" ? "has-val input" : "input"}
-                type="text"
+                mask="000.000.000-00"
                 value={cpf}
                 onChange={(e) => setCpf(e.target.value)}
               />
@@ -96,9 +94,9 @@ function CadUsuario() {
           s
           <section className="section-cadastro">
             <div className="wrap-input">
-              <input
+              <IMaskInput
                 className={rg !== "" ? "has-val input" : "input"}
-                type="number"
+                mask="00.000.000-0"
                 value={rg}
                 onChange={(e) => setRg(e.target.value)}
               />
@@ -106,9 +104,9 @@ function CadUsuario() {
             </div>
 
             <div className="wrap-input">
-              <input
+              <IMaskInput
                 className={phone !== "" ? "has-val input" : "input"}
-                type="number"
+                mask="(00) 00000-0000"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
               />
@@ -143,29 +141,11 @@ function CadUsuario() {
                 onChange={(e) => setVerify(e.target.value)}
               >
                 <option value="" disable selected></option>
-                <option value="Ativo">Ativo</option>
-                <option value="Inativo">Inativo</option>
+                <option value="1">Ativo</option>
+                <option value="0">Inativo</option>
               </select>
               <span className="focus-input" data-placeholder="Status do usuário"></span>
             </div>
-
-            {/* <div className="wrap-input">
-              <select name="select"
-                className={curso !== "" ? "has-val input" : "input"}
-                type="text"
-                value={curso}
-                onChange={(e) => setCurso(e.target.value)}
-              >
-                <option value="" disable selected></option>
-                <option value="Administração">Administração</option>
-                <option value="Contabilidade">Contabilidade</option>
-                <option value="Desenvolvimento de Sistemas">Desenvolvimento de Sistemas</option>
-                <option value="Eletroeletrônica">Eletroeletrônica</option>
-                <option value="Logística">Logística</option>
-                <option value="Redes de Computadores">Redes de Computadores</option>
-              </select>
-              <span className="focus-input" data-placeholder="Curso"></span>
-            </div> */}
           </section>
 
           <section className="section-btn-cadastro section-btn-cadastro--column">

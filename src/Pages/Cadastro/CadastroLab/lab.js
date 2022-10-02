@@ -17,19 +17,23 @@ function Lab() {
         async function getLabs() {
             const { data } = await api.get('/labs');
             setLabs(data)
+            console.log(data)
         }
         getLabs();
     }, []);
 
 
 
-    async function insertLab() {
+    async function insertLab(e) {
         try {
+            e.preventDefault();
             const data = { fk_instruction, name_lab, room_index, floor_lab }
 
             await api.post('/labs', data);
 
             alert(` ${name_lab} cadastrado com sucesso!`)
+
+            window.location.reload(true);
 
         } catch (err) {
             alert(`Houve um problema: ${err}`)
@@ -42,7 +46,7 @@ function Lab() {
         <div>
             <NavCadastro />
             <section floor_labName="container-cadastro secoes">
-                <Table striped bordered hover>
+                <table className="table table-striped table-bordered table-hover">
                     <thead style={{ textAlign: "center" }}>
                         <tr>
                             <th>Instituição</th>
@@ -55,15 +59,15 @@ function Lab() {
                         {labs.map((labs) => (
                             <tr key={labs.id}>
                                 <td> {labs.fk_instruction} </td>
-                                <td> {labs.room_index} </td>
                                 <td> {labs.name_lab} </td>
+                                <td> {labs.room_index} </td>
                                 <td> {labs.floor_lab} </td>
                             </tr>
                         ))
                         }
 
                     </tbody>
-                </Table>
+                </table>
             </section>
             <div className="container-cadastro">
                 <form className="form-cadastro">
@@ -108,12 +112,6 @@ function Lab() {
                             <span className="focus-input" data-placeholder="Nome do lab ou sala"></span>
                         </div>
                         <div className="wrap-input">
-                            {/* <input
-                                className={floor_lab !== "" ? "has-val input" : "input"}
-                                type="text"
-                                value={floor_lab}
-                                onChange={(e) => setFloor_lab(e.target.value)}
-                            /> */}
                             <select name="select"
                                 className={floor_lab !== "" ? "has-val input" : "input"}
                                 type="text"

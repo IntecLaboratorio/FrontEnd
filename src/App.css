@@ -54,11 +54,15 @@
 
 body {
     background: linear-gradient(45deg, #000814, #001D3D, #0E1427);
-    height: 100vh;
+    height: 110vh;
     width: 100%;
     background-repeat: no-repeat;
 }
 
 .clear {
     clear: both;
+}
+
+.text-center {
+    text-align: center;
 }
