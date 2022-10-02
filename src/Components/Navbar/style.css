@@ -65,9 +65,23 @@
   font-weight: bold;
 }
 
+.navbar-nav .dropdown-menu {
+  background: #DFDEDE !important;
+  position: absolute !important;
+  border-radius: 3px !important;
+  width: 50% !important;
+}
+
+.dropdown-item{
+  border-bottom: 1px solid white !important;
+}
+
 @media screen and (max-width:410px) {
   .container :is(.intec) {
     display: none;
+  }
+  .navbar-nav .dropdown-menu{
+    width: 60% !important;
   }
 }
 
@@ -86,5 +100,8 @@
   .container :is(.intec) {
     padding: 0;
     display: none;
+  }
+  .navbar-nav .dropdown-menu{
+    width: 100% !important;
   }
 }
