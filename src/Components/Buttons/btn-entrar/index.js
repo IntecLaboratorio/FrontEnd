@@ -2,6 +2,7 @@ import { Alert, Button, Modal } from 'react-bootstrap';
 import React, { useState } from 'react';
 import RecuperarSenha from '../../recuperarSenha/index.js';
 import Logo from '../../../Img/branco.png';
+import api from '../../../Service/api.js'
 import './style.css';
 
 function BtnEntrar() {
@@ -10,8 +11,24 @@ function BtnEntrar() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const [show, setShow] = useState(false);
+  async function handleLogin() {
+    try{
+      const data = {email, password}
+      const response = await api.post('/login', data);
 
+      if(response.lenght == 0) {
+        alert("Você não está cadastrado!")
+      }
+      else {
+        alert("seja bem-vindo!")
+      }
+    }
+    catch(err) {
+      alert ("Deu erro!")
+    }
+  }
+
+  const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   return (
     <>
