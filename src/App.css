@@ -53,10 +53,9 @@
 }
 
 body {
-    background: linear-gradient(45deg, #000814, #001D3D, #0E1427);
-    height: 100%;
+    /* background: linear-gradient(45deg, #000814, #001D3D, #0E1427) !important; */
+    background: #001D3D !important;
     width: 100%;
-    background-repeat: no-repeat;
 }
 
 .clear {
