@@ -1,7 +1,9 @@
 import { useState } from "react";
 import '../cadastro.css';
 import NavCadastro from '../../../Components/NavCadastro';
-import api from '../../../Service/api.js'
+import api from '../../../Service/api.js';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Patrimonio() {
 
@@ -18,20 +20,36 @@ function Patrimonio() {
   const [color, setColor] = useState("");
   const [fk_labs, setFk_labs] = useState("");
 
-  async function insertFixedAssent() {
+  async function insertFixedAssent(e) {
     try {
+      e.preventDefault();
+
       const data = {
         assent_name, serial_number, assent_number, brand, model, product_batch, tax_invoice, complement, value_assent, verify, color, fk_labs
       }
 
-      console.log(data)
-
       await api.post('/fixedAssent', data);
 
-      alert(`Patrimono ${assent_number} cadastrado com sucesso!`)
+      toast.success(`Patrimono ${assent_number} cadastrado com sucesso!`, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
 
     } catch (err) {
-      alert(`Houve um problema: ${err}`)
+      toast.error(`Houve um problema: ${err}`, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
   }
 
@@ -180,6 +198,7 @@ function Patrimonio() {
             <button className="btn btn-planilhas">Cadastro com Planilha</button>
           </section>
         </form>
+        <ToastContainer />
       </div>
     </>
   )

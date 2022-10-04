@@ -3,6 +3,8 @@ import Table from 'react-bootstrap/Table';
 import NavCadastro from '../../../Components/NavCadastro';
 import '../cadastro.css';
 import api from '../../../Service/api.js'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function Lab() {
@@ -31,10 +33,29 @@ function Lab() {
 
             await api.post('/labs', data);
 
-            alert(` ${name_lab} cadastrado com sucesso!`)
+            // alert(` ${name_lab} cadastrado com sucesso!`)
+            toast.success(`${name_lab} cadastrado com sucesso!`, {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+            window.location.reload(true);
 
         } catch (err) {
             alert(`Houve um problema: ${err}`)
+            toast.error(`Houve um problema: ${err}`, {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
         }
     }
 
@@ -130,6 +151,7 @@ function Lab() {
                         <button className="btn">Alterar</button>
                     </section>
                 </form>
+                <ToastContainer />
 
             </div>
         </div>

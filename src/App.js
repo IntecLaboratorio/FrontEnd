@@ -7,7 +7,8 @@ import CronogramaLab from './Pages/Cronograma/cronograma-lab/index.jsx';
 // import CronogramaQuadra from './Pages/Cronograma/cronograma-quadra/index.jsx';
 import CadastroLab from './Pages/Cadastro/CadastroLab/lab.js';
 import CadastroPatrimonio from './Pages/Cadastro/CadastroPatrimonio/patrimonio.js';
-import CadastroUsuario from './Pages/Cadastro/CadastroUsuario/CadastroUsuario';
+import CadastroUsuario from './Pages/Cadastro/CadastroUsuario/CadastroUsuario.js';
+import Manutencao from './Pages/Manutencao/index.jsx';
 // import Laboratorio from './Pages/Laboratorio/index.js';
 // import AluguelArmario from './Pages/AluguelArmario/index.js';
 import './App.css';
@@ -23,6 +24,7 @@ function App() {
           <Route path='/cadastro-patrimonio' element={<CadastroPatrimonio />} />
           <Route path='/cadastro-laboratorio' element={<CadastroLab />} />
           <Route path='/cadastro-usuario' element={<CadastroUsuario />} />
+          <Route path='/manutencao' element={<Manutencao />} />
         </Route>
         <Route path='/' element={<Home />} />
       </Routes>

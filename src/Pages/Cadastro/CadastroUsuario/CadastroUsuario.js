@@ -3,6 +3,8 @@ import '../cadastro.css';
 import NavCadastro from '../../../Components/NavCadastro';
 import api from '../../../Service/api.js';
 import { IMaskInput } from "react-imask";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function CadUsuario() {
 
@@ -25,10 +27,26 @@ function CadUsuario() {
 
       await api.post("/user", data)
 
-      alert(` ${name_user} foi cadastrado com sucesso!`)
+      toast.success(`${name_user} cadastrado com sucesso!`, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
 
     } catch (err) {
-      alert(`Houve um erro: ${err}`)
+      toast.error(`Houve um problema: ${err}`, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
   }
 
@@ -153,6 +171,7 @@ function CadUsuario() {
             <button className="btn btn-planilhas">Cadastro com Planilha</button>
           </section>
         </form>
+        <ToastContainer />
 
       </div>
     </>
