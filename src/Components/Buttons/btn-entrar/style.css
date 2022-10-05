@@ -199,3 +199,7 @@
   background-color: #0083fd !important;
   box-shadow: #0083fd 0px 0px 7px 1px !important;
 }
+
+.modal{
+  width: none !important;
+}

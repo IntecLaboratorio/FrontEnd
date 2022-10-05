@@ -52,11 +52,13 @@ function CadUsuario() {
 
   return (
 
-    <>
-      <NavCadastro />
+    <div className="d-flex-user">
+        <div className="hide-mobile">
+          <NavCadastro />
+        </div>
       <div className="container-cadastro secoes">
         <form className="form-cadastro">
-          <section className="section-cadastro">
+          <section className="section-cadastro justify-center-mobile-user">
             <div className="wrap-input">
               <input
                 className={id_corporate !== "" ? "has-val input" : "input"}
@@ -110,7 +112,7 @@ function CadUsuario() {
             </div>
           </section>
           s
-          <section className="section-cadastro">
+          <section className="section-cadastro justify-center-mobile-user">
             <div className="wrap-input">
               <IMaskInput
                 className={rg !== "" ? "has-val input" : "input"}
@@ -174,7 +176,7 @@ function CadUsuario() {
         <ToastContainer />
 
       </div>
-    </>
+    </div>
   )
 }
 

@@ -6,7 +6,7 @@
 
 .section-cadastro {
   width: 35%;
-  margin: 30px 30px;
+  margin: 0px 30px;
 }
 
 .form-cadastro {
@@ -187,4 +187,28 @@
 
 .section-btn-cadastro--column :is(.btn-planilhas) {
   width: 250px;
+}
+
+@media (max-width: 767px) {
+  .justify-center-mobile-lab, .justify-center-mobile-patrimonio, .justify-center-mobile-user  {
+    width: auto;
+    /* display: flex;
+    justify-content: center;
+    flex-direction: column; */
+  }
+
+  .d-flex-lab, .d-flex-patrimonio, .d-flex-user{
+    flex-direction: column;
+  }
+
+
+  .table-lab {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .hide-mobile {
+    display: none !important;
+  }
 }

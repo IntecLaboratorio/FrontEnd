@@ -55,13 +55,15 @@ function Patrimonio() {
 
   return (
 
-    <>
-      <NavCadastro />
+    <div className="d-flex-patrimonio">
+        <div className="hide-mobile">
+        <NavCadastro />
+        </div>
       <div className="container-cadastro secao">
 
         <form className="form-cadastro">
 
-          <section className="section-cadastro">
+          <section className="section-cadastro justify-center-mobile-patrimonio">
 
             <div className="wrap-input">
               <input
@@ -125,7 +127,7 @@ function Patrimonio() {
 
           </section>
 
-          <section className="section-cadastro">
+          <section className="section-cadastro justify-center-mobile-patrimonio">
 
             <div className="wrap-input">
               <input
@@ -200,7 +202,7 @@ function Patrimonio() {
         </form>
         <ToastContainer />
       </div>
-    </>
+    </div>
   )
 }
 

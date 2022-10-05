@@ -192,6 +192,8 @@
 }
 
 
+
+
 .modal-header {
   border: none !important;
   display: flex;
@@ -203,7 +205,7 @@
 }
 
 .modal-content {
-  width: 90% !important;
+  width: 100% !important;
 }
 
 .img-acesso {

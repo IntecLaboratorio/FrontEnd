@@ -62,9 +62,11 @@ function Lab() {
 
     return (
 
-        <div>
+    <div className="d-flex-lab">
+        <div className="hide-mobile">
             <NavCadastro />
-            <section floor_labName="container-cadastro secoes">
+        </div>
+            <section className="table-lab justify-center-mobile-lab" floor_labName="container-cadastro secoes">
                 <table className="table table-striped table-bordered table-hover">
                     <thead style={{ textAlign: "center" }}>
                         <tr>
@@ -90,7 +92,7 @@ function Lab() {
             </section>
             <div className="container-cadastro">
                 <form className="form-cadastro">
-                    <section className="section-cadastro">
+                    <section className="section-cadastro justify-center-mobile-lab">
                         <div className="wrap-input">
                             <input
                                 className={fk_instruction !== "" ? "has-val input" : "input"}
@@ -119,7 +121,7 @@ function Lab() {
                         </div>
 
                     </section>
-                    <section className="section-cadastro">
+                    <section className="section-cadastro justify-center-mobile-lab">
 
                         <div className="wrap-input">
                             <input

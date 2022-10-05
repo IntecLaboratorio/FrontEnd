@@ -5,6 +5,11 @@ import api from '../../Service/api.js';
 import './style.css'
 
 function Manutencao() {
+
+  const [fk_instruction, setFk_instruction] = useState("");
+  const [name_lab, setName_lab] = useState("");
+  const [room_index, setRoom_index] = useState("");
+  const [floor_lab, setFloor_lab] = useState("");
   const [fixedAssent, setFixedAssent] = useState([]);
 
   useEffect(() => {
@@ -52,6 +57,7 @@ function Manutencao() {
         <p className='manutencao'></p><p className='text-status'>Manutenção</p>
         <p className='inativo'></p><p className='text-status'>Inativo</p>
       </div>
+      
       <section className="form-manutencao">
         <form>
           <section className='section-manutencao'>
