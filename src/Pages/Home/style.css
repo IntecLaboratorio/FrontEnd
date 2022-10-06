@@ -1,0 +1,5 @@
+.conteiner-home {
+  padding-top: calc(1.25vh);
+  /* background: linear-gradient(45deg, #000814, #001D3D, #0E1427); */
+  height: 100%;
+}

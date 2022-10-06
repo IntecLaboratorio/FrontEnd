@@ -1,0 +1,8 @@
+.grupo{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+/* Aqui estou alinhando os card no centro da tela */

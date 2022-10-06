@@ -16,7 +16,7 @@ function navbar() {
       <Navbar expand="m" className='navConfig'>
         <Container>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Link className='intec' to="/">InTec</Link>
+          <Link className='intec' to="/home">InTec</Link>
 
           <div className='btn-flex'>
             <BtnAcesso />
@@ -24,7 +24,8 @@ function navbar() {
           </div>
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Link className='nav-link' to="/">Home</Link>
+              <Link className='nav-link' to="/">Inicio</Link>
+              <Link className='nav-link' to="/home">Home</Link>
               <NavDropdown title="Cadastros" id="basic-nav-dropdown">
                 <Link className='dropdown-item' to="/cadastro-patrimonio">Cadastro de Patrimônio</Link>
                 <Link className='dropdown-item' to="/cadastro-laboratorio">Cadastro de Laboratório</Link>
