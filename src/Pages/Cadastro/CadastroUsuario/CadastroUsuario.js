@@ -11,7 +11,7 @@ function CadUsuario() {
   const [id_corporate, setId_corporate] = useState("")
   const [address, setAddress] = useState("");
   const [name_user, setNome] = useState("");
-  const [last_name, setSobrenome] = useState("");
+  const [type_user, setTipoUsuario] = useState("");
   const [cpf, setCpf] = useState("");
   const [rg, setRg] = useState("");
   const [phone, setPhone] = useState("");
@@ -22,7 +22,7 @@ function CadUsuario() {
   async function createUser() {
     try {
       const data = {
-        id_corporate, address, name_user, last_name, cpf, rg, phone, email, password, verify
+        id_corporate, address, type_user, name_user, cpf, rg, phone, email, password, verify
       }
 
       await api.post("/user", data)
@@ -81,6 +81,21 @@ function CadUsuario() {
             </div>
 
             <div className="wrap-input">
+              <select name="select"
+                className={type_user !== "" ? "has-val input" : "input"}
+                type="text"
+                value={type_user}
+                onChange={(e) => setTipoUsuario(e.target.value)}
+              >
+                <option value="" disable selected></option>
+                <option value="1">Coordenador</option>
+                <option value="2">Professor</option>
+                <option value="3">Aluno</option>
+              </select>
+              <span className="focus-input" data-placeholder="Tipo de Usuário"></span>
+            </div>
+
+            <div className="wrap-input">
               <input
                 className={name_user !== "" ? "has-val input" : "input"}
                 type="text"
@@ -89,16 +104,6 @@ function CadUsuario() {
                 onChange={(e) => setNome(e.target.value)}
               />
               <span className="focus-input" data-placeholder="Nome"></span>
-            </div>
-
-            <div className="wrap-input">
-              <input
-                className={last_name !== "" ? "has-val input" : "input"}
-                type="text"
-                value={last_name}
-                onChange={(e) => setSobrenome(e.target.value)}
-              />
-              <span className="focus-input" data-placeholder="Sobrenome"></span>
             </div>
 
             <div className="wrap-input">
@@ -111,7 +116,6 @@ function CadUsuario() {
               <span className="focus-input" data-placeholder="CPF"></span>
             </div>
           </section>
-          s
           <section className="section-cadastro justify-center-mobile-user">
             <div className="wrap-input">
               <IMaskInput
