@@ -63,33 +63,13 @@
     /* width: 60%; */
     justify-content: center;
     align-items: center;
+
+    margin-top: 15px;
 }
 
 .section-manutencao {
     display: flex;
     flex-direction: column;
-}
-
-.section-manutencao input {
-    width: 350px;
-    height: 25px;
-    border: none;
-    border-bottom: 1px solid white;
-    background-color: transparent;
-    color: white;
-    font-size: 15px;
-    outline: none;
-}
-
-.section-manutencao select {
-    width: 355px;
-    height: 30px;
-    border: none;
-    border-bottom: 1px solid white;
-    background-color: transparent;
-    color: #bbb;
-    font-size: 15px;
-    outline: none;
 }
 
 .section-manutencao textarea {

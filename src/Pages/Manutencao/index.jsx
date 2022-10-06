@@ -6,9 +6,9 @@ import './style.css'
 
 function Manutencao() {
 
-  const [fk_instruction, setFk_instruction] = useState("");
-  const [name_lab, setName_lab] = useState("");
-  const [room_index, setRoom_index] = useState("");
+  const [nome, setNome] = useState("");
+  const [nserie, setNserie] = useState("");
+  const [statusManutencao, setstatusManutencao] = useState("");
   const [floor_lab, setFloor_lab] = useState("");
   const [fixedAssent, setFixedAssent] = useState([]);
 
@@ -59,35 +59,60 @@ function Manutencao() {
       </div>
       
       <section className="form-manutencao">
-        <form>
+        <form className='form-man'>
           <section className='section-manutencao'>
-            <label>Nome</label>
-            <select name="select">
-              <option value="0" selected></option>
-              <option value="monitor">Monitor</option>
-              <option value="mouse">Mouse</option>
-              <option value="teclado">Teclado</option>
-            </select>
-            <label>Número de Série</label>
-            <input type='text' />
-            <label>Status da Manutenção</label>
-            <select name="select" id='select'>
-              <option value="0" selected></option>
-              <option value="dfbg">Ativo</option>
-              <option value="bfdz">Manutenção</option>
-              <option value="saqws">Inativo</option>
-            </select>
+          <div className="wrap-input">
+              <select name="select"
+                className={nome !== "" ? "has-val input" : "input"}
+                type="text"
+                value={nome}
+                onChange={(e) => setNome(e.target.value)}
+              >
+                <option value="" disable selected></option>
+                <option value="1">Monitor</option>
+                <option value="2">Mouse</option>
+                <option value="3">Teclado</option>
+              </select>
+              <span className="focus-input" data-placeholder="Nome"></span>
+            </div>
+
+            <div className="wrap-input">
+              <input
+                className={nserie !== "" ? "has-val input" : "input"}
+                type="text"
+                value={nserie}
+                onChange={(e) => setNserie(e.target.value)}
+              />
+              <span className="focus-input" data-placeholder="Numero de Série"></span>
+            </div>
+
+            <div className="wrap-input">
+              <select name="select"
+                className={statusManutencao !== "" ? "has-val input" : "input"}
+                type="text"
+                value={statusManutencao}
+                onChange={(e) => setstatusManutencao(e.target.value)}
+              >
+                <option value="" disable selected></option>
+                <option value="1">Ativo</option>
+                <option value="2">Inativo</option>
+                <option value="3">Manutenção</option>
+              </select>
+              <span className="focus-input" data-placeholder="Status da Manutenção"></span>
+            </div>
+
           </section>
           <section className='section-manutencao'>
             <label>Descrição do Problema</label>
             <textarea name="descricao-problema" id="descricao-problema" cols="20" rows="7"></textarea>
           </section>
+
+          <section className="section-btn-cadastro section-btn-cadastro--column">
+            <button className="btn">Deletar</button>
+            <button className="btn btn-planilhas">Alterar</button>
+          </section>
         </form>
       </section>
-      <div className="buttons-manutencao">
-        <button>Alterar</button>
-        <button>Deletar</button>
-      </div>
     </div>
   )
 }
