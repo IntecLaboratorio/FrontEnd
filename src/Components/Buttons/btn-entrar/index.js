@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import RecuperarSenha from '../../recuperarSenha/index.js';
 import Logo from '../../../Img/branco.png';
 import api from '../../../Service/api.js'
+import {useNavigate} from 'react-router-dom';
 import './style.css';
 
 function BtnEntrar() {
@@ -10,21 +11,20 @@ function BtnEntrar() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  let navigate = useNavigate();
 
   async function handleLogin() {
     try{
       const data = {email, password}
-      const response = await api.post('/login', data);
+      const {response} = await api.post('/login', data);
 
-      if(response.lenght == 0) {
-        alert("Você não está cadastrado!")
-      }
-      else {
-        alert("seja bem-vindo!")
-      }
+      sessionStorage.setItem("login", true);
+      navigate("/cadastro-usuario")
+      alert("Seja bem-vindo!")
+
     }
     catch(err) {
-      alert ("Deu erro!")
+      alert ("Você não é cadastrado!")
     }
   }
 
@@ -70,7 +70,7 @@ function BtnEntrar() {
           </section>
         </Modal.Body>
         <Modal.Footer>
-          <button onClick={handleClose} className="button"> Entrar </button>
+          <button onClick={handleLogin} className="button"> Entrar </button>
           <>
             <RecuperarSenha />
           </>
