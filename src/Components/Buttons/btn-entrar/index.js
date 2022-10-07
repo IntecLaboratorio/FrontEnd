@@ -13,17 +13,16 @@ function BtnEntrar() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isDisabled, setIsDisabled] = useState(false);
+  const [errors, setErrors] = useState({});
+  const [invalid, setInvalid] = useState("");
   let navigate = useNavigate();
 
-  async function handleLogin() {
-    try {
-      const data = { email, password }
-      const { response } = await api.post('/login', data);
+  function validate() {
+    let errors = {};
 
-      sessionStorage.setItem("login", true);
-      navigate("/home")
-      // alert("Seja bem-vindo!")
-      toast.success("Seja bem-vindo!", {
+    if (!email) {
+      errors.email = toast.error("EMail é obrigatório", {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -32,10 +31,9 @@ function BtnEntrar() {
         draggable: true,
         progress: undefined,
       });
-      handleClose()
     }
-    catch (err) {
-      toast.error("Usuário não cadastrado", {
+    if (!password) {
+      errors.password = toast.error("Senha é obrigatória", {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -44,6 +42,55 @@ function BtnEntrar() {
         draggable: true,
         progress: undefined,
       });
+    }
+    if (errors.user || errors.password) {
+      setErrors(errors);
+      return false;
+    }
+    return true;
+  }
+
+  async function handleLogin() {
+    if (validate()) {
+      try {
+
+        setIsDisabled(true);
+
+        const data = { email, password }
+        const { response } = await api.post('/login', data);
+
+        sessionStorage.setItem("login", true);
+        navigate("/home")
+
+        toast.success("Seja bem-vindo!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        handleClose()
+      }
+      catch (err) {
+        setInvalid(toast.error("Usuário ou senha inválidos", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        }))
+        setIsDisabled(false);
+      }
+    }
+  }
+
+  function handleKeyDown(e) {
+    if (e.key === "Enter") {
+      handleLogin();
     }
   }
 
@@ -73,7 +120,11 @@ function BtnEntrar() {
                 className={email !== "" ? "has-val input" : "input"}
                 type="email"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => {setEmail(e.target.value);
+                setErrors({...errors, email: ""});
+                setInvalid("");
+                }}
+                onKeyDown={handleKeyDown}
               />
               <span className="focus-input" data-placeholder="Email"></span>
             </div>
@@ -83,14 +134,18 @@ function BtnEntrar() {
                 className={password !== "" ? "has-val input" : "input"}
                 type="password"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) => {setPassword(e.target.value);
+                setErrors({...errors, password: ""});
+                setInvalid("");
+                }}
+                onKeyDown={handleKeyDown}
               />
               <span className="focus-input" data-placeholder="Senha"></span>
             </div>
           </section>
         </Modal.Body>
         <Modal.Footer>
-          <button onClick={handleLogin} className="button"> Entrar </button>
+          <button onClick={handleLogin} disabled={isDisabled} className="button"> Entrar </button>
           <>
             <RecuperarSenha />
           </>
