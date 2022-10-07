@@ -7,6 +7,8 @@
     "bootstrap": "^5.2.0",
     "react": "^18.2.0",
     "react-bootstrap": "^2.5.0",
+    "react-bootstrap-table-next": "^4.0.3",
+    "react-bootstrap-table2-paginator": "^2.1.2",
     "react-calendar": "^3.7.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.4.0",
