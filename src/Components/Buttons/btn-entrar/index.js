@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import RecuperarSenha from '../../recuperarSenha/index.js';
 import Logo from '../../../Img/branco.png';
 import api from '../../../Service/api.js'
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './style.css';
 
 function BtnEntrar() {
@@ -14,17 +14,17 @@ function BtnEntrar() {
   let navigate = useNavigate();
 
   async function handleLogin() {
-    try{
-      const data = {email, password}
-      const {response} = await api.post('/login', data);
+    try {
+      const data = { email, password }
+      const { response } = await api.post('/login', data);
 
       sessionStorage.setItem("login", true);
       navigate("/cadastro-usuario")
       alert("Seja bem-vindo!")
-
+      handleClose()
     }
-    catch(err) {
-      alert ("Você não é cadastrado!")
+    catch (err) {
+      alert("Você não é cadastrado!")
     }
   }
 
