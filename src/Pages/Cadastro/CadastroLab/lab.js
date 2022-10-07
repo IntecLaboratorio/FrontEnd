@@ -9,10 +9,10 @@ import 'react-toastify/dist/ReactToastify.css';
 
 function Lab() {
 
-    const [fk_instruction, setFk_instruction] = useState("");
-    const [name_lab, setName_lab] = useState("");
-    const [room_index, setRoom_index] = useState("");
-    const [floor_lab, setFloor_lab] = useState("");
+    const [fk_instruction, setFk_instruction] = useState(null);
+    const [name_lab, setName_lab] = useState(null);
+    const [room_index, setRoom_index] = useState(null);
+    const [floor_lab, setFloor_lab] = useState(null);
     const [labs, setLabs] = useState([]);
 
     useEffect(() => {
@@ -25,28 +25,38 @@ function Lab() {
     }, []);
 
 
-
     async function insertLab(e) {
+        e.preventDefault();
         try {
-            e.preventDefault();
             const data = { fk_instruction, name_lab, room_index, floor_lab }
+
+            if (fk_instruction && name_lab && room_index && floor_lab) {
+                toast.success(`${name_lab} cadastrado com sucesso!`, {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+            } else {
+                toast.warn('Todos os campos devem ser preenchidos', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+            }
+            // window.location.reload(true);
 
             await api.post('/labs', data);
 
-            // alert(` ${name_lab} cadastrado com sucesso!`)
-            toast.success(`${name_lab} cadastrado com sucesso!`, {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-            window.location.reload(true);
-
         } catch (err) {
-            alert(`Houve um problema: ${err}`)
+            // alert(`Houve um problema: ${err}`)
             toast.error(`Houve um problema: ${err}`, {
                 position: "top-right",
                 autoClose: 5000,
@@ -62,10 +72,10 @@ function Lab() {
 
     return (
 
-    <div className="d-flex-lab">
-        <div className="hide-mobile">
-            <NavCadastro />
-        </div>
+        <div className="d-flex-lab">
+            <div className="hide-mobile">
+                <NavCadastro />
+            </div>
             <section className="table-lab justify-center-mobile-lab" floor_labName="container-cadastro secoes">
                 <table className="table table-striped table-bordered table-hover">
                     <thead style={{ textAlign: "center" }}>

@@ -8,34 +8,48 @@ import 'react-toastify/dist/ReactToastify.css';
 
 function CadUsuario() {
 
-  const [id_corporate, setId_corporate] = useState("")
-  const [address, setAddress] = useState("");
-  const [name_user, setNome] = useState("");
-  const [type_user, setTipoUsuario] = useState("");
-  const [cpf, setCpf] = useState("");
-  const [rg, setRg] = useState("");
-  const [phone, setPhone] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [verify, setVerify] = useState("");
+  const [id_corporate, setId_corporate] = useState(null)
+  const [address, setAddress] = useState(null);
+  const [name_user, setNome] = useState(null);
+  const [type_user, setTipoUsuario] = useState(null);
+  const [cpf, setCpf] = useState(null);
+  const [rg, setRg] = useState(null);
+  const [phone, setPhone] = useState(null);
+  const [email, setEmail] = useState(null);
+  const [password, setPassword] = useState(null);
+  const [verify, setVerify] = useState(null);
 
-  async function createUser() {
+  async function createUser(e) {
+    e.preventDefault();
+
     try {
       const data = {
         id_corporate, address, type_user, name_user, cpf, rg, phone, email, password, verify
       }
 
-      await api.post("/user", data)
+      if (id_corporate && address && type_user && name_user && cpf && rg && phone && email && password && verify) {
+        toast.success(`${name_user} cadastrado com sucesso!`, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      } else {
+        toast.warn('Todos os campos devem ser preenchidos', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
 
-      toast.success(`${name_user} cadastrado com sucesso!`, {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+      await api.post("/user", data)
 
     } catch (err) {
       toast.error(`Houve um problema: ${err}`, {
@@ -53,9 +67,9 @@ function CadUsuario() {
   return (
 
     <div className="d-flex-user">
-        <div className="hide-mobile">
-          <NavCadastro />
-        </div>
+      <div className="hide-mobile">
+        <NavCadastro />
+      </div>
       <div className="container-cadastro secoes">
         <form className="form-cadastro">
           <section className="section-cadastro justify-center-mobile-user">

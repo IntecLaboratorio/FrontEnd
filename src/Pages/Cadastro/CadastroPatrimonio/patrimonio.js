@@ -7,18 +7,18 @@ import 'react-toastify/dist/ReactToastify.css';
 
 function Patrimonio() {
 
-  const [assent_name, setAssent_name] = useState("");
-  const [serial_number, setSerial_number] = useState("");
-  const [assent_number, setAssent_number] = useState("");
-  const [brand, setBrand] = useState("");
-  const [model, setModel] = useState("");
-  const [product_batch, setProduct_batch] = useState("");
-  const [tax_invoice, setTax_invoice] = useState("");
-  const [complement, setComplement] = useState("");
-  const [value_assent, setValue_assent] = useState("");
-  const [verify, setVerify] = useState("");
-  const [color, setColor] = useState("");
-  const [fk_labs, setFk_labs] = useState("");
+  const [assent_name, setAssent_name] = useState(null);
+  const [serial_number, setSerial_number] = useState(null);
+  const [assent_number, setAssent_number] = useState(null);
+  const [brand, setBrand] = useState(null);
+  const [model, setModel] = useState(null);
+  const [product_batch, setProduct_batch] = useState(null);
+  const [tax_invoice, setTax_invoice] = useState(null);
+  const [complement, setComplement] = useState(null);
+  const [value_assent, setValue_assent] = useState(null);
+  const [verify, setVerify] = useState(null);
+  const [color, setColor] = useState(null);
+  const [fk_labs, setFk_labs] = useState(null);
 
   async function insertFixedAssent(e) {
     try {
@@ -28,17 +28,29 @@ function Patrimonio() {
         assent_name, serial_number, assent_number, brand, model, product_batch, tax_invoice, complement, value_assent, verify, color, fk_labs
       }
 
-      await api.post('/fixedAssent', data);
+      if (assent_name && serial_number && assent_number && brand && model && product_batch && tax_invoice && complement && value_assent && verify && color && fk_labs) {
+        toast.success(`Patrimono ${assent_number} cadastrado com sucesso!`, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      } else {
+        toast.warn('Todos os campos devem ser preenchidos', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
 
-      toast.success(`Patrimono ${assent_number} cadastrado com sucesso!`, {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+      await api.post('/fixedAssent', data);
 
     } catch (err) {
       toast.error(`Houve um problema: ${err}`, {
@@ -56,9 +68,9 @@ function Patrimonio() {
   return (
 
     <div className="d-flex-patrimonio">
-        <div className="hide-mobile">
+      <div className="hide-mobile">
         <NavCadastro />
-        </div>
+      </div>
       <div className="container-cadastro secao">
 
         <form className="form-cadastro">

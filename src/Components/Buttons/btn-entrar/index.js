@@ -4,6 +4,8 @@ import RecuperarSenha from '../../recuperarSenha/index.js';
 import Logo from '../../../Img/branco.png';
 import api from '../../../Service/api.js'
 import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './style.css';
 
 function BtnEntrar() {
@@ -19,12 +21,29 @@ function BtnEntrar() {
       const { response } = await api.post('/login', data);
 
       sessionStorage.setItem("login", true);
-      navigate("/cadastro-usuario")
-      alert("Seja bem-vindo!")
+      navigate("/home")
+      // alert("Seja bem-vindo!")
+      toast.success("Seja bem-vindo!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
       handleClose()
     }
     catch (err) {
-      alert("Você não é cadastrado!")
+      toast.error("Usuário não cadastrado", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
   }
 
@@ -49,6 +68,7 @@ function BtnEntrar() {
           <section>
 
             <div className="wrap-input">
+
               <input
                 className={email !== "" ? "has-val input" : "input"}
                 type="email"
@@ -76,6 +96,7 @@ function BtnEntrar() {
           </>
         </Modal.Footer>
       </Modal>
+      <ToastContainer />
     </>
   )
 }
