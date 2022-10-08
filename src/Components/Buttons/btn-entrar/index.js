@@ -1,4 +1,4 @@
-import { Alert, Button, Modal } from 'react-bootstrap';
+import { Alert, Button, Modal, Spinner } from 'react-bootstrap';
 import React, { useState } from 'react';
 import RecuperarSenha from '../../recuperarSenha/index.js';
 import Logo from '../../../Img/branco.png';
@@ -16,13 +16,14 @@ function BtnEntrar() {
   const [isDisabled, setIsDisabled] = useState(false);
   const [errors, setErrors] = useState({});
   const [invalid, setInvalid] = useState("");
+  const [loading, setLoading] = useState("");
   let navigate = useNavigate();
 
   function validate() {
     let errors = {};
 
     if (!email) {
-      errors.email = toast.error("EMail é obrigatório", {
+      errors.email = toast.error("E-Mail é obrigatório", {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -42,8 +43,9 @@ function BtnEntrar() {
         draggable: true,
         progress: undefined,
       });
+
     }
-    if (errors.user || errors.password) {
+    if (errors.email || errors.password) {
       setErrors(errors);
       return false;
     }
@@ -53,7 +55,7 @@ function BtnEntrar() {
   async function handleLogin() {
     if (validate()) {
       try {
-
+        setLoading(<Spinner id="loading" animation='border' />);
         setIsDisabled(true);
 
         const data = { email, password }
@@ -72,9 +74,12 @@ function BtnEntrar() {
           progress: undefined,
         });
         handleClose()
+        setLoading("");
       }
       catch (err) {
-        setInvalid(toast.error("Usuário ou senha inválidos", {
+        setIsDisabled(false);
+        setLoading("");
+        invalid(toast.error("Usuário ou senha inválidos", {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -83,7 +88,6 @@ function BtnEntrar() {
           draggable: true,
           progress: undefined,
         }))
-        setIsDisabled(false);
       }
     }
   }
@@ -120,9 +124,9 @@ function BtnEntrar() {
                 className={email !== "" ? "has-val input" : "input"}
                 type="email"
                 value={email}
-                onChange={(e) => {setEmail(e.target.value);
-                setErrors({...errors, email: ""});
-                setInvalid("");
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                  setInvalid("");
                 }}
                 onKeyDown={handleKeyDown}
               />
@@ -134,9 +138,9 @@ function BtnEntrar() {
                 className={password !== "" ? "has-val input" : "input"}
                 type="password"
                 value={password}
-                onChange={(e) => {setPassword(e.target.value);
-                setErrors({...errors, password: ""});
-                setInvalid("");
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                  setInvalid("");
                 }}
                 onKeyDown={handleKeyDown}
               />
@@ -149,6 +153,7 @@ function BtnEntrar() {
           <>
             <RecuperarSenha />
           </>
+          <div className='loading-login'>{loading}</div>
         </Modal.Footer>
       </Modal>
       <ToastContainer />
