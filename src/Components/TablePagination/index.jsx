@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // import React from "react";
 // import "bootstrap/dist/css/bootstrap.min.css";
 // import "react-bootstrap-table-next/dist/react-bootstrap-table2.css";
@@ -23,6 +24,34 @@
 //     { id: 14, name: "Tamara", animal: "Lion" },
 //     { id: 15, name: "Zackery", animal: "Bear" }
 //   ];
+=======
+import React from "react";
+import "../TablePagination/style.css"
+import "bootstrap/dist/css/bootstrap.min.css";
+import "react-bootstrap-table-next/dist/react-bootstrap-table2.css";
+import "react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css";
+import BootstrapTable from "react-bootstrap-table-next";
+import paginationFactory from "react-bootstrap-table2-paginator";
+
+function App() {
+  const products = [
+    { id: 1, name: "George", animal: "Monkey" },
+    { id: 2, name: "Jeffrey", animal: "Giraffe" },
+    { id: 3, name: "Alice", animal: "Giraffe" },
+    { id: 4, name: "Foster", animal: "Tiger" },
+    { id: 5, name: "Tracy", animal: "Bear" },
+    { id: 6, name: "Joseph", animal: "Lion" },
+    { id: 7, name: "Tania", animal: "Deer" },
+    { id: 8, name: "Chelsea", animal: "Tiger" },
+    { id: 9, name: "Benedict", animal: "Tiger" },
+    { id: 10, name: "Chadd", animal: "Lion" },
+    { id: 11, name: "Delphine", animal: "Deer" },
+    { id: 12, name: "Elinore", animal: "Bear" },
+    { id: 13, name: "Stokes", animal: "Tiger" },
+    { id: 14, name: "Tamara", animal: "Lion" },
+    { id: 15, name: "Zackery", animal: "Bear" }
+  ];
+>>>>>>> 61e3d587c9d70e6023261d3e1f4261b0fd3d114d
 
 //   const columns = [
 //     { dataField: "id", text: "Id", sort: true },
@@ -56,9 +85,14 @@
 //     }
 //   });
 
+<<<<<<< HEAD
 //   return (
 //     <div className="App">
 //       <h5>React Bootstrap Table Next with Sorting and Pagination</h5>
+=======
+  return (
+    <div className="App">
+>>>>>>> 61e3d587c9d70e6023261d3e1f4261b0fd3d114d
 
 //       <BootstrapTable
 //         bootstrap4

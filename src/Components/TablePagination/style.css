@@ -1,0 +1,23 @@
+.row>* {
+  margin-top: 10px !important;
+  display: flex;
+  justify-content: center;
+}
+
+.active>.page-link, .page-link.active {
+  z-index: 3;
+  color: var(--bs-pagination-active-color);
+  background-color: #001D3D !important;
+  border-color: #001D3D !important
+}
+
+.btn-secondary {
+  --bs-btn-color: #0d6efd !important;
+  --bs-btn-bg: #ffffff !important;
+  --bs-btn-border-color: #ffffff !important;
+  --bs-btn-hover-color: #fff !important;
+}
+
+.btn:hover{
+  background-color: #dee2e6 !important;
+}
