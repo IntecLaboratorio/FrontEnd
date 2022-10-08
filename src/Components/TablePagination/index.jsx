@@ -1,4 +1,5 @@
 import React from "react";
+import "../TablePagination/style.css"
 import "bootstrap/dist/css/bootstrap.min.css";
 import "react-bootstrap-table-next/dist/react-bootstrap-table2.css";
 import "react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css";
@@ -12,7 +13,7 @@ function App() {
     { id: 3, name: "Alice", animal: "Giraffe" },
     { id: 4, name: "Foster", animal: "Tiger" },
     { id: 5, name: "Tracy", animal: "Bear" },
-    { id: 6, name: "Joesph", animal: "Lion" },
+    { id: 6, name: "Joseph", animal: "Lion" },
     { id: 7, name: "Tania", animal: "Deer" },
     { id: 8, name: "Chelsea", animal: "Tiger" },
     { id: 9, name: "Benedict", animal: "Tiger" },
@@ -58,7 +59,6 @@ function App() {
 
   return (
     <div className="App">
-      <h5>React Bootstrap Table Next with Sorting and Pagination</h5>
 
       <BootstrapTable
         bootstrap4
