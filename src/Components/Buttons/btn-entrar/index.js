@@ -14,7 +14,6 @@ function BtnEntrar() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isDisabled, setIsDisabled] = useState(false);
-  const [errors, setErrors] = useState({});
   const [invalid, setInvalid] = useState("");
   const [loading, setLoading] = useState("");
   let navigate = useNavigate();
@@ -46,7 +45,6 @@ function BtnEntrar() {
 
     }
     if (errors.email || errors.password) {
-      setErrors(errors);
       return false;
     }
     return true;

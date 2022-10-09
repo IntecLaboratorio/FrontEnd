@@ -13,7 +13,6 @@ function Index() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isDisabled, setIsDisabled] = useState(false);
-  const [errors, setErrors] = useState({});
   const [invalid, setInvalid] = useState("");
   const [loading, setLoading] = useState("");
   const [show, setShow] = useState(false);
@@ -58,7 +57,6 @@ function Index() {
       });
     }
     if (errors.enviar || errors.email || errors.password) {
-      setErrors(errors);
       return false;
     }
     return true;
