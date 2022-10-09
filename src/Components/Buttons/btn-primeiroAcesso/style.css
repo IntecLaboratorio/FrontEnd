@@ -232,3 +232,13 @@
   border: #0083fd 1px solid !important;
   box-shadow: #0083fd 0px 0px 7px 1px !important;
 }
+
+.loading-login {
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
+}
+
+.spinner-border {
+  color: #FFFFFF;
+}

@@ -79,6 +79,7 @@ function BtnEntrar() {
       catch (err) {
         setIsDisabled(false);
         setLoading("");
+        console.log(err);
         invalid(toast.error("Usuário ou senha inválidos", {
           position: "top-right",
           autoClose: 5000,
