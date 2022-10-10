@@ -52,6 +52,7 @@ function Patrimonio() {
 
       await api.post('/fixedAssent', data);
 
+      setModel("")
     } catch (err) {
       toast.error(`Houve um problema: ${err}`, {
         position: "top-right",

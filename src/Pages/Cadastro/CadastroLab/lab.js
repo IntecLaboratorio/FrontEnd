@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Table from 'react-bootstrap/Table';
 import NavCadastro from '../../../Components/NavCadastro';
 import '../cadastro.css';
-import api from '../../../Service/api.js'
+import api from '../../../Service/api.js';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -22,7 +22,7 @@ function Lab() {
             console.log(data)
         }
         getLabs();
-    }, []);
+    }, [labs]);
 
 
     async function insertLab(e) {
