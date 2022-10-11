@@ -2,6 +2,7 @@ import { useState } from "react";
 import '../cadastro.css';
 import NavCadastro from '../../../Components/NavCadastro';
 import api from '../../../Service/api.js';
+import { Link } from 'react-router-dom';
 import { IMaskInput } from "react-imask";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -198,7 +199,7 @@ function CadUsuario() {
           </section>
 
           <section className="section-btn-cadastro section-btn-cadastro--column">
-            <button className="btn" onClick={createUser}>Cadastro</button>
+            <Link to="/endereco"><button className="btn">Avançar</button></Link>
             <button className="btn btn-planilhas">Cadastro com Planilha</button>
           </section>
         </form>

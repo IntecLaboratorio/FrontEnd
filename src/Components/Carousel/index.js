@@ -34,6 +34,7 @@ function index(props) {
       </Carousel.Item>
     </Carousel>
 
+    
         <Card
           className='carouselCard'>
           <Card.Img className='img-card' src={branco} />

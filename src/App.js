@@ -10,6 +10,7 @@ import CronogramaLab from './Pages/Cronograma/cronograma-lab/index.jsx';
 import CadastroLab from './Pages/Cadastro/CadastroLab/lab.js';
 import CadastroPatrimonio from './Pages/Cadastro/CadastroPatrimonio/patrimonio.js';
 import CadastroUsuario from './Pages/Cadastro/CadastroUsuario/CadastroUsuario.js';
+import Endereco from './Pages/Cadastro/CadastroUsuario/endereco.js'
 import Manutencao from './Pages/Manutencao/index.jsx';
 // import AluguelArmario from './Pages/AluguelArmario/index.js';
 import './App.css';
@@ -25,6 +26,7 @@ function App() {
           <Route path='/cronograma-lab' element={<CronogramaLab />} />
           {/* <Route path='/cronograma-quadra' element={<CronogramaQuadra />} /> */}
           <Route path='/cadastro-patrimonio' element={<CadastroPatrimonio />} />
+          <Route path='/endereco' element={<Endereco />} />
           <Route path='/cadastro-laboratorio' element={<CadastroLab />} />
           <Route path='/cadastro-usuario' element={<CadastroUsuario />} />
           <Route path='/manutencao' element={<Manutencao />} />

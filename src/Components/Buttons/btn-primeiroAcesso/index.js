@@ -62,7 +62,8 @@ function Index() {
     return true;
   }
 
-  async function firstAccess() {
+  async function firstAccess(e) {
+    e.preventDefault();
     if (validate()) {
       try {
         setLoading(<Spinner id="loading" animation='border' />);
@@ -85,6 +86,7 @@ function Index() {
         });
         handleClose()
         setLoading("");
+        document.location.reload(true);
 
       }
       catch (err) {

@@ -13,7 +13,7 @@ import paginationFactory from "react-bootstrap-table2-paginator";
 
 function Lab() {
 
-    const [fk_instruction, setFk_instruction] = useState("");
+    const [fk_instruction, setFk_instruction] = useState(null);
     const [name_lab, setName_lab] = useState(null);
     const [room_index, setRoom_index] = useState(null);
     const [floor_lab, setFloor_lab] = useState(null);
@@ -139,7 +139,7 @@ function Lab() {
                     <section className="section-cadastro justify-center-mobile-lab">
                         <div className="wrap-input">
                             <input
-                                className={fk_instruction !== "" ? "has-val input" : "input"}
+                                className={fk_instruction !== null && "" ? "has-val input" : "input"}
                                 type="text"
                                 value={fk_instruction}
                                 style={{ color: '#FFF' }}
