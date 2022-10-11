@@ -10,16 +10,27 @@ import { useEffect, useState } from 'react';
 
 
 function NavBar() {
-
-  const [showLogout, setShowLogout] = useState(false);
+  
   const [showAcesso, setShowAcesso] = useState(true);
   const [showLogin, setShowLogin] = useState(true);
+  const [showLogout, setShowLogout] = useState(false);
+  const [showInicio, setShowInicio] = useState(false);
+  const [showHome, setShowHome] = useState(false);
+  const [showCadastros, setShowCadastros] = useState(false);
+  const [showManutencao, setShowManutencao] = useState(false);
+  const [showCronograma, setShowCronograma] = useState(false);
+
 
   useEffect(() => {
     if (sessionStorage.getItem("login")) {
-      setShowLogout(true);
       setShowAcesso(false);
       setShowLogin(false);
+      setShowLogout(true);
+      setShowInicio(true)
+      setShowHome(true)
+      setShowCadastros(true)
+      setShowManutencao(true)
+      setShowCronograma(true)
     }
   }, []);
 
@@ -44,8 +55,8 @@ function NavBar() {
           </div>
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Link className='nav-link' to="/">Inicio</Link>
-              <Link className='nav-link' to="/home">Home</Link>
+            <Link className='nav-link' to="/">Inicio</Link>
+            <Link className='nav-link' to="/home">Home</Link>
               <NavDropdown title="Cadastros" id="basic-nav-dropdown">
                 <Link className='dropdown-item' to="/cadastro-patrimonio">Cadastro de Patrimônio</Link>
                 <Link className='dropdown-item' to="/cadastro-laboratorio">Cadastro de Laboratório</Link>
