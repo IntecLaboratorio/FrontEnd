@@ -5,11 +5,15 @@ import '../cadastro.css';
 import api from '../../../Service/api.js';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import "bootstrap/dist/css/bootstrap.min.css";
+import "react-bootstrap-table-next/dist/react-bootstrap-table2.css";
+import "react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css";
+import BootstrapTable from "react-bootstrap-table-next";
+import paginationFactory from "react-bootstrap-table2-paginator";
 
 function Lab() {
 
-    const [fk_instruction, setFk_instruction] = useState(null);
+    const [fk_instruction, setFk_instruction] = useState("");
     const [name_lab, setName_lab] = useState(null);
     const [room_index, setRoom_index] = useState(null);
     const [floor_lab, setFloor_lab] = useState(null);
@@ -24,6 +28,45 @@ function Lab() {
         getLabs();
     }, [labs]);
 
+    const laboratories =
+        labs.map((labs) => (
+            { id: parseInt(`${labs.id}`), instruction: `${labs.fk_instruction}`, name: `${labs.name_lab}`, room_index: `${labs.room_index}`, floor_lab: `${labs.floor_lab}` }
+        ));
+
+
+    const columns = [
+        { dataField: "id", text: "Id", sort: true },
+        { dataField: "instruction", text: "Instituição", sort: true },
+        { dataField: "name", text: "Nome lab ou sala", sort: true },
+        { dataField: "room_index", text: "Tipo de sala", sort: true },
+        { dataField: "floor_lab", text: "Andar", sort: true }
+    ];
+
+    const defaultSorted = [
+        {
+            dataField: "name",
+            order: "desc"
+        }
+    ];
+
+    const pagination = paginationFactory({
+        page: 2,
+        sizePerPage: 5,
+        lastPageText: ">>",
+        firstPageText: "<<",
+        nextPageText: ">",
+        prePageText: "<",
+        showTotal: false,
+        alwaysShowAllBtns: true,
+        onPageChange: function (page, sizePerPage) {
+            console.log("page", page);
+            console.log("sizePerPage", sizePerPage);
+        },
+        onSizePerPageChange: function (page, sizePerPage) {
+            console.log("page", page);
+            console.log("sizePerPage", sizePerPage);
+        }
+    });
 
     async function insertLab(e) {
         e.preventDefault();
@@ -55,6 +98,11 @@ function Lab() {
 
             await api.post('/labs', data);
 
+            setFk_instruction("");
+            setName_lab("");
+            setRoom_index("");
+            setFloor_lab("");
+
         } catch (err) {
             // alert(`Houve um problema: ${err}`)
             toast.error(`Houve um problema: ${err}`, {
@@ -76,31 +124,17 @@ function Lab() {
             <div className="hide-mobile">
                 <NavCadastro />
             </div>
-            <section className="table-lab justify-center-mobile-lab" floor_labName="container-cadastro secoes">
-                <table className="table table-striped table-bordered table-hover">
-                    <thead style={{ textAlign: "center" }}>
-                        <tr>
-                            <th>Instituição</th>
-                            <th>Nome lab ou sala</th>
-                            <th>Tipo de sala</th>
-                            <th>Andar</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {labs.map((labs) => (
-                            <tr key={labs.id}>
-                                <td> {labs.fk_instruction} </td>
-                                <td> {labs.name_lab} </td>
-                                <td> {labs.room_index} </td>
-                                <td> {labs.floor_lab} </td>
-                            </tr>
-                        ))
-                        }
-
-                    </tbody>
-                </table>
+            <section className="table-pagination justify-center-mobile-lab">
+                <BootstrapTable
+                    bootstrap4
+                    keyField="id"
+                    data={laboratories}
+                    columns={columns}
+                    defaultSorted={defaultSorted}
+                    pagination={pagination}
+                />
             </section>
-            <div className="container-cadastro">
+            <div className="container-cadastro secoes">
                 <form className="form-cadastro">
                     <section className="section-cadastro justify-center-mobile-lab">
                         <div className="wrap-input">
@@ -117,7 +151,7 @@ function Lab() {
                         <div className="wrap-input">
 
                             <select name="select"
-                                className={room_index !== "" ? "has-val input" : "input"}
+                                className={room_index !== null && "" ? "has-val input" : "input"}
                                 type="text"
                                 value={room_index}
                                 onChange={(e) => setRoom_index(e.target.value)}
@@ -135,7 +169,7 @@ function Lab() {
 
                         <div className="wrap-input">
                             <input
-                                className={name_lab !== "" ? "has-val input" : "input"}
+                                className={name_lab !== null && "" ? "has-val input" : "input"}
                                 type="text"
                                 value={name_lab}
                                 onChange={(e) => setName_lab(e.target.value)}
@@ -144,7 +178,7 @@ function Lab() {
                         </div>
                         <div className="wrap-input">
                             <select name="select"
-                                className={floor_lab !== "" ? "has-val input" : "input"}
+                                className={floor_lab !== null && "" ? "has-val input" : "input"}
                                 type="text"
                                 value={floor_lab}
                                 onChange={(e) => setFloor_lab(e.target.value)}

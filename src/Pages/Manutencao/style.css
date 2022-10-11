@@ -3,22 +3,6 @@
     color: #FFF;
 }
 
-.container-manutencao table {
-    margin: auto;
-    margin-top: 30px;
-    width: 60%;
-    height: 250px;
-    background-color: #ddd;
-    color: black;
-    text-align: center;
-}
-
-.container-manutencao table th {
-    height: 35px;
-    background-color: #FFF;
-    color: #000;
-}
-
 .radius {
     display: flex;
     justify-content: center;

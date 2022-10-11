@@ -190,22 +190,24 @@
 }
 
 @media (max-width: 767px) {
-  .justify-center-mobile-lab, .justify-center-mobile-patrimonio, .justify-center-mobile-user  {
+
+  .justify-center-mobile-lab,
+  .justify-center-mobile-patrimonio,
+  .justify-center-mobile-user {
     width: auto;
     /* display: flex;
     justify-content: center;
     flex-direction: column; */
   }
 
-  .d-flex-lab, .d-flex-patrimonio, .d-flex-user{
+  .d-flex-lab,
+  .d-flex-patrimonio,
+  .d-flex-user {
     flex-direction: column;
   }
 
-
-  .table-lab {
-    width: 100%;
-    display: flex;
-    justify-content: center;
+  .row-table {
+    margin: 20px 0;
   }
 
   .hide-mobile {

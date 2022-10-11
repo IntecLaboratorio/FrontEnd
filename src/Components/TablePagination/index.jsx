@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+// import "../TablePagination/style.css"
 import "bootstrap/dist/css/bootstrap.min.css";
 import "react-bootstrap-table-next/dist/react-bootstrap-table2.css";
 import "react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css";
@@ -7,30 +8,29 @@ import paginationFactory from "react-bootstrap-table2-paginator";
 import api from '../../Service/api.js';
 
 function App() {
-  const [labs, setLabs] = useState([]);
+  const [fixedAssent, setFixedAssent] = useState([]);
 
   useEffect(() => {
-    async function getLabs() {
-      const { data } = await api.get('/labs');
-      setLabs(data)
+    async function getFixedAssent() {
+      const { data } = await api.get('/fixedAssent');
+      setFixedAssent(data)
       console.log(data)
     }
-    getLabs();
-  }, []);
+    getFixedAssent();
+  }, [fixedAssent]);
 
   const products =
-    labs.map((labs) => (
-      { id: parseInt(`${labs.id}`), instruction: `${labs.fk_instruction}`, name: `${labs.name_lab}`, room_index: `${labs.room_index}`, floor_lab: `${labs.floor_lab}` }
+    fixedAssent.map((fixedAssent) => (
+      { id: parseInt(`${fixedAssent.id}`), name: `${fixedAssent.assent_name}`, verify: `(${fixedAssent.verify})`, fk_labs: `${fixedAssent.fk_labs}` }
     ));
 
-  console.log(products)
+  // console.log(products)
 
   const columns = [
     { dataField: "id", text: "Id", sort: true },
-    { dataField: "instruction", text: "Instituição", sort: true },
-    { dataField: "name", text: "Nome lab ou sala", sort: true },
-    { dataField: "room_index", text: "Tipo de sala", sort: true },
-    { dataField: "floor_lab", text: "Andar", sort: true }
+    { dataField: "name", text: "Nome", sort: true },
+    { dataField: "verify", text: "Status do patrimônio", sort: true },
+    { dataField: "fk_labs", text: "Laboratório", sort: true }
   ];
 
   const defaultSorted = [
@@ -58,11 +58,8 @@ function App() {
       console.log("sizePerPage", sizePerPage);
     }
   });
-
   return (
     <div className="App">
-      <h5>React Bootstrap Table Next with Sorting and Pagination</h5>
-
       <BootstrapTable
         bootstrap4
         keyField="id"

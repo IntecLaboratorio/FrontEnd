@@ -51,6 +51,17 @@ function CadUsuario() {
 
       await api.post("/user", data)
 
+      setId_corporate("");
+      setAddress("");
+      setNome("");
+      setTipoUsuario("");
+      setCpf("");
+      setRg("");
+      setPhone("");
+      setEmail("");
+      setPassword("");
+      setVerify("");
+
     } catch (err) {
       toast.error(`Houve um problema: ${err}`, {
         position: "top-right",
@@ -75,7 +86,7 @@ function CadUsuario() {
           <section className="section-cadastro justify-center-mobile-user">
             <div className="wrap-input">
               <input
-                className={id_corporate !== "" ? "has-val input" : "input"}
+                className={id_corporate !== null && "" ? "has-val input" : "input"}
                 type="text"
                 value={id_corporate}
                 style={{ color: '#FFF' }}
@@ -86,7 +97,7 @@ function CadUsuario() {
 
             <div className="wrap-input">
               <input
-                className={address !== "" ? "has-val input" : "input"}
+                className={address !== null && "" ? "has-val input" : "input"}
                 type="text"
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
@@ -96,7 +107,7 @@ function CadUsuario() {
 
             <div className="wrap-input">
               <select name="select"
-                className={type_user !== "" ? "has-val input" : "input"}
+                className={type_user !== null && "" ? "has-val input" : "input"}
                 type="text"
                 value={type_user}
                 onChange={(e) => setTipoUsuario(e.target.value)}
@@ -111,7 +122,7 @@ function CadUsuario() {
 
             <div className="wrap-input">
               <input
-                className={name_user !== "" ? "has-val input" : "input"}
+                className={name_user !== null && "" ? "has-val input" : "input"}
                 type="text"
                 value={name_user}
                 style={{ color: '#FFF' }}
@@ -122,7 +133,7 @@ function CadUsuario() {
 
             <div className="wrap-input">
               <IMaskInput
-                className={cpf !== "" ? "has-val input" : "input"}
+                className={cpf !== null && "" ? "has-val input" : "input"}
                 mask="000.000.000-00"
                 value={cpf}
                 onChange={(e) => setCpf(e.target.value)}
@@ -133,7 +144,7 @@ function CadUsuario() {
           <section className="section-cadastro justify-center-mobile-user">
             <div className="wrap-input">
               <IMaskInput
-                className={rg !== "" ? "has-val input" : "input"}
+                className={rg !== null && "" ? "has-val input" : "input"}
                 mask="00.000.000-0"
                 value={rg}
                 onChange={(e) => setRg(e.target.value)}
@@ -143,7 +154,7 @@ function CadUsuario() {
 
             <div className="wrap-input">
               <IMaskInput
-                className={phone !== "" ? "has-val input" : "input"}
+                className={phone !== null && "" ? "has-val input" : "input"}
                 mask="(00) 00000-0000"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
@@ -153,7 +164,7 @@ function CadUsuario() {
 
             <div className="wrap-input">
               <input
-                className={email !== "" ? "has-val input" : "input"}
+                className={email !== null && "" ? "has-val input" : "input"}
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -163,7 +174,7 @@ function CadUsuario() {
 
             <div className="wrap-input">
               <input
-                className={password !== "" ? "has-val input" : "input"}
+                className={password !== null && "" ? "has-val input" : "input"}
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -173,7 +184,7 @@ function CadUsuario() {
 
             <div className="wrap-input">
               <select name="select"
-                className={verify !== "" ? "has-val input" : "input"}
+                className={verify !== null && "" ? "has-val input" : "input"}
                 type="text"
                 value={verify}
                 onChange={(e) => setVerify(e.target.value)}
