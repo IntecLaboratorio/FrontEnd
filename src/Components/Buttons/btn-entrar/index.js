@@ -50,7 +50,8 @@ function BtnEntrar() {
     return true;
   }
 
-  async function handleLogin() {
+  async function handleLogin(e) {
+    e.preventDefault();
     if (validate()) {
       try {
         setLoading(<Spinner id="loading" animation='border' />);
