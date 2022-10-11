@@ -16,51 +16,56 @@ function CadUsuario() {
   const [cidade, setCidade] = useState(null);
   const [estado, setEstado] = useState(null);
   const [cep, setCep] = useState(null);
+  const [isDisabled, setIsDisabled] = useState(false);
 
-//   async function createUser(e) {
-//     e.preventDefault();
+  async function createUser(e) {
+    e.preventDefault();
 
-//     try {
-//       const data = {
-//         tipoEndereco, endereco, numero, bairro, cidade, estado, cep
-//       }
+    try {
+      setIsDisabled(true);
 
-//       if (tipoEndereco && endereco && numero && bairro && cidade && estado && cep) {
-//         toast.success(`${name_user} cadastrado com sucesso!`, {
-//           position: "top-right",
-//           autoClose: 5000,
-//           hideProgressBar: false,
-//           closeOnClick: true,
-//           pauseOnHover: true,
-//           draggable: true,
-//           progress: undefined,
-//         });
-//       } else {
-//         toast.warn('Todos os campos devem ser preenchidos', {
-//           position: "top-right",
-//           autoClose: 5000,
-//           hideProgressBar: false,
-//           closeOnClick: true,
-//           pauseOnHover: true,
-//           draggable: true,
-//           progress: undefined,
-//         });
-//       }
+      const data = {
+        tipoEndereco, endereco, numero, bairro, cidade, estado, cep
+      }
 
-//       await api.post("/user", data)
+      if (tipoEndereco && endereco && numero && bairro && cidade && estado && cep) {
+        toast.success(`Usuário cadastrado com sucesso!`, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      } else {
+        setIsDisabled(false);
 
-//     } catch (err) {
-//       toast.error(`Houve um problema: ${err}`, {
-//         position: "top-right",
-//         autoClose: 5000,
-//         hideProgressBar: false,
-//         closeOnClick: true,
-//         pauseOnHover: true,
-//         draggable: true,
-//         progress: undefined,
-//       });
-//     }
-//   }
+        toast.warn('Todos os campos devem ser preenchidos', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
+
+      await api.post("/user", data)
+
+    } catch (err) {
+      toast.error(`Houve um problema: ${err}`, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
+  }
 
   return (
 
@@ -152,7 +157,7 @@ function CadUsuario() {
             </section>
 
                 <section className="section-btn-cadastro section-btn-cadastro--column">
-                    <button className="btn">Cadastrar</button>
+                    <button className="btn" onClick={createUser} disabled={isDisabled}>Cadastrar</button>
                     <Link to="/cadastro-usuario"><button className="btn">Voltar</button></Link>
                 </section>
 
