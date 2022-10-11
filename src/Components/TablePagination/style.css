@@ -21,3 +21,18 @@
 .btn:hover{
   background-color: #dee2e6 !important;
 }
+
+.App {
+  color: #ffffff;
+}
+
+.react-bootstrap-table th.sortable {
+  cursor: pointer;
+  background-color: #ffff;
+  color: #001D3D;
+}
+
+.table>:not(caption)>*>* {
+  background-color: #fff !important;
+  color: #001D3D !important;
+}

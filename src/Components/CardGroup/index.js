@@ -13,15 +13,15 @@ function GroupCard() {
           descricao="Solicitar Laboratório"
         />
         <Cardd
-          imagem="https://img.icons8.com/puffy/70/FFFFFF/experimental-user-puffy.png"
+          imagem="https://img.icons8.com/ios/70/FFFFFF/request-service.png"
           descricao="Solicitar Manutenção"
         />
         <Cardd
-          imagem="https://img.icons8.com/ios-filled/70/FFFFFF/building.png"
+          imagem="https://img.icons8.com/fluency-systems-regular/70/FFFFFF/edit-user.png"
           descricao="Cadastros"
         />
         <Cardd
-          imagem="https://img.icons8.com/pastel-glyph/70/FFFFFF/error--v5.png"
+          imagem="https://img.icons8.com/ios-filled/70/FFFFFF/search--v1.png"
           descricao="Consultar Patrimônios"
         />
       </CardGroup>
