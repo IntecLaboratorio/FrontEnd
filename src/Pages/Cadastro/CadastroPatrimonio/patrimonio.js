@@ -79,7 +79,7 @@ function Patrimonio() {
 
             <div className="wrap-input">
               <input
-                className={assent_name !== "" ? "has-val input" : "input"}
+                className={assent_name !== null ? "has-val input" : "input"}
                 type="text"
                 Assent={assent_name}
                 onChange={(e) => setAssent_name(e.target.value)}
@@ -89,7 +89,7 @@ function Patrimonio() {
 
             <div className="wrap-input">
               <input
-                className={serial_number !== "" ? "has-val input" : "input"}
+                className={serial_number !== null ? "has-val input" : "input"}
                 type="text"
                 Assent={serial_number}
                 onChange={(e) => setSerial_number(e.target.value)}
@@ -99,7 +99,7 @@ function Patrimonio() {
 
             <div className="wrap-input">
               <input
-                className={assent_number !== "" ? "has-val input" : "input"}
+                className={assent_number !== null ? "has-val input" : "input"}
                 type="number"
                 Assent={assent_number}
                 onChange={(e) => setAssent_number(e.target.value)}
@@ -109,7 +109,7 @@ function Patrimonio() {
 
             <div className="wrap-input">
               <input
-                className={brand !== "" ? "has-val input" : "input"}
+                className={brand !== null ? "has-val input" : "input"}
                 type="text"
                 Assent={brand}
                 onChange={(e) => setBrand(e.target.value)}
@@ -119,7 +119,7 @@ function Patrimonio() {
 
             <div className="wrap-input">
               <input
-                className={tax_invoice !== "" ? "has-val input" : "input"}
+                className={tax_invoice !== null ? "has-val input" : "input"}
                 type="text"
                 value={tax_invoice}
                 onChange={(e) => setTax_invoice(e.target.value)}
@@ -129,7 +129,7 @@ function Patrimonio() {
 
             <div className="wrap-input">
               <input
-                className={complement !== "" ? "has-val input" : "input"}
+                className={complement !== null ? "has-val input" : "input"}
                 type="text"
                 value={complement}
                 onChange={(e) => setComplement(e.target.value)}
@@ -143,7 +143,7 @@ function Patrimonio() {
 
             <div className="wrap-input">
               <input
-                className={model !== "" ? "has-val input" : "input"}
+                className={model !== null ? "has-val input" : "input"}
                 type="text"
                 value={model}
                 onChange={(e) => setModel(e.target.value)}
@@ -153,7 +153,7 @@ function Patrimonio() {
 
             <div className="wrap-input">
               <input
-                className={product_batch !== "" ? "has-val input" : "input"}
+                className={product_batch !== null ? "has-val input" : "input"}
                 type="text"
                 value={product_batch}
                 onChange={(e) => setProduct_batch(e.target.value)}
@@ -163,7 +163,7 @@ function Patrimonio() {
 
             <div className="wrap-input">
               <input
-                className={color !== "" ? "has-val input" : "input"}
+                className={color !== null ? "has-val input" : "input"}
                 type="text"
                 value={color}
                 onChange={(e) => setColor(e.target.value)}
@@ -173,7 +173,7 @@ function Patrimonio() {
 
             <div className="wrap-input">
               <input
-                className={fk_labs !== "" ? "has-val input" : "input"}
+                className={fk_labs !== null ? "has-val input" : "input"}
                 type="text"
                 value={fk_labs}
                 onChange={(e) => setFk_labs(e.target.value)}
@@ -183,7 +183,7 @@ function Patrimonio() {
 
             <div className="wrap-input">
               <input
-                className={value_assent !== "" ? "has-val input" : "input"}
+                className={value_assent !== null ? "has-val input" : "input"}
                 type="text"
                 value={value_assent}
                 onChange={(e) => setValue_assent(e.target.value)}
@@ -193,7 +193,7 @@ function Patrimonio() {
 
             <div className="wrap-input">
               <select name="select"
-                className={verify !== "" ? "has-val input" : "input"}
+                className={verify !== null ? "has-val input" : "input"}
                 type="text"
                 value={verify}
                 onChange={(e) => setVerify(e.target.value)}
