@@ -16,13 +16,11 @@ function CadUsuario() {
   const [cidade, setCidade] = useState(null);
   const [estado, setEstado] = useState(null);
   const [cep, setCep] = useState(null);
-  const [isDisabled, setIsDisabled] = useState(false);
 
   async function createUser(e) {
     e.preventDefault();
 
     try {
-      setIsDisabled(true);
 
       const data = {
         tipoEndereco, endereco, numero, bairro, cidade, estado, cep
@@ -39,7 +37,6 @@ function CadUsuario() {
           progress: undefined,
         });
       } else {
-        setIsDisabled(false);
 
         toast.warn('Todos os campos devem ser preenchidos', {
           position: "top-right",
@@ -157,7 +154,7 @@ function CadUsuario() {
             </section>
 
                 <section className="section-btn-cadastro section-btn-cadastro--column">
-                    <button className="btn" onClick={createUser} disabled={isDisabled}>Cadastrar</button>
+                    <button className="btn" onClick={createUser}>Cadastrar</button>
                     <Link to="/cadastro-usuario"><button className="btn">Voltar</button></Link>
                 </section>
 
