@@ -78,7 +78,6 @@ function BtnEntrar() {
 
       }
       catch (err) {
-        console.log(email, password, type_user)
         setIsDisabled(false);
         setLoading("");
         console.log(err);
