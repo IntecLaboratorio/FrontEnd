@@ -13,11 +13,34 @@ import paginationFactory from "react-bootstrap-table2-paginator";
 
 function Lab() {
 
-    const [fk_instruction, setFk_instruction] = useState(null);
-    const [name_lab, setName_lab] = useState(null);
-    const [room_index, setRoom_index] = useState(null);
-    const [floor_lab, setFloor_lab] = useState(null);
+    const [fk_instruction, setFk_instruction] = useState();
+    const [name_lab, setName_lab] = useState();
+    const [room_index, setRoom_index] = useState();
+    const [floor_lab, setFloor_lab] = useState();
     const [labs, setLabs] = useState([]);
+    const [invalid, setInvalid] = useState("");
+
+    function validate() {
+        let errors = {};
+
+        if (!fk_instruction || !name_lab || !room_index || !floor_lab) {
+            errors = toast.warn("Preencha todos os campos!", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+        }
+
+        if (errors) {
+            return false;
+        }
+        return true;
+
+    }
 
     useEffect(() => {
         async function getLabs() {
@@ -70,10 +93,12 @@ function Lab() {
 
     async function insertLab(e) {
         e.preventDefault();
-        try {
-            const data = { fk_instruction, name_lab, room_index, floor_lab }
+        if (validate()) {
+            try {
+                const data = { fk_instruction, name_lab, room_index, floor_lab }
+                await api.post('/labs', data);
 
-            if (fk_instruction && name_lab && room_index && floor_lab) {
+
                 toast.success(`${name_lab} cadastrado com sucesso!`, {
                     position: "top-right",
                     autoClose: 5000,
@@ -83,8 +108,17 @@ function Lab() {
                     draggable: true,
                     progress: undefined,
                 });
-            } else {
-                toast.warn('Todos os campos devem ser preenchidos', {
+
+                // window.location.reload(true);
+
+                setFk_instruction("");
+                setName_lab("");
+                setRoom_index("");
+                setFloor_lab("");
+
+            } catch (err) {
+                // alert(`Houve um problema: ${err}`)
+                invalid(toast.error(`Houve um problema: ${err}`, {
                     position: "top-right",
                     autoClose: 5000,
                     hideProgressBar: false,
@@ -92,28 +126,8 @@ function Lab() {
                     pauseOnHover: true,
                     draggable: true,
                     progress: undefined,
-                });
+                }));
             }
-            // window.location.reload(true);
-
-            await api.post('/labs', data);
-
-            setFk_instruction("");
-            setName_lab("");
-            setRoom_index("");
-            setFloor_lab("");
-
-        } catch (err) {
-            // alert(`Houve um problema: ${err}`)
-            toast.error(`Houve um problema: ${err}`, {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
         }
     }
 
@@ -143,7 +157,10 @@ function Lab() {
                                 type="text"
                                 value={fk_instruction}
                                 style={{ color: '#FFF' }}
-                                onChange={(e) => setFk_instruction(e.target.value)}
+                                onChange={(e) => {
+                                    setFk_instruction(e.target.value);
+                                    setInvalid("");
+                                }}
                             />
                             <span className="focus-input" data-placeholder="Instituição"></span>
                         </div>
@@ -154,7 +171,10 @@ function Lab() {
                                 className={room_index !== null && "" ? "has-val input" : "input"}
                                 type="text"
                                 value={room_index}
-                                onChange={(e) => setRoom_index(e.target.value)}
+                                onChange={(e) => {
+                                    setRoom_index(e.target.value)
+                                    setInvalid("");
+                                }}
                             >
                                 <option value="" disable selected></option>
                                 <option value="Laboratório">Laboratório</option>
@@ -172,7 +192,10 @@ function Lab() {
                                 className={name_lab !== null && "" ? "has-val input" : "input"}
                                 type="text"
                                 value={name_lab}
-                                onChange={(e) => setName_lab(e.target.value)}
+                                onChange={(e) => {
+                                    setName_lab(e.target.value)
+                                    setInvalid("");
+                                }}
                             />
                             <span className="focus-input" data-placeholder="Nome do lab ou sala"></span>
                         </div>
@@ -181,7 +204,10 @@ function Lab() {
                                 className={floor_lab !== null && "" ? "has-val input" : "input"}
                                 type="text"
                                 value={floor_lab}
-                                onChange={(e) => setFloor_lab(e.target.value)}
+                                onChange={(e) => {
+                                    setFloor_lab(e.target.value)
+                                    setInvalid("");
+                                }}
                             >
                                 <option value="" disable selected></option>
                                 <option value="1º andar">1º andar</option>
@@ -204,7 +230,8 @@ function Lab() {
 
 
     );
-
 }
 
-export default Lab;
+
+
+export default Lab
