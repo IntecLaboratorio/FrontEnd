@@ -10,7 +10,7 @@ import './style.css';
 
 function BtnEntrar() {
 
-
+  const [type_user, setTipoUsuario] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isDisabled, setIsDisabled] = useState(false);
@@ -22,7 +22,7 @@ function BtnEntrar() {
     let errors = {};
 
     if (!email) {
-      errors.email = toast.error("E-Mail é obrigatório", {
+      errors.email = toast.warn("E-Mail é obrigatório", {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -33,7 +33,7 @@ function BtnEntrar() {
       });
     }
     if (!password) {
-      errors.password = toast.error("Senha é obrigatória", {
+      errors.password = toast.warn("Senha é obrigatória", {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -57,7 +57,7 @@ function BtnEntrar() {
         setLoading(<Spinner id="loading" animation='border' />);
         setIsDisabled(true);
 
-        const data = { email, password }
+        const data = { type_user, email, password }
         const { response } = await api.post('/login', data);
 
         sessionStorage.setItem("login", true);
@@ -75,9 +75,10 @@ function BtnEntrar() {
         handleClose()
         setLoading("");
         document.location.reload(true);
-        
+
       }
       catch (err) {
+        console.log(email, password, type_user)
         setIsDisabled(false);
         setLoading("");
         console.log(err);
@@ -119,6 +120,21 @@ function BtnEntrar() {
             <img src={Logo} className='img-entrar' />
           </section>
           <section>
+
+            <div className="wrap-input">
+              <select name="select"
+                className={type_user !== "" ? "has-val input" : "input"}
+                type="text"
+                value={type_user}
+                onChange={(e) => setTipoUsuario(e.target.value)}
+              >
+                <option value="" disable selected></option>
+                <option value={1}>Coordenador</option>
+                <option value={2}>Professor</option>
+                <option value={3}>Aluno</option>
+              </select>
+              <span className="focus-input" data-placeholder="Tipo de Usuário"></span>
+            </div>
 
             <div className="wrap-input">
 
