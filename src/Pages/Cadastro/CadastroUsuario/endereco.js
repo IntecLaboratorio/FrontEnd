@@ -9,13 +9,13 @@ import 'react-toastify/dist/ReactToastify.css';
 
 function CadUsuario() {
 
-  const [tipoEndereco, setTipoEndereco] = useState(null)
-  const [endereco, setEndereco] = useState(null);
-  const [numero, setNumero] = useState(null);
-  const [bairro, setBairro] = useState(null);
-  const [cidade, setCidade] = useState(null);
-  const [estado, setEstado] = useState(null);
-  const [cep, setCep] = useState(null);
+  const [tipoEndereco, setTipoEndereco] = useState("")
+  const [endereco, setEndereco] = useState("");
+  const [numero, setNumero] = useState("");
+  const [bairro, setBairro] = useState("");
+  const [cidade, setCidade] = useState("");
+  const [estado, setEstado] = useState("");
+  const [cep, setCep] = useState("");
 
   async function createUser(e) {
     e.preventDefault();
@@ -74,7 +74,7 @@ function CadUsuario() {
           <section className="section-cadastro justify-center-mobile-user">
             <div className="wrap-input">
               <input
-                className={tipoEndereco ? "has-val input" : "input"}
+                className={tipoEndereco !== "" ? "has-val input" : "input"}
                 type="text"
                 value={tipoEndereco}
                 style={{ color: '#FFF' }}
@@ -85,7 +85,7 @@ function CadUsuario() {
 
             <div className="wrap-input">
               <input
-                className={endereco ? "has-val input" : "input"}
+                className={endereco !== "" ? "has-val input" : "input"}
                 type="text"
                 value={endereco}
                 onChange={(e) => setEndereco(e.target.value)}
@@ -95,7 +95,7 @@ function CadUsuario() {
 
             <div className="wrap-input">
               <input
-                className={numero ? "has-val input" : "input"}
+                className={numero !== "" ? "has-val input" : "input"}
                 type="text"
                 value={numero}
                 onChange={(e) => setNumero(e.target.value)}
@@ -106,7 +106,7 @@ function CadUsuario() {
             <div className="wrap-input">
               
               <input
-                className={bairro ? "has-val input" : "input"}
+                className={bairro !== "" ? "has-val input" : "input"}
                 type="text"
                 value={bairro}
                 style={{ color: '#FFF' }}
@@ -122,7 +122,7 @@ function CadUsuario() {
             <div className="wrap-input">
 
               <input
-                className={cidade ? "has-val input" : "input"}
+                className={cidade !== "" ? "has-val input" : "input"}
                 type="text"
                 value={cidade}
                 style={{ color: '#FFF' }}
@@ -134,7 +134,7 @@ function CadUsuario() {
             <div className="wrap-input">
 
                 <input
-                    className={estado ? "has-val input" : "input"}
+                    className={estado !== "" ? "has-val input" : "input"}
                     type="text"
                     value={estado}
                     style={{ color: '#FFF' }}
@@ -145,7 +145,7 @@ function CadUsuario() {
 
                 <div className="wrap-input">
                 <IMaskInput
-                    className={cep ? "has-val input" : "input"}
+                    className={cep !== "" ? "has-val input" : "input"}
                     mask="00000-000"
                     value={cep}
                     onChange={(e) => setCep(e.target.value)}
