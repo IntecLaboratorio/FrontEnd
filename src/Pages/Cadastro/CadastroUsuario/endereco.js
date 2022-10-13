@@ -74,7 +74,7 @@ function CadUsuario() {
           <section className="section-cadastro justify-center-mobile-user">
             <div className="wrap-input">
               <input
-                className={tipoEndereco !== null ? "has-val input" : "input"}
+                className={tipoEndereco ? "has-val input" : "input"}
                 type="text"
                 value={tipoEndereco}
                 style={{ color: '#FFF' }}
@@ -85,7 +85,7 @@ function CadUsuario() {
 
             <div className="wrap-input">
               <input
-                className={endereco !== null ? "has-val input" : "input"}
+                className={endereco ? "has-val input" : "input"}
                 type="text"
                 value={endereco}
                 onChange={(e) => setEndereco(e.target.value)}
@@ -95,7 +95,7 @@ function CadUsuario() {
 
             <div className="wrap-input">
               <input
-                className={numero !== null ? "has-val input" : "input"}
+                className={numero ? "has-val input" : "input"}
                 type="text"
                 value={numero}
                 onChange={(e) => setNumero(e.target.value)}
@@ -105,7 +105,7 @@ function CadUsuario() {
 
             <div className="wrap-input">
               <input
-                className={bairro !== null ? "has-val input" : "input"}
+                className={bairro ? "has-val input" : "input"}
                 type="text"
                 value={bairro}
                 style={{ color: '#FFF' }}
@@ -120,7 +120,7 @@ function CadUsuario() {
 
             <div className="wrap-input">
               <input
-                className={cidade !== null ? "has-val input" : "input"}
+                className={cidade ? "has-val input" : "input"}
                 type="text"
                 value={cidade}
                 style={{ color: '#FFF' }}
@@ -131,7 +131,7 @@ function CadUsuario() {
 
             <div className="wrap-input">
                 <input
-                    className={estado !== null ? "has-val input" : "input"}
+                    className={estado ? "has-val input" : "input"}
                     type="text"
                     value={estado}
                     style={{ color: '#FFF' }}
@@ -142,7 +142,7 @@ function CadUsuario() {
 
                 <div className="wrap-input">
                 <IMaskInput
-                    className={cep !== null ? "has-val input" : "input"}
+                    className={cep ? "has-val input" : "input"}
                     mask="00000-000"
                     value={cep}
                     onChange={(e) => setCep(e.target.value)}

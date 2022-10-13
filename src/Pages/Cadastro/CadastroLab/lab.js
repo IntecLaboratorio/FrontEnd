@@ -1,3 +1,4 @@
+import './style.css'
 import { useEffect, useState } from "react";
 import Table from 'react-bootstrap/Table';
 import NavCadastro from '../../../Components/NavCadastro';
@@ -131,7 +132,6 @@ function Lab() {
         }
     }
 
-
     return (
 
         <div className="d-flex-lab">
@@ -153,7 +153,7 @@ function Lab() {
                     <section className="section-cadastro justify-center-mobile-lab">
                         <div className="wrap-input">
                             <input
-                                className={fk_instruction !== null && "" ? "has-val input" : "input"}
+                                className={fk_instruction ? "has-val input" : "input"}
                                 type="text"
                                 value={fk_instruction}
                                 style={{ color: '#FFF' }}
@@ -168,7 +168,7 @@ function Lab() {
                         <div className="wrap-input">
 
                             <select name="select"
-                                className={room_index !== null && "" ? "has-val input" : "input"}
+                                className={room_index ? "has-val input" : "input"}
                                 type="text"
                                 value={room_index}
                                 onChange={(e) => {
@@ -189,7 +189,7 @@ function Lab() {
 
                         <div className="wrap-input">
                             <input
-                                className={name_lab !== null && "" ? "has-val input" : "input"}
+                                className={name_lab ? "has-val input" : "input"}
                                 type="text"
                                 value={name_lab}
                                 onChange={(e) => {
@@ -201,7 +201,7 @@ function Lab() {
                         </div>
                         <div className="wrap-input">
                             <select name="select"
-                                className={floor_lab !== null && "" ? "has-val input" : "input"}
+                                className={floor_lab ? "has-val input" : "input"}
                                 type="text"
                                 value={floor_lab}
                                 onChange={(e) => {
