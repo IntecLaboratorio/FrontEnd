@@ -14,12 +14,12 @@ import paginationFactory from "react-bootstrap-table2-paginator";
 
 function Lab() {
 
-    const [fk_instruction, setFk_instruction] = useState();
-    const [name_lab, setName_lab] = useState();
-    const [room_index, setRoom_index] = useState();
-    const [floor_lab, setFloor_lab] = useState();
-    const [labs, setLabs] = useState([]);
+    const [fk_instruction, setFk_instruction] = useState("");
+    const [name_lab, setName_lab] = useState("");
+    const [room_index, setRoom_index] = useState("");
+    const [floor_lab, setFloor_lab] = useState("");
     const [invalid, setInvalid] = useState("");
+    const [labs, setLabs] = useState([]);
 
     function validate() {
         let errors = {};
@@ -36,7 +36,7 @@ function Lab() {
         //     });
         // }
 
-        
+
         if (!fk_instruction) {
             errors.fk_instruction = toast.warn("Instituição é obrigatório!", {
                 position: "top-right",
@@ -205,7 +205,7 @@ function Lab() {
                     <section className="section-cadastro justify-center-mobile-lab">
                         <div className="wrap-input">
                             <input
-                                className={fk_instruction ? "has-val input" : "input"}
+                                className={fk_instruction !== "" ? "has-val input" : "input"}
                                 type="text"
                                 value={fk_instruction}
                                 style={{ color: '#FFF' }}
@@ -220,7 +220,7 @@ function Lab() {
                         <div className="wrap-input">
 
                             <select name="select"
-                                className={room_index ? "has-val input" : "input"}
+                                className={room_index !== "" ? "has-val input" : "input"}
                                 type="text"
                                 value={room_index}
                                 onChange={(e) => {
@@ -241,7 +241,7 @@ function Lab() {
 
                         <div className="wrap-input">
                             <input
-                                className={name_lab ? "has-val input" : "input"}
+                                className={name_lab !== "" ? "has-val input" : "input"}
                                 type="text"
                                 value={name_lab}
                                 onChange={(e) => {
@@ -253,7 +253,7 @@ function Lab() {
                         </div>
                         <div className="wrap-input">
                             <select name="select"
-                                className={floor_lab ? "has-val input" : "input"}
+                                className={floor_lab !== "" ? "has-val input" : "input"}
                                 type="text"
                                 value={floor_lab}
                                 onChange={(e) => {
