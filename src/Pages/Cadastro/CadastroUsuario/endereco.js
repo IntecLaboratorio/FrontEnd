@@ -104,6 +104,7 @@ function CadUsuario() {
             </div>
 
             <div className="wrap-input">
+              
               <input
                 className={bairro ? "has-val input" : "input"}
                 type="text"
@@ -119,6 +120,7 @@ function CadUsuario() {
             <section className="section-cadastro justify-center-mobile-user">
 
             <div className="wrap-input">
+
               <input
                 className={cidade ? "has-val input" : "input"}
                 type="text"
@@ -130,6 +132,7 @@ function CadUsuario() {
             </div>
 
             <div className="wrap-input">
+
                 <input
                     className={estado ? "has-val input" : "input"}
                     type="text"
