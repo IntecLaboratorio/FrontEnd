@@ -23,8 +23,19 @@ function Lab() {
     function validate() {
         let errors = {};
 
-        if (!fk_instruction || !name_lab || !room_index || !floor_lab) {
-            errors = toast.warn("Preencha todos os campos!", {
+        // if (!fk_instruction && !name_lab && !room_index && !floor_lab) {
+        //     errors = toast.warn("Preencha todos os campos!", {
+        //         position: "top-right",
+        //         autoClose: 5000,
+        //         hideProgressBar: false,
+        //         closeOnClick: true,
+        //         pauseOnHover: true,
+        //         draggable: true,
+        //         progress: undefined,
+        //     });
+        // }
+        if (!fk_instruction) {
+            errors.fk_instruction = toast.warn("Instituição é obrigatório!", {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -33,21 +44,42 @@ function Lab() {
                 draggable: true,
                 progress: undefined,
             });
-        }
-        if (!fk_instruction) {
-            errors = errors.fk_instruction
 
         }
         if (!name_lab) {
-            errors = errors.name_lab
+            errors.name_lab = toast.warn("Nome do laboratório é obrigatório!", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
 
         }
         if (!room_index) {
-            errors = errors.room_index
+            errors.room_index = toast.warn("Tipo de sala é obrigatório!", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
 
         }
         if (!floor_lab) {
-            errors = errors.floor_lab
+            errors.floor_lab = toast.warn("Andar é obrigatório!", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
 
         }
 
