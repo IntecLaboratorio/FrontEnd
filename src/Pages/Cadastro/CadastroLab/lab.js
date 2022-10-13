@@ -20,6 +20,7 @@ function Lab() {
     const [floor_lab, setFloor_lab] = useState("");
     const [labs, setLabs] = useState([]);
     const [invalid, setInvalid] = useState("");
+  
 
     function validate() {
         let errors = {};
@@ -36,7 +37,7 @@ function Lab() {
         //     });
         // }
 
-        
+
         if (!fk_instruction) {
             errors.fk_instruction = toast.warn("Instituição é obrigatório!", {
                 position: "top-right",
