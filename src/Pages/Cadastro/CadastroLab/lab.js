@@ -35,6 +35,8 @@ function Lab() {
         //         progress: undefined,
         //     });
         // }
+
+        
         if (!fk_instruction) {
             errors.fk_instruction = toast.warn("Instituição é obrigatório!", {
                 position: "top-right",
