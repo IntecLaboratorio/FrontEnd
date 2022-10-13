@@ -34,10 +34,28 @@ function Lab() {
                 progress: undefined,
             });
         }
+        if (!fk_instruction) {
+            errors = errors.fk_instruction
 
-        if (errors) {
+        }
+        if (!name_lab) {
+            errors = errors.name_lab
+
+        }
+        if (!room_index) {
+            errors = errors.room_index
+
+        }
+        if (!floor_lab) {
+            errors = errors.floor_lab
+
+        }
+
+
+        if (errors.fk_instruction || errors.name_lab || errors.room_index || errors.floor_lab) {
             return false;
         }
+
         return true;
 
     }
