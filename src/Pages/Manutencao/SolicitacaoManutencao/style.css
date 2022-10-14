@@ -54,3 +54,13 @@
     height: 30px;
     font-size: 18px;
 }
+
+.loading {
+    display: flex;
+    justify-content: center;
+    padding-top: 15px;
+  }
+  
+  .spinner-border {
+    color: #FFFFFF;
+  }
