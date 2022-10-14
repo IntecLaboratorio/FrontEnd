@@ -215,3 +215,12 @@
     display: none !important;
   }
 }
+
+.ncep{
+  margin-bottom: 15px;
+}
+
+.ncep :is(a){
+  color: #5e88c6;
+  text-decoration: none;
+}

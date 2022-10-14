@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useForm } from 'react-hook-form';
 import '../cadastro.css';
 import api from '../../../Service/api.js';
 import { Link } from 'react-router-dom';
@@ -16,6 +17,27 @@ function CadUsuario() {
   const [cidade, setCidade] = useState(null);
   const [estado, setEstado] = useState(null);
   const [cep, setCep] = useState(null);
+
+
+  const {register, setValue, setFocus, handleSubmit} = useForm();
+
+  const onSubmit = (e) => {
+    console.log(e);
+  }
+
+
+  const checkCEP = (e) => {
+    const cep = e.target.value.replace(/\D/g, ' ');
+    console.log(cep);
+    fetch(`https://viacep.com.br/ws/${cep}/json/`).then(res => res.json()).then(data => {
+      console.log(data);
+      setValue('endereco', data.logradouro);
+      setValue('bairro', data.bairro);
+      setValue('cidade', data.localidade);
+      setValue('estado', data.uf)
+      setFocus('numero')
+    });
+  }
 
   async function createUser(e) {
     e.preventDefault();
@@ -66,11 +88,11 @@ function CadUsuario() {
 
   return (
 
-      
+
       <div className="d-flex-user">
         {/* <Sidebar></Sidebar> */}
       <div className="container-cadastro secoes">
-        <form className="form-cadastro">
+        <form className="form-cadastro" onSubmit={handleSubmit(onSubmit)}>
           <section className="section-cadastro justify-center-mobile-user">
             <div className="wrap-input">
               <input
@@ -84,11 +106,26 @@ function CadUsuario() {
             </div>
 
             <div className="wrap-input">
+                <input
+                    className={cep !== null ? "has-val input" : "input"}
+                    mask="00000-000"
+                    value={cep}
+                    onChange={(e) => setCep(e.target.value)}
+                    {...register("cep")} onBlur={checkCEP}
+                />
+                <span className="focus-input" data-placeholder="CEP"></span>
+                </div>
+                <div className="ncep">
+                <a href='https://buscacepinter.correios.com.br/app/endereco/index.php' target="_blank"> Não sei meu CEP</a>
+                </div>
+            <div className="wrap-input">
               <input
                 className={endereco !== null ? "has-val input" : "input"}
                 type="text"
+                {...register("endereco")}
                 value={endereco}
                 onChange={(e) => setEndereco(e.target.value)}
+                
               />
               <span className="focus-input" data-placeholder="Endereço"></span>
             </div>
@@ -99,6 +136,7 @@ function CadUsuario() {
                 type="text"
                 value={numero}
                 onChange={(e) => setNumero(e.target.value)}
+                {...register("numero")}
               />
               <span className="focus-input" data-placeholder="Número"></span>
             </div>
@@ -110,6 +148,7 @@ function CadUsuario() {
                 value={bairro}
                 style={{ color: '#FFF' }}
                 onChange={(e) => setBairro(e.target.value)}
+                {...register("bairro")}
               />
               <span className="focus-input" data-placeholder="Bairro"></span>
             </div>
@@ -125,6 +164,7 @@ function CadUsuario() {
                 value={cidade}
                 style={{ color: '#FFF' }}
                 onChange={(e) => setCidade(e.target.value)}
+                {...register("cidade")}
               />
               <span className="focus-input" data-placeholder="Cidade"></span>
             </div>
@@ -136,25 +176,16 @@ function CadUsuario() {
                     value={estado}
                     style={{ color: '#FFF' }}
                     onChange={(e) => setEstado(e.target.value)}
+                    {...register("estado")}
                 />
                 <span className="focus-input" data-placeholder="Estado"></span>
-                </div>
-
-                <div className="wrap-input">
-                <IMaskInput
-                    className={cep !== null ? "has-val input" : "input"}
-                    mask="00000-000"
-                    value={cep}
-                    onChange={(e) => setCep(e.target.value)}
-                />
-                <span className="focus-input" data-placeholder="CEP"></span>
                 </div>
 
 
             </section>
 
                 <section className="section-btn-cadastro section-btn-cadastro--column">
-                    <button className="btn" onClick={createUser}>Cadastrar</button>
+                    <button className="btn" onClick={createUser} >Cadastrar</button>
                     <Link to="/cadastro-usuario"><button className="btn">Voltar</button></Link>
                 </section>
 
