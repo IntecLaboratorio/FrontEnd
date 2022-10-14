@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useForm } from 'react-hook-form';
 import '../cadastro.css';
 import api from '../../../Service/api.js';
 import { Link } from 'react-router-dom';
@@ -9,13 +10,34 @@ import 'react-toastify/dist/ReactToastify.css';
 
 function CadUsuario() {
 
-  const [tipoEndereco, setTipoEndereco] = useState("")
-  const [endereco, setEndereco] = useState("");
-  const [numero, setNumero] = useState("");
-  const [bairro, setBairro] = useState("");
-  const [cidade, setCidade] = useState("");
-  const [estado, setEstado] = useState("");
-  const [cep, setCep] = useState("");
+  const [tipoEndereco, setTipoEndereco] = useState(null)
+  const [endereco, setEndereco] = useState(null);
+  const [numero, setNumero] = useState(null);
+  const [bairro, setBairro] = useState(null);
+  const [cidade, setCidade] = useState(null);
+  const [estado, setEstado] = useState(null);
+  const [cep, setCep] = useState(null);
+
+
+  const { register, setValue, setFocus, handleSubmit } = useForm();
+
+  const onSubmit = (e) => {
+    console.log(e);
+  }
+
+
+  const checkCEP = (e) => {
+    const cep = e.target.value.replace(/\D/g, ' ');
+    console.log(cep);
+    fetch(`https://viacep.com.br/ws/${cep}/json/`).then(res => res.json()).then(data => {
+      console.log(data);
+      setValue('endereco', data.logradouro);
+      setValue('bairro', data.bairro);
+      setValue('cidade', data.localidade);
+      setValue('estado', data.uf)
+      setFocus('numero')
+    });
+  }
 
   async function createUser(e) {
     e.preventDefault();
@@ -69,11 +91,11 @@ function CadUsuario() {
 
     <div className="d-flex-user">
       <div className="container-cadastro secoes">
-        <form className="form-cadastro">
+        <form className="form-cadastro" onSubmit={handleSubmit(onSubmit)}>
           <section className="section-cadastro justify-center-mobile-user">
             <div className="wrap-input">
               <input
-                className={tipoEndereco !== "" ? "has-val input" : "input"}
+                className={tipoEndereco !== null ? "has-val input" : "input"}
                 type="text"
                 value={tipoEndereco}
                 style={{ color: '#FFF' }}
@@ -84,32 +106,48 @@ function CadUsuario() {
 
             <div className="wrap-input">
               <input
-                className={endereco !== "" ? "has-val input" : "input"}
+                className={cep !== null ? "has-val input" : "input"}
+                mask="00000-000"
+                value={cep}
+                onChange={(e) => setCep(e.target.value)}
+                {...register("cep")} onBlur={checkCEP}
+              />
+              <span className="focus-input" data-placeholder="CEP"></span>
+            </div>
+            <div className="ncep">
+              <a href='https://buscacepinter.correios.com.br/app/endereco/index.php' target="_blank"> Não sei meu CEP</a>
+            </div>
+            <div className="wrap-input">
+              <input
+                className={endereco !== null ? "has-val input" : "input"}
                 type="text"
+                {...register("endereco")}
                 value={endereco}
                 onChange={(e) => setEndereco(e.target.value)}
+
               />
               <span className="focus-input" data-placeholder="Endereço"></span>
             </div>
 
             <div className="wrap-input">
               <input
-                className={numero !== "" ? "has-val input" : "input"}
+                className={numero !== null ? "has-val input" : "input"}
                 type="text"
                 value={numero}
                 onChange={(e) => setNumero(e.target.value)}
+                {...register("numero")}
               />
               <span className="focus-input" data-placeholder="Número"></span>
             </div>
 
             <div className="wrap-input">
-
               <input
-                className={bairro !== "" ? "has-val input" : "input"}
+                className={bairro !== null ? "has-val input" : "input"}
                 type="text"
                 value={bairro}
                 style={{ color: '#FFF' }}
                 onChange={(e) => setBairro(e.target.value)}
+                {...register("bairro")}
               />
               <span className="focus-input" data-placeholder="Bairro"></span>
             </div>
@@ -119,44 +157,34 @@ function CadUsuario() {
           <section className="section-cadastro justify-center-mobile-user">
 
             <div className="wrap-input">
-
               <input
-                className={cidade !== "" ? "has-val input" : "input"}
+                className={cidade !== null ? "has-val input" : "input"}
                 type="text"
                 value={cidade}
                 style={{ color: '#FFF' }}
                 onChange={(e) => setCidade(e.target.value)}
+                {...register("cidade")}
               />
               <span className="focus-input" data-placeholder="Cidade"></span>
             </div>
 
             <div className="wrap-input">
-
               <input
-                className={estado !== "" ? "has-val input" : "input"}
+                className={estado !== null ? "has-val input" : "input"}
                 type="text"
                 value={estado}
                 style={{ color: '#FFF' }}
                 onChange={(e) => setEstado(e.target.value)}
+                {...register("estado")}
               />
               <span className="focus-input" data-placeholder="Estado"></span>
-            </div>
-
-            <div className="wrap-input">
-              <IMaskInput
-                className={cep !== "" ? "has-val input" : "input"}
-                mask="00000-000"
-                value={cep}
-                onChange={(e) => setCep(e.target.value)}
-              />
-              <span className="focus-input" data-placeholder="CEP"></span>
             </div>
 
 
           </section>
 
           <section className="section-btn-cadastro section-btn-cadastro--column">
-            <button className="btn" onClick={createUser}>Cadastrar</button>
+            <button className="btn" onClick={createUser} >Cadastrar</button>
             <Link to="/cadastro-usuario"><button className="btn">Voltar</button></Link>
           </section>
 
