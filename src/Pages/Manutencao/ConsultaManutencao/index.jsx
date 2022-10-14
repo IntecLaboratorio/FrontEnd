@@ -5,7 +5,8 @@ import "react-bootstrap-table-next/dist/react-bootstrap-table2.css";
 import "react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css";
 import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory from "react-bootstrap-table2-paginator";
-import api from '../../Service/api.js';
+import api from '../../../Service/api.js';
+import {patrimoniosData} from '../SolicitacaoManutencao/patrimoniosData.js'
 
 import './style.css'
 
@@ -14,6 +15,7 @@ function Manutencao() {
   const [nome, setNome] = useState("");
   const [nserie, setNserie] = useState("");
   const [statusManutencao, setstatusManutencao] = useState("");
+  const [nPatrimonio, setNpatrimonio] = useState("");
   const [floor_lab, setFloor_lab] = useState("");
   const [fixedAssent, setFixedAssent] = useState([]);
 
@@ -78,57 +80,75 @@ function Manutencao() {
         />
       </section >
 
-      <h3 className='title'>LEGENDA DE STATUS</h3>
       <div className='radius'>
         <p className='ativo'></p><p className='text-status'>Ativo</p>
         <p className='manutencao'></p><p className='text-status'>Manutenção</p>
         <p className='inativo'></p><p className='text-status'>Inativo</p>
       </div>
 
-      <section className="form-manutencao">
+      {/* <section className="form-manutencao"> */}
         <form className='form-man'>
-          <section className='section-manutencao'>
-            <div className="wrap-input">
-              <select name="select"
-                className={nome !== "" ? "has-val input" : "input"}
-                type="text"
-                value={nome}
-                onChange={(e) => setNome(e.target.value)}
-              >
-                <option value="" disable selected></option>
-                <option value="1">Monitor</option>
-                <option value="2">Mouse</option>
-                <option value="3">Teclado</option>
-              </select>
-              <span className="focus-input" data-placeholder="Nome"></span>
-            </div>
+          <section className='wrap-section'>
+              <section className='wrap-section-manutencao'>
+                <div className="wrap-input">
+                  <select name="select"
+                    className={nome !== "" ? "has-val input" : "input"}
+                    type="text"
+                    value={nome}
+                    onChange={(e) => setNome(e.target.value)}
+                  >
+                    <option value="" disable selected></option>
+                      {patrimoniosData.map((item,index) => {
+                        return(
+                          <option value={item.value}>{item.title}</option>
+                        );
+                      })}
+                  </select>
+                  <span className="focus-input" data-placeholder="Nome"></span>
+                </div>
 
-            <div className="wrap-input">
-              <input
-                className={nserie !== "" ? "has-val input" : "input"}
-                type="text"
-                value={nserie}
-                onChange={(e) => setNserie(e.target.value)}
-              />
-              <span className="focus-input" data-placeholder="Numero de Série"></span>
-            </div>
+                <div className="wrap-input">
+                  <input
+                    className={nPatrimonio !== "" ? "has-val input" : "input"}
+                    type="text"
+                    value={nPatrimonio}
+                    onChange={(e) => setNpatrimonio(e.target.value)}
+                  />
+                  <span className="focus-input" data-placeholder="Numero do Patrimonio"></span>
+                </div>
 
-            <div className="wrap-input">
-              <select name="select"
-                className={statusManutencao !== "" ? "has-val input" : "input"}
-                type="text"
-                value={statusManutencao}
-                onChange={(e) => setstatusManutencao(e.target.value)}
-              >
-                <option value="" disable selected></option>
-                <option value="1">Ativo</option>
-                <option value="2">Inativo</option>
-                <option value="3">Manutenção</option>
-              </select>
-              <span className="focus-input" data-placeholder="Status da Manutenção"></span>
-            </div>
+              </section>
 
+              <section className='wrap-section-manutencao'>
+
+                <div className="wrap-input">
+                  <input
+                    className={nserie !== "" ? "has-val input" : "input"}
+                    type="text"
+                    value={nserie}
+                    onChange={(e) => setNserie(e.target.value)}
+                  />
+                  <span className="focus-input" data-placeholder="Numero de Série"></span>
+                </div>
+
+                <div className="wrap-input">
+                  <select name="select"
+                    className={statusManutencao !== "" ? "has-val input" : "input"}
+                    type="text"
+                    value={statusManutencao}
+                    onChange={(e) => setstatusManutencao(e.target.value)}
+                  >
+                    <option value="" disable selected></option>
+                    <option value="1">Ativo</option>
+                    <option value="2">Inativo</option>
+                    <option value="3">Manutenção</option>
+                  </select>
+                  <span className="focus-input" data-placeholder="Status da Manutenção"></span>
+                </div>
+
+              </section>
           </section>
+
           <section className='section-manutencao'>
             <label>Descrição do Problema</label>
             <textarea name="descricao-problema" id="descricao-problema" cols="20" rows="7"></textarea>
@@ -136,10 +156,10 @@ function Manutencao() {
 
           <section className="section-btn-cadastro section-btn-cadastro--column">
             <button className="btn">Deletar</button>
-            <button className="btn btn-planilhas">Alterar</button>
+            <button className="btn">Alterar</button>
           </section>
         </form>
-      </section>
+      {/* </section> */}
     </div >
   )
 }

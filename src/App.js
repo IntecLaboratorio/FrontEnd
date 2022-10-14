@@ -11,7 +11,8 @@ import CadastroLab from './Pages/Cadastro/CadastroLab/lab.js';
 import CadastroPatrimonio from './Pages/Cadastro/CadastroPatrimonio/patrimonio.js';
 import CadastroUsuario from './Pages/Cadastro/CadastroUsuario/CadastroUsuario.js';
 import Endereco from './Pages/Cadastro/CadastroUsuario/endereco.js'
-import Manutencao from './Pages/Manutencao/index.jsx';
+import Manutencao from './Pages/Manutencao/ConsultaManutencao/index.jsx';
+import SolicitacaoManutencao from './Pages/Manutencao/SolicitacaoManutencao/index.jsx'
 // import AluguelArmario from './Pages/AluguelArmario/index.js';
 import './App.css';
 
@@ -30,6 +31,7 @@ function App() {
           <Route path='/cadastro-laboratorio' element={<CadastroLab />} />
           <Route path='/cadastro-usuario' element={<CadastroUsuario />} />
           <Route path='/manutencao' element={<Manutencao />} />
+          <Route path='/solicitacaoManutencao' element={<SolicitacaoManutencao />} />
         </Route>
         <Route path='/' element={<LandingPage />} />
       </Routes>

@@ -40,6 +40,8 @@
     color: #FFF;
 }
 
+/* .container-manutencao{} */
+
 
 .form-manutencao {
     display: flex;
@@ -53,7 +55,9 @@
 
 .section-manutencao {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
 }
 
 .section-manutencao textarea {
@@ -80,4 +84,26 @@
     width: 95px;
     height: 30px;
     font-size: 18px;
+}
+
+.wrap-section{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.wrap-section-manutencao{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 30px 30px;
+}
+.section-btn-cadastro{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    width: 100%;
+    margin-top: 20px;
 }

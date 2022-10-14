@@ -1,0 +1,56 @@
+.title {
+    text-align: center;
+    color: #FFF;
+}
+
+.radius {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.text-status {
+    color: #FFF;
+}
+
+.form-manutencao {
+    display: flex;
+    flex-direction: column;
+    /* width: 60%; */
+    justify-content: center;
+    align-items: center;
+
+    margin-top: 15px;
+}
+
+.section-manutencao {
+    display: flex;
+    flex-direction: column;
+}
+
+.section-manutencao textarea {
+    resize: none;
+    width: 350px;
+    border: 1px solid white;
+    background-color: transparent;
+    font-size: 15px;
+    color: white;
+}
+
+.section-manutencao label {
+    color: white;
+    margin: 10px 0;
+}
+
+.buttons-manutencao {
+    margin: 30px 0;
+    text-align: center;
+}
+
+.buttons-manutencao button {
+    margin: 0 15px;
+    width: 95px;
+    height: 30px;
+    font-size: 18px;
+}
