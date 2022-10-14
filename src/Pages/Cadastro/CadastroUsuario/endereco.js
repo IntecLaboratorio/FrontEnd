@@ -66,9 +66,8 @@ function CadUsuario() {
 
   return (
 
-      
-      <div className="d-flex-user">
-        {/* <Sidebar></Sidebar> */}
+
+    <div className="d-flex-user">
       <div className="container-cadastro secoes">
         <form className="form-cadastro">
           <section className="section-cadastro justify-center-mobile-user">
@@ -104,7 +103,7 @@ function CadUsuario() {
             </div>
 
             <div className="wrap-input">
-              
+
               <input
                 className={bairro !== "" ? "has-val input" : "input"}
                 type="text"
@@ -115,9 +114,9 @@ function CadUsuario() {
               <span className="focus-input" data-placeholder="Bairro"></span>
             </div>
 
-            </section>
+          </section>
 
-            <section className="section-cadastro justify-center-mobile-user">
+          <section className="section-cadastro justify-center-mobile-user">
 
             <div className="wrap-input">
 
@@ -133,33 +132,33 @@ function CadUsuario() {
 
             <div className="wrap-input">
 
-                <input
-                    className={estado !== "" ? "has-val input" : "input"}
-                    type="text"
-                    value={estado}
-                    style={{ color: '#FFF' }}
-                    onChange={(e) => setEstado(e.target.value)}
-                />
-                <span className="focus-input" data-placeholder="Estado"></span>
-                </div>
+              <input
+                className={estado !== "" ? "has-val input" : "input"}
+                type="text"
+                value={estado}
+                style={{ color: '#FFF' }}
+                onChange={(e) => setEstado(e.target.value)}
+              />
+              <span className="focus-input" data-placeholder="Estado"></span>
+            </div>
 
-                <div className="wrap-input">
-                <IMaskInput
-                    className={cep !== "" ? "has-val input" : "input"}
-                    mask="00000-000"
-                    value={cep}
-                    onChange={(e) => setCep(e.target.value)}
-                />
-                <span className="focus-input" data-placeholder="CEP"></span>
-                </div>
+            <div className="wrap-input">
+              <IMaskInput
+                className={cep !== "" ? "has-val input" : "input"}
+                mask="00000-000"
+                value={cep}
+                onChange={(e) => setCep(e.target.value)}
+              />
+              <span className="focus-input" data-placeholder="CEP"></span>
+            </div>
 
 
-            </section>
+          </section>
 
-                <section className="section-btn-cadastro section-btn-cadastro--column">
-                    <button className="btn" onClick={createUser}>Cadastrar</button>
-                    <Link to="/cadastro-usuario"><button className="btn">Voltar</button></Link>
-                </section>
+          <section className="section-btn-cadastro section-btn-cadastro--column">
+            <button className="btn" onClick={createUser}>Cadastrar</button>
+            <Link to="/cadastro-usuario"><button className="btn">Voltar</button></Link>
+          </section>
 
         </form>
         <ToastContainer />
