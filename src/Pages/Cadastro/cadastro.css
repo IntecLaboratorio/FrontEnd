@@ -55,7 +55,7 @@
   color: #FFFFFF;
   line-height: 1.2;
   background-color: transparent;
-  width: 100%;
+  width: 100% !important;
   height: 45px;
   font-size: 14px;
   border: none;
@@ -223,4 +223,5 @@
 .ncep :is(a){
   color: #5e88c6;
   text-decoration: none;
+
 }

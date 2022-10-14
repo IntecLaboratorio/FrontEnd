@@ -1,3 +1,4 @@
+import './style.css'
 import { useEffect, useState } from "react";
 import Table from 'react-bootstrap/Table';
 import NavCadastro from '../../../Components/NavCadastro';
@@ -13,11 +14,87 @@ import paginationFactory from "react-bootstrap-table2-paginator";
 
 function Lab() {
 
-    const [fk_instruction, setFk_instruction] = useState(null);
-    const [name_lab, setName_lab] = useState(null);
-    const [room_index, setRoom_index] = useState(null);
-    const [floor_lab, setFloor_lab] = useState(null);
+    const [fk_instruction, setFk_instruction] = useState("");
+    const [name_lab, setName_lab] = useState("");
+    const [room_index, setRoom_index] = useState("");
+    const [floor_lab, setFloor_lab] = useState("");
     const [labs, setLabs] = useState([]);
+    const [invalid, setInvalid] = useState("");
+  
+
+    function validate() {
+        let errors = {};
+
+        // if (!fk_instruction && !name_lab && !room_index && !floor_lab) {
+        //     errors = toast.warn("Preencha todos os campos!", {
+        //         position: "top-right",
+        //         autoClose: 5000,
+        //         hideProgressBar: false,
+        //         closeOnClick: true,
+        //         pauseOnHover: true,
+        //         draggable: true,
+        //         progress: undefined,
+        //     });
+        // }
+
+
+        if (!fk_instruction) {
+            errors.fk_instruction = toast.warn("Instituição é obrigatório!", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+
+        }
+        if (!name_lab) {
+            errors.name_lab = toast.warn("Nome do laboratório é obrigatório!", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+
+        }
+        if (!room_index) {
+            errors.room_index = toast.warn("Tipo de sala é obrigatório!", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+
+        }
+        if (!floor_lab) {
+            errors.floor_lab = toast.warn("Andar é obrigatório!", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+
+        }
+
+
+        if (errors.fk_instruction || errors.name_lab || errors.room_index || errors.floor_lab) {
+            return false;
+        }
+
+        return true;
+
+    }
 
     useEffect(() => {
         async function getLabs() {
@@ -70,10 +147,12 @@ function Lab() {
 
     async function insertLab(e) {
         e.preventDefault();
-        try {
-            const data = { fk_instruction, name_lab, room_index, floor_lab }
+        if (validate()) {
+            try {
+                const data = { fk_instruction, name_lab, room_index, floor_lab }
+                await api.post('/labs', data);
 
-            if (fk_instruction && name_lab && room_index && floor_lab) {
+
                 toast.success(`${name_lab} cadastrado com sucesso!`, {
                     position: "top-right",
                     autoClose: 5000,
@@ -83,8 +162,17 @@ function Lab() {
                     draggable: true,
                     progress: undefined,
                 });
-            } else {
-                toast.warn('Todos os campos devem ser preenchidos', {
+
+                // window.location.reload(true);
+
+                setFk_instruction("");
+                setName_lab("");
+                setRoom_index("");
+                setFloor_lab("");
+
+            } catch (err) {
+                // alert(`Houve um problema: ${err}`)
+                invalid(toast.error(`Houve um problema: ${err}`, {
                     position: "top-right",
                     autoClose: 5000,
                     hideProgressBar: false,
@@ -92,31 +180,10 @@ function Lab() {
                     pauseOnHover: true,
                     draggable: true,
                     progress: undefined,
-                });
+                }));
             }
-            // window.location.reload(true);
-
-            await api.post('/labs', data);
-
-            setFk_instruction("");
-            setName_lab("");
-            setRoom_index("");
-            setFloor_lab("");
-
-        } catch (err) {
-            // alert(`Houve um problema: ${err}`)
-            toast.error(`Houve um problema: ${err}`, {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
         }
     }
-
 
     return (
 
@@ -139,11 +206,14 @@ function Lab() {
                     <section className="section-cadastro justify-center-mobile-lab">
                         <div className="wrap-input">
                             <input
-                                className={fk_instruction !== null && "" ? "has-val input" : "input"}
+                                className={fk_instruction !== "" ? "has-val input" : "input"}
                                 type="text"
                                 value={fk_instruction}
                                 style={{ color: '#FFF' }}
-                                onChange={(e) => setFk_instruction(e.target.value)}
+                                onChange={(e) => {
+                                    setFk_instruction(e.target.value);
+                                    setInvalid("");
+                                }}
                             />
                             <span className="focus-input" data-placeholder="Instituição"></span>
                         </div>
@@ -151,10 +221,13 @@ function Lab() {
                         <div className="wrap-input">
 
                             <select name="select"
-                                className={room_index !== null && "" ? "has-val input" : "input"}
+                                className={room_index !== "" ? "has-val input" : "input"}
                                 type="text"
                                 value={room_index}
-                                onChange={(e) => setRoom_index(e.target.value)}
+                                onChange={(e) => {
+                                    setRoom_index(e.target.value)
+                                    setInvalid("");
+                                }}
                             >
                                 <option value="" disable selected></option>
                                 <option value="Laboratório">Laboratório</option>
@@ -169,19 +242,25 @@ function Lab() {
 
                         <div className="wrap-input">
                             <input
-                                className={name_lab !== null && "" ? "has-val input" : "input"}
+                                className={name_lab !== "" ? "has-val input" : "input"}
                                 type="text"
                                 value={name_lab}
-                                onChange={(e) => setName_lab(e.target.value)}
+                                onChange={(e) => {
+                                    setName_lab(e.target.value)
+                                    setInvalid("");
+                                }}
                             />
                             <span className="focus-input" data-placeholder="Nome do lab ou sala"></span>
                         </div>
                         <div className="wrap-input">
                             <select name="select"
-                                className={floor_lab !== null && "" ? "has-val input" : "input"}
+                                className={floor_lab !== "" ? "has-val input" : "input"}
                                 type="text"
                                 value={floor_lab}
-                                onChange={(e) => setFloor_lab(e.target.value)}
+                                onChange={(e) => {
+                                    setFloor_lab(e.target.value)
+                                    setInvalid("");
+                                }}
                             >
                                 <option value="" disable selected></option>
                                 <option value="1º andar">1º andar</option>
@@ -204,7 +283,8 @@ function Lab() {
 
 
     );
-
 }
 
-export default Lab;
+
+
+export default Lab
