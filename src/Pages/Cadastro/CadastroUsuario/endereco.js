@@ -19,7 +19,7 @@ function CadUsuario() {
   const [cep, setCep] = useState(null);
 
 
-  const {register, setValue, setFocus, handleSubmit} = useForm();
+  const { register, setValue, setFocus, handleSubmit } = useForm();
 
   const onSubmit = (e) => {
     console.log(e);
@@ -89,8 +89,7 @@ function CadUsuario() {
   return (
 
 
-      <div className="d-flex-user">
-        {/* <Sidebar></Sidebar> */}
+    <div className="d-flex-user">
       <div className="container-cadastro secoes">
         <form className="form-cadastro" onSubmit={handleSubmit(onSubmit)}>
           <section className="section-cadastro justify-center-mobile-user">
@@ -106,18 +105,18 @@ function CadUsuario() {
             </div>
 
             <div className="wrap-input">
-                <input
-                    className={cep !== null ? "has-val input" : "input"}
-                    mask="00000-000"
-                    value={cep}
-                    onChange={(e) => setCep(e.target.value)}
-                    {...register("cep")} onBlur={checkCEP}
-                />
-                <span className="focus-input" data-placeholder="CEP"></span>
-                </div>
-                <div className="ncep">
-                <a href='https://buscacepinter.correios.com.br/app/endereco/index.php' target="_blank"> Não sei meu CEP</a>
-                </div>
+              <input
+                className={cep !== null ? "has-val input" : "input"}
+                mask="00000-000"
+                value={cep}
+                onChange={(e) => setCep(e.target.value)}
+                {...register("cep")} onBlur={checkCEP}
+              />
+              <span className="focus-input" data-placeholder="CEP"></span>
+            </div>
+            <div className="ncep">
+              <a href='https://buscacepinter.correios.com.br/app/endereco/index.php' target="_blank"> Não sei meu CEP</a>
+            </div>
             <div className="wrap-input">
               <input
                 className={endereco !== null ? "has-val input" : "input"}
@@ -125,7 +124,7 @@ function CadUsuario() {
                 {...register("endereco")}
                 value={endereco}
                 onChange={(e) => setEndereco(e.target.value)}
-                
+
               />
               <span className="focus-input" data-placeholder="Endereço"></span>
             </div>
@@ -153,9 +152,9 @@ function CadUsuario() {
               <span className="focus-input" data-placeholder="Bairro"></span>
             </div>
 
-            </section>
+          </section>
 
-            <section className="section-cadastro justify-center-mobile-user">
+          <section className="section-cadastro justify-center-mobile-user">
 
             <div className="wrap-input">
               <input
@@ -170,24 +169,24 @@ function CadUsuario() {
             </div>
 
             <div className="wrap-input">
-                <input
-                    className={estado !== null ? "has-val input" : "input"}
-                    type="text"
-                    value={estado}
-                    style={{ color: '#FFF' }}
-                    onChange={(e) => setEstado(e.target.value)}
-                    {...register("estado")}
-                />
-                <span className="focus-input" data-placeholder="Estado"></span>
-                </div>
+              <input
+                className={estado !== null ? "has-val input" : "input"}
+                type="text"
+                value={estado}
+                style={{ color: '#FFF' }}
+                onChange={(e) => setEstado(e.target.value)}
+                {...register("estado")}
+              />
+              <span className="focus-input" data-placeholder="Estado"></span>
+            </div>
 
 
-            </section>
+          </section>
 
-                <section className="section-btn-cadastro section-btn-cadastro--column">
-                    <button className="btn" onClick={createUser} >Cadastrar</button>
-                    <Link to="/cadastro-usuario"><button className="btn">Voltar</button></Link>
-                </section>
+          <section className="section-btn-cadastro section-btn-cadastro--column">
+            <button className="btn" onClick={createUser} >Cadastrar</button>
+            <Link to="/cadastro-usuario"><button className="btn">Voltar</button></Link>
+          </section>
 
         </form>
         <ToastContainer />
