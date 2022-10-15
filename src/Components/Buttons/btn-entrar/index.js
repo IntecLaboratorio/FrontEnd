@@ -10,9 +10,9 @@ import './style.css';
 
 function BtnEntrar() {
 
-  const [type_user, setTipoUsuario] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [type_user, setTipoUsuario] = useState(null);
+  const [email, setEmail] = useState(null);
+  const [password, setPassword] = useState(null);
   const [isDisabled, setIsDisabled] = useState(false);
   const [invalid, setInvalid] = useState("");
   const [loading, setLoading] = useState("");
@@ -42,9 +42,20 @@ function BtnEntrar() {
         draggable: true,
         progress: undefined,
       });
+    } 
+    if (!type_user) {
+      errors.type_user = toast.warn("Tipo de usuário não especificado!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
 
     }
-    if (errors.email || errors.password) {
+    if (errors.email || errors.password || errors.type_user) {
       return false;
     }
     return true;
@@ -61,6 +72,7 @@ function BtnEntrar() {
         const { response } = await api.post('/login', data);
 
         sessionStorage.setItem("login", true);
+        sessionStorage.setItem("jwt", response.token);
         navigate("/home")
 
         toast.success("Seja bem-vindo!", {
