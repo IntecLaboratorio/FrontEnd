@@ -7,6 +7,7 @@ import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import api from '../../../Service/api.js';
 import {patrimoniosData} from '../SolicitacaoManutencao/patrimoniosData.js'
+import { ToastContainer, toast } from 'react-toastify';
 
 import './style.css'
 
@@ -16,8 +17,120 @@ function Manutencao() {
   const [nserie, setNserie] = useState("");
   const [statusManutencao, setstatusManutencao] = useState("");
   const [nPatrimonio, setNpatrimonio] = useState("");
-  const [floor_lab, setFloor_lab] = useState("");
+  const [descricao, setDescricao] = useState("");
   const [fixedAssent, setFixedAssent] = useState([]);
+  const [invalid, setInvalid] = useState("");
+
+  function validate() {
+    let errors = {};
+
+    if (!nome) {
+      errors.nome = toast.warn("Nome é obrigatório!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+      });
+
+  }
+  if (!nserie) {
+      errors.nserie = toast.warn("Número de série é obrigatório!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+      });
+
+  }
+  if (!statusManutencao) {
+      errors.statusManutencao = toast.warn("Status de manutenção é obrigatório!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+      });
+
+  }
+  if (!nPatrimonio) {
+      errors.nPatrimonio = toast.warn("Número do patrimonio é obrigatório!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+      });
+
+  }
+  if (!descricao) {
+      errors.descricao = toast.warn("Descrição é obrigatório!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+      });
+
+  }
+
+
+    if (errors.nome || errors.nserie || errors.statusManutencao || errors.nPatrimonio || errors.descricao) {
+        return false;
+    }
+
+    return true;
+
+}
+
+async function consultLab(e) {
+  e.preventDefault();
+  if (validate()) {
+      try {
+          const data = {nome, nserie, statusManutencao, nPatrimonio, descricao  }
+
+          toast.success(`Consulta feita com sucesso`, {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+          });
+
+          // window.location.reload(true);
+
+          setNome("");
+          setNserie("");
+          setstatusManutencao("");
+          setNpatrimonio("");
+
+      } catch (err) {
+          // alert(`Houve um problema: ${err}`)
+          invalid(toast.error(`Houve um problema: ${err}`, {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+          }));
+      }
+  }
+}
 
   useEffect(() => {
     async function getFixedAssent() {
@@ -95,7 +208,9 @@ function Manutencao() {
                     className={nome !== "" ? "has-val input" : "input"}
                     type="text"
                     value={nome}
-                    onChange={(e) => setNome(e.target.value)}
+                    onChange={(e) => {
+                      setNome(e.target.value)
+                    }}
                   >
                     <option value="" disable selected></option>
                       {patrimoniosData.map((item,index) => {
@@ -136,7 +251,7 @@ function Manutencao() {
                     className={statusManutencao !== "" ? "has-val input" : "input"}
                     type="text"
                     value={statusManutencao}
-                    onChange={(e) => setstatusManutencao(e.target.value)}
+                    onChange={(e) =>{ setstatusManutencao(e.target.value)}}
                   >
                     <option value="" disable selected></option>
                     <option value="1">Ativo</option>
@@ -151,12 +266,12 @@ function Manutencao() {
 
           <section className='section-manutencao'>
             <label>Descrição do Problema</label>
-            <textarea name="descricao-problema" id="descricao-problema" cols="20" rows="7"></textarea>
+            <textarea name="descricao-problema" id="descricao-problema" cols="20" rows="7" onChange={(e) => setDescricao(e.target.value)}></textarea>
           </section>
 
           <section className="section-btn-cadastro section-btn-cadastro--column">
-            <button className="btn">Deletar</button>
-            <button className="btn">Alterar</button>
+            <button className="btn" onClick={consultLab}>Deletar</button>
+            <button className="btn" onClick={consultLab}>Alterar</button>
           </section>
         </form>
       {/* </section> */}

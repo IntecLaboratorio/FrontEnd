@@ -57,7 +57,8 @@ function SolicitacaoManutencao() {
                 className={nPatrimonio !== "" ? "has-val input" : "input"}
                 type="text"
                 value={nPatrimonio}
-                onChange={(e) => setNpatrimonio(e.target.value)}
+                onChange={(e) => 
+                  setNpatrimonio(e.target.value)}
               />
               <span className="focus-input" data-placeholder="Numero de Patrimonio"></span>
             </div>
@@ -65,7 +66,7 @@ function SolicitacaoManutencao() {
           
           <section className='section-manutencao'>
             <label>Descrição do Problema</label>
-            <textarea name="descricao-problema" id="descricao-problema" cols="20" rows="7"></textarea>
+            <textarea name="descricao-problema" id="descricao-problema" cols="20" rows="7" ></textarea>
           </section>
 
           <section className="section-btn-cadastro section-btn-cadastro--column">
