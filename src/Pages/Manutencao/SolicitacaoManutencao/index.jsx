@@ -16,6 +16,7 @@ function SolicitacaoManutencao() {
   const [loading, setLoading] = useState("");
 
   const validate = () => {
+
     let errors = {};
 
     if (!tipoPatrimonio) {
@@ -29,6 +30,7 @@ function SolicitacaoManutencao() {
         progress: undefined,
       });
     }
+
     if (!sala) {
       errors.sala = toast.warn("Informe a sala", {
         position: "top-right",
@@ -40,6 +42,7 @@ function SolicitacaoManutencao() {
         progress: undefined,
       });
     }
+
     if (!nPatrimonio) {
       errors.nPatrimonio = toast.warn("Informe o número de patrimônio", {
         position: "top-right",
@@ -51,6 +54,7 @@ function SolicitacaoManutencao() {
         progress: undefined,
       });
     }
+
     if (!fixedAssent) {
       errors.fixedAssent = toast.warn("Descreva o problema do equipamento", {
         position: "top-right",
@@ -62,6 +66,7 @@ function SolicitacaoManutencao() {
         progress: undefined,
       });
     }
+
     if (errors.tipoPatrimonio || errors.sala || errors.nPatrimonio || errors.fixedAssent) {
       return false;
     }
