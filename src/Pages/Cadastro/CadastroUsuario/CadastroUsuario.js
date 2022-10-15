@@ -2,7 +2,6 @@ import { useState } from "react";
 import '../cadastro.css';
 import NavCadastro from '../../../Components/NavCadastro';
 import api from '../../../Service/api.js';
-import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { IMaskInput } from "react-imask";
 import { ToastContainer, toast } from 'react-toastify';
@@ -19,13 +18,13 @@ function CadUsuario() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [verify, setVerify] = useState("");
-  const [tipoEndereco, setTipoEndereco] = useState("")
-  const [endereco, setEndereco] = useState("");
-  const [numero, setNumero] = useState("");
-  const [bairro, setBairro] = useState("");
-  const [cidade, setCidade] = useState("");
-  const [estado, setEstado] = useState("");
-  const [cep, setCep] = useState("");
+  const [tipoEndereco, setTipoEndereco] = useState(null)
+  const [endereco, setEndereco] = useState(null);
+  const [numero, setNumero] = useState(null);
+  const [bairro, setBairro] = useState(null);
+  const [cidade, setCidade] = useState(null);
+  const [estado, setEstado] = useState(null);
+  const [cep, setCep] = useState(null);
   const [pg, setPg] = useState(false);
 
   function formContinuo(e) {
