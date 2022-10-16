@@ -225,3 +225,12 @@
   text-decoration: none;
 
 }
+
+.loading {
+  display: flex;
+  justify-content: center;
+}
+
+.spinner-border {
+  color: #FFFFFF;
+}

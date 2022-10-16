@@ -11,6 +11,7 @@ import "react-bootstrap-table-next/dist/react-bootstrap-table2.css";
 import "react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css";
 import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory from "react-bootstrap-table2-paginator";
+import { Spinner } from 'react-bootstrap';
 
 function Lab() {
 
@@ -20,26 +21,14 @@ function Lab() {
     const [floor_lab, setFloor_lab] = useState("");
     const [labs, setLabs] = useState([]);
     const [invalid, setInvalid] = useState("");
-  
+    const [loading, setLoading] = useState("");
+
 
     function validate() {
         let errors = {};
 
-        // if (!fk_instruction && !name_lab && !room_index && !floor_lab) {
-        //     errors = toast.warn("Preencha todos os campos!", {
-        //         position: "top-right",
-        //         autoClose: 5000,
-        //         hideProgressBar: false,
-        //         closeOnClick: true,
-        //         pauseOnHover: true,
-        //         draggable: true,
-        //         progress: undefined,
-        //     });
-        // }
-
-
-        if (!fk_instruction) {
-            errors.fk_instruction = toast.warn("Instituição é obrigatório!", {
+        if (!fk_instruction || !name_lab || !room_index || !floor_lab) {
+            errors.input = toast.warn("Todos os campos devem ser preenchidos!", {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -48,47 +37,9 @@ function Lab() {
                 draggable: true,
                 progress: undefined,
             });
-
-        }
-        if (!name_lab) {
-            errors.name_lab = toast.warn("Nome do laboratório é obrigatório!", {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-
-        }
-        if (!room_index) {
-            errors.room_index = toast.warn("Tipo de sala é obrigatório!", {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-
-        }
-        if (!floor_lab) {
-            errors.floor_lab = toast.warn("Andar é obrigatório!", {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-
         }
 
-
-        if (errors.fk_instruction || errors.name_lab || errors.room_index || errors.floor_lab) {
+        if (errors.input) {
             return false;
         }
 
@@ -149,6 +100,9 @@ function Lab() {
         e.preventDefault();
         if (validate()) {
             try {
+                setLoading(<Spinner id="loading" animation='border' />);
+
+
                 const data = { fk_instruction, name_lab, room_index, floor_lab }
                 await api.post('/labs', data);
 
@@ -164,7 +118,8 @@ function Lab() {
                 });
 
                 // window.location.reload(true);
-
+                
+                setLoading("");
                 setFk_instruction("");
                 setName_lab("");
                 setRoom_index("");
@@ -172,7 +127,9 @@ function Lab() {
 
             } catch (err) {
                 // alert(`Houve um problema: ${err}`)
-                invalid(toast.error(`Houve um problema: ${err}`, {
+                setLoading("");
+                console.log(err)
+                invalid(toast.error("Não foi possível cadastrar", {
                     position: "top-right",
                     autoClose: 5000,
                     hideProgressBar: false,
@@ -184,6 +141,12 @@ function Lab() {
             }
         }
     }
+
+    function handleKeyDown(e) {
+        if (e.key === "Enter") {
+            insertLab();
+        }
+      }
 
     return (
 
@@ -214,6 +177,7 @@ function Lab() {
                                     setFk_instruction(e.target.value);
                                     setInvalid("");
                                 }}
+                                onKeyDown={handleKeyDown}
                             />
                             <span className="focus-input" data-placeholder="Instituição"></span>
                         </div>
@@ -228,6 +192,7 @@ function Lab() {
                                     setRoom_index(e.target.value)
                                     setInvalid("");
                                 }}
+                                onKeyDown={handleKeyDown}
                             >
                                 <option value="" disable selected></option>
                                 <option value="Laboratório">Laboratório</option>
@@ -249,6 +214,7 @@ function Lab() {
                                     setName_lab(e.target.value)
                                     setInvalid("");
                                 }}
+                                onKeyDown={handleKeyDown}
                             />
                             <span className="focus-input" data-placeholder="Nome do lab ou sala"></span>
                         </div>
@@ -261,6 +227,7 @@ function Lab() {
                                     setFloor_lab(e.target.value)
                                     setInvalid("");
                                 }}
+                                onKeyDown={handleKeyDown}
                             >
                                 <option value="" disable selected></option>
                                 <option value="1º andar">1º andar</option>
@@ -277,8 +244,8 @@ function Lab() {
                     </section>
                 </form>
                 <ToastContainer />
-
             </div>
+            <div className='loading'>{loading}</div>
         </div>
 
 

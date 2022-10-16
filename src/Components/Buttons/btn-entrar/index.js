@@ -138,6 +138,7 @@ function BtnEntrar() {
                 type="text"
                 value={type_user}
                 onChange={(e) => setTipoUsuario(e.target.value)}
+                onKeyDown={handleKeyDown}
               >
                 <option value="" disable selected></option>
                 <option value={1}>Coordenador</option>
