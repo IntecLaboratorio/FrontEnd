@@ -20,7 +20,6 @@ function Lab() {
     const [room_index, setRoom_index] = useState("");
     const [floor_lab, setFloor_lab] = useState("");
     const [labs, setLabs] = useState([]);
-    const [invalid, setInvalid] = useState("");
     const [loading, setLoading] = useState("");
 
 
@@ -118,7 +117,7 @@ function Lab() {
                 });
 
                 // window.location.reload(true);
-                
+
                 setLoading("");
                 setFk_instruction("");
                 setName_lab("");
@@ -129,7 +128,7 @@ function Lab() {
                 // alert(`Houve um problema: ${err}`)
                 setLoading("");
                 console.log(err)
-                invalid(toast.error("Não foi possível cadastrar", {
+                toast.error("Não foi possível efetuar o cadastro", {
                     position: "top-right",
                     autoClose: 5000,
                     hideProgressBar: false,
@@ -137,7 +136,7 @@ function Lab() {
                     pauseOnHover: true,
                     draggable: true,
                     progress: undefined,
-                }));
+                });
             }
         }
     }
@@ -146,7 +145,7 @@ function Lab() {
         if (e.key === "Enter") {
             insertLab();
         }
-      }
+    }
 
     return (
 
@@ -175,7 +174,6 @@ function Lab() {
                                 style={{ color: '#FFF' }}
                                 onChange={(e) => {
                                     setFk_instruction(e.target.value);
-                                    setInvalid("");
                                 }}
                                 onKeyDown={handleKeyDown}
                             />
@@ -190,7 +188,6 @@ function Lab() {
                                 value={room_index}
                                 onChange={(e) => {
                                     setRoom_index(e.target.value)
-                                    setInvalid("");
                                 }}
                                 onKeyDown={handleKeyDown}
                             >
@@ -212,7 +209,6 @@ function Lab() {
                                 value={name_lab}
                                 onChange={(e) => {
                                     setName_lab(e.target.value)
-                                    setInvalid("");
                                 }}
                                 onKeyDown={handleKeyDown}
                             />
@@ -225,7 +221,6 @@ function Lab() {
                                 value={floor_lab}
                                 onChange={(e) => {
                                     setFloor_lab(e.target.value)
-                                    setInvalid("");
                                 }}
                                 onKeyDown={handleKeyDown}
                             >
