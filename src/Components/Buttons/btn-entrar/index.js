@@ -10,9 +10,9 @@ import './style.css';
 
 function BtnEntrar() {
 
-  const [type_user, setTipoUsuario] = useState(null);
-  const [email, setEmail] = useState(null);
-  const [password, setPassword] = useState(null);
+  const [type_user, setTipoUsuario] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [isDisabled, setIsDisabled] = useState(false);
   const [invalid, setInvalid] = useState("");
   const [loading, setLoading] = useState("");
