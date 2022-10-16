@@ -14,7 +14,6 @@ function BtnEntrar() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isDisabled, setIsDisabled] = useState(false);
-  const [invalid, setInvalid] = useState("");
   const [loading, setLoading] = useState("");
   let navigate = useNavigate();
 
@@ -93,7 +92,7 @@ function BtnEntrar() {
         setIsDisabled(false);
         setLoading("");
         console.log(err);
-        invalid(toast.error("Usuário ou senha inválidos", {
+        toast.error("Usuário ou senha inválidos", {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -101,7 +100,7 @@ function BtnEntrar() {
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-        }))
+        })
       }
     }
   }
@@ -156,7 +155,6 @@ function BtnEntrar() {
                 value={email}
                 onChange={(e) => {
                   setEmail(e.target.value);
-                  setInvalid("");
                 }}
                 onKeyDown={handleKeyDown}
               />
@@ -170,7 +168,6 @@ function BtnEntrar() {
                 value={password}
                 onChange={(e) => {
                   setPassword(e.target.value);
-                  setInvalid("");
                 }}
                 onKeyDown={handleKeyDown}
               />
