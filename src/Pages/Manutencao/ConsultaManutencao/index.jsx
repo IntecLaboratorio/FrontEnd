@@ -124,9 +124,8 @@ function Manutencao() {
         setDescricao("");
       } catch (err) {
         // alert(`Houve um problema: ${err}`)
-        console.log(err);
         setLoading("");
-        toast.error("Não foi possível realizar a consulta", {
+        toast.error(`Houve um problema: ${err}`, {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,

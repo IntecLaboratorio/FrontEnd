@@ -99,9 +99,8 @@ function SolicitacaoManutencao() {
         setFixedAssent("");
       }
       catch (err) {
-        console.log(err);
         setLoading("");
-        toast.error("Não foi possivel realizar sua solicitação!", {
+        toast.error(`Houve um problema: ${err}`, {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -109,7 +108,7 @@ function SolicitacaoManutencao() {
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-        })
+        });
       }
     }
   }

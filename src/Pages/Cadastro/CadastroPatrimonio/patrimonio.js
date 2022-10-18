@@ -83,8 +83,7 @@ function Patrimonio() {
 
       } catch (err) {
         setLoading("");
-        console.log(err)
-        toast.error("Não foi possível efetuar o cadastro", {
+        toast.error(`Houve um problema: ${err}`, {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,

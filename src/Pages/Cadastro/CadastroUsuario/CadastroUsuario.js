@@ -1,16 +1,15 @@
 import { useState } from "react";
-import '../cadastro.css';
-import NavCadastro from '../../../Components/NavCadastro';
-import api from '../../../Service/api.js';
-import { useForm } from 'react-hook-form';
+import "../cadastro.css";
+import NavCadastro from "../../../Components/NavCadastro";
+import api from "../../../Service/api.js";
+import { useForm } from "react-hook-form";
 import { IMaskInput } from "react-imask";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { Spinner } from "react-bootstrap";
 
 function CadUsuario() {
-
-  const [id_corporate, setId_corporate] = useState("")
+  const [id_corporate, setId_corporate] = useState("");
   const [address, setAddress] = useState("");
   const [name_user, setNome] = useState("");
   const [type_user, setTipoUsuario] = useState("");
@@ -22,52 +21,23 @@ function CadUsuario() {
   const [verify, setVerify] = useState("");
   const [loading, setLoading] = useState("");
 
-  async function createUser(e) {
-    e.preventDefault();
+  function validate() {
+    let errors = {};
 
-    try {
-      setLoading(<Spinner id="loading" animation='border' />);
-      const data = {
-        id_corporate, address, type_user, name_user, cpf, rg, phone, email, password, verify
-      }
-
-      if (id_corporate && address && type_user && name_user && cpf && rg && phone && email && password && verify) {
-        toast.success(`${name_user} cadastrado com sucesso!`, {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-      } else {
-        toast.warn('Todos os campos devem ser preenchidos', {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-      }
-
-      await api.post("/user", data)
-
-      setId_corporate("");
-      setAddress("")
-      setNome("");
-      setTipoUsuario("");
-      setCpf("");
-      setRg("");
-      setPhone("");
-      setEmail("");
-      setPassword("");
-      setVerify("");
-
-    } catch (err) {
-      toast.error(`Houve um problema: ${err}`, {
+    if (
+      !id_corporate ||
+      !address ||
+      !name_user ||
+      !type_user ||
+      !cpf ||
+      !rg ||
+      !phone ||
+      !email ||
+      !password ||
+      !verify ||
+      !verify
+    ) {
+      errors.input = toast.warn("Todos os campos devem ser preenchidos", {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -77,10 +47,71 @@ function CadUsuario() {
         progress: undefined,
       });
     }
+
+    if (errors.input) {
+      return false;
+    }
+
+    return true;
+  }
+
+  async function createUser(e) {
+    e.preventDefault();
+    if (validate()) {
+      try {
+        setLoading(<Spinner id="loading" animation="border" />);
+        const data = {
+          id_corporate,
+          address,
+          type_user,
+          name_user,
+          cpf,
+          rg,
+          phone,
+          email,
+          password,
+          verify,
+        };
+
+        await api.post("/user", data);
+
+        toast.success(`${name_user} cadastrado com sucesso!`, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+
+        setLoading("");
+        setId_corporate("");
+        setAddress("");
+        setNome("");
+        setTipoUsuario("");
+        setCpf("");
+        setRg("");
+        setPhone("");
+        setEmail("");
+        setPassword("");
+        setVerify("");
+      } catch (err) {
+        setLoading("");
+        toast.error(`Houve um problema: ${err}`, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
+    }
   }
 
   return (
-
     <div className="d-flex-user">
       <div className="hide-mobile">
         <NavCadastro />
@@ -93,10 +124,13 @@ function CadUsuario() {
                 className={id_corporate !== "" ? "has-val input" : "input"}
                 type="text"
                 value={id_corporate}
-                style={{ color: '#FFF' }}
+                style={{ color: "#FFF" }}
                 onChange={(e) => setId_corporate(e.target.value)}
               />
-              <span className="focus-input" data-placeholder="Instituição"></span>
+              <span
+                className="focus-input"
+                data-placeholder="Instituição"
+              ></span>
             </div>
 
             <div className="wrap-input">
@@ -110,7 +144,8 @@ function CadUsuario() {
             </div>
 
             <div className="wrap-input">
-              <select name="select"
+              <select
+                name="select"
                 className={type_user !== "" ? "has-val input" : "input"}
                 type="text"
                 value={type_user}
@@ -121,7 +156,10 @@ function CadUsuario() {
                 <option value="2">Professor</option>
                 <option value="3">Aluno</option>
               </select>
-              <span className="focus-input" data-placeholder="Tipo de Usuário"></span>
+              <span
+                className="focus-input"
+                data-placeholder="Tipo de Usuário"
+              ></span>
             </div>
 
             <div className="wrap-input">
@@ -129,7 +167,7 @@ function CadUsuario() {
                 className={name_user !== "" ? "has-val input" : "input"}
                 type="text"
                 value={name_user}
-                style={{ color: '#FFF' }}
+                style={{ color: "#FFF" }}
                 onChange={(e) => setNome(e.target.value)}
               />
               <span className="focus-input" data-placeholder="Nome"></span>
@@ -187,7 +225,8 @@ function CadUsuario() {
             </div>
 
             <div className="wrap-input">
-              <select name="select"
+              <select
+                name="select"
                 className={verify !== "" ? "has-val input" : "input"}
                 type="text"
                 value={verify}
@@ -197,19 +236,25 @@ function CadUsuario() {
                 <option value="1">Ativo</option>
                 <option value="0">Inativo</option>
               </select>
-              <span className="focus-input" data-placeholder="Status do usuário"></span>
+              <span
+                className="focus-input"
+                data-placeholder="Status do usuário"
+              ></span>
             </div>
           </section>
 
           <section className="section-btn-cadastro section-btn-cadastro--column">
-            <button className="btn" onClick={createUser}>Cadastrar</button>
+            <button className="btn" onClick={createUser}>
+              Cadastrar
+            </button>
             <button className="btn btn-planilhas">Cadastro com Planilha</button>
           </section>
+          <div className="loading">{loading}</div>
         </form>
       </div>
       <ToastContainer />
     </div>
-  )
+  );
 }
 
 export default CadUsuario;
