@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
 import { patrimoniosData } from './patrimoniosData.js'
 import { ToastContainer, toast } from 'react-toastify';
@@ -182,6 +182,7 @@ function SolicitacaoManutencao() {
           </section>
 
         </form>
+        <ToastContainer />
       </section>
     </div >
   )
