@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form';
 import { IMaskInput } from "react-imask";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Spinner } from "react-bootstrap";
 
 function CadUsuario() {
 
@@ -18,57 +19,18 @@ function CadUsuario() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [verify, setVerify] = useState("");
-  const [tipoEndereco, setTipoEndereco] = useState(null)
-  const [endereco, setEndereco] = useState(null);
-  const [numero, setNumero] = useState(null);
-  const [bairro, setBairro] = useState(null);
-  const [cidade, setCidade] = useState(null);
-  const [estado, setEstado] = useState(null);
-  const [cep, setCep] = useState(null);
-  const [pg, setPg] = useState(false);
-
-  function formContinuo(e) {
-    e.preventDefault();
-    if (pg) {
-      setPg(false);
-    } else {
-      setPg(true);
-    }
-  }
-
-  const { register, setValue, setFocus, handleSubmit } = useForm();
-
-  const onSubmit = (e) => {
-    console.log(e);
-  }
-
-
-  const checkCEP = (e) => {
-    const cep = e.target.value.replace(/\D/g, ' ');
-    console.log(cep);
-    fetch(`https://viacep.com.br/ws/${cep}/json/`).then(res => res.json()).then(data => {
-      console.log(data);
-      setValue('endereco', data.logradouro);
-      setValue('bairro', data.bairro);
-      setValue('cidade', data.localidade);
-      setValue('estado', data.uf)
-      setFocus('numero')
-    });
-  }
+  const [loading, setLoading] = useState("");
 
   async function createUser(e) {
     e.preventDefault();
 
     try {
+      setLoading(<Spinner id="loading" animation='border' />);
       const data = {
         id_corporate, type_user, name_user, cpf, rg, phone, email, password, verify
       }
 
-      const dataEnd = {
-        tipoEndereco, endereco, numero, bairro, cidade, estado, cep, cpf
-      }
-
-      if (id_corporate && type_user && name_user && cpf && rg && phone && email && password && verify && tipoEndereco && endereco && numero && bairro && cidade && estado && cep) {
+      if (id_corporate && type_user && name_user && cpf && rg && phone && email && password && verify) {
         toast.success(`${name_user} cadastrado com sucesso!`, {
           position: "top-right",
           autoClose: 5000,
@@ -91,7 +53,6 @@ function CadUsuario() {
       }
 
       await api.post("/user", data)
-      await api.post("/address", dataEnd)
 
       setId_corporate("");
       setNome("");
@@ -122,7 +83,7 @@ function CadUsuario() {
       <div className="hide-mobile">
         <NavCadastro />
       </div>
-      {pg == false ? <div className="container-cadastro secoes">
+      <div className="container-cadastro secoes">
         <form className="form-cadastro">
           <section className="section-cadastro justify-center-mobile-user">
             <div className="wrap-input">
@@ -229,112 +190,11 @@ function CadUsuario() {
           </section>
 
           <section className="section-btn-cadastro section-btn-cadastro--column">
-            <button className="btn" onClick={formContinuo}>Avançar</button>
+            <button className="btn" onClick={createUser}>Cadastrar</button>
             <button className="btn btn-planilhas">Cadastro com Planilha</button>
           </section>
         </form>
-      </div> :
-        <div className="container-cadastro secoes">
-          <form className="form-cadastro" onSubmit={handleSubmit(onSubmit)}>
-            <section className="section-cadastro justify-center-mobile-user">
-              <div className="wrap-input">
-                <input
-                  className={tipoEndereco !== "" ? "has-val input" : "input"}
-                  type="text"
-                  value={tipoEndereco}
-                  style={{ color: '#FFF' }}
-                  onChange={(e) => setTipoEndereco(e.target.value)}
-                />
-                <span className="focus-input" data-placeholder="Tipo de Endereço"></span>
-              </div>
-
-              <div className="wrap-input">
-                <input
-                  className={cep !== "" ? "has-val input" : "input"}
-                  mask="00000-000"
-                  value={cep}
-                  onChange={(e) => setCep(e.target.value)}
-                  {...register("cep")} onBlur={checkCEP}
-                />
-                <span className="focus-input" data-placeholder="CEP"></span>
-              </div>
-              <div className="ncep">
-                <a href='https://buscacepinter.correios.com.br/app/endereco/index.php' target="_blank"> Não sei meu CEP</a>
-              </div>
-              <div className="wrap-input">
-                <input
-                  className={endereco !== "" ? "has-val input" : "input"}
-                  type="text"
-                  {...register("endereco")}
-                  value={endereco}
-                  onChange={(e) => setEndereco(e.target.value)}
-
-                />
-                <span className="focus-input" data-placeholder="Endereço"></span>
-              </div>
-
-              <div className="wrap-input">
-                <input
-                  className={numero !== "" ? "has-val input" : "input"}
-                  type="text"
-                  value={numero}
-                  onChange={(e) => setNumero(e.target.value)}
-                  {...register("numero")}
-                />
-                <span className="focus-input" data-placeholder="Número"></span>
-              </div>
-
-              <div className="wrap-input">
-                <input
-                  className={bairro !== "" ? "has-val input" : "input"}
-                  type="text"
-                  value={bairro}
-                  style={{ color: '#FFF' }}
-                  onChange={(e) => setBairro(e.target.value)}
-                  {...register("bairro")}
-                />
-                <span className="focus-input" data-placeholder="Bairro"></span>
-              </div>
-
-            </section>
-
-            <section className="section-cadastro justify-center-mobile-user">
-
-              <div className="wrap-input">
-                <input
-                  className={cidade !== "" ? "has-val input" : "input"}
-                  type="text"
-                  value={cidade}
-                  style={{ color: '#FFF' }}
-                  onChange={(e) => setCidade(e.target.value)}
-                  {...register("cidade")}
-                />
-                <span className="focus-input" data-placeholder="Cidade"></span>
-              </div>
-
-              <div className="wrap-input">
-                <input
-                  className={estado !== "" ? "has-val input" : "input"}
-                  type="text"
-                  value={estado}
-                  style={{ color: '#FFF' }}
-                  onChange={(e) => setEstado(e.target.value)}
-                  {...register("estado")}
-                />
-                <span className="focus-input" data-placeholder="Estado"></span>
-              </div>
-
-
-            </section>
-
-            <section className="section-btn-cadastro section-btn-cadastro--column">
-              <button className="btn" onClick={createUser} >Cadastrar</button>
-              <button className="btn" onClick={formContinuo}>Voltar</button>
-            </section>
-
-          </form>
-
-        </div>}
+      </div>
       <ToastContainer />
     </div>
   )
