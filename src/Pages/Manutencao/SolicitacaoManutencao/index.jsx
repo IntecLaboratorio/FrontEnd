@@ -80,7 +80,7 @@ function SolicitacaoManutencao() {
         setLoading(<Spinner id="loading" animation='border' />);
 
         const data = { tipoPatrimonio, sala, nPatrimonio, fixedAssent }
-        await api.post('/reqMaintanance', data);
+        await api.post('/reqMaintanance', data);   
 
         toast.success("Solicitação enviada com sucesso!", {
           position: "top-right",
