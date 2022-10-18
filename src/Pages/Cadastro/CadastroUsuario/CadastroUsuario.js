@@ -11,6 +11,7 @@ import { Spinner } from "react-bootstrap";
 function CadUsuario() {
 
   const [id_corporate, setId_corporate] = useState("")
+  const [address, setAddress] = useState("");
   const [name_user, setNome] = useState("");
   const [type_user, setTipoUsuario] = useState("");
   const [cpf, setCpf] = useState("");
@@ -27,10 +28,10 @@ function CadUsuario() {
     try {
       setLoading(<Spinner id="loading" animation='border' />);
       const data = {
-        id_corporate, type_user, name_user, cpf, rg, phone, email, password, verify
+        id_corporate, address, type_user, name_user, cpf, rg, phone, email, password, verify
       }
 
-      if (id_corporate && type_user && name_user && cpf && rg && phone && email && password && verify) {
+      if (id_corporate && address && type_user && name_user && cpf && rg && phone && email && password && verify) {
         toast.success(`${name_user} cadastrado com sucesso!`, {
           position: "top-right",
           autoClose: 5000,
@@ -55,6 +56,7 @@ function CadUsuario() {
       await api.post("/user", data)
 
       setId_corporate("");
+      setAddress("")
       setNome("");
       setTipoUsuario("");
       setCpf("");
@@ -98,6 +100,16 @@ function CadUsuario() {
             </div>
 
             <div className="wrap-input">
+              <input
+                className={address !== "" ? "has-val input" : "input"}
+                type="text"
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
+              />
+              <span className="focus-input" data-placeholder="Endereço"></span>
+            </div>
+
+            <div className="wrap-input">
               <select name="select"
                 className={type_user !== "" ? "has-val input" : "input"}
                 type="text"
@@ -132,6 +144,8 @@ function CadUsuario() {
               />
               <span className="focus-input" data-placeholder="CPF"></span>
             </div>
+          </section>
+          <section className="section-cadastro justify-center-mobile-user">
             <div className="wrap-input">
               <IMaskInput
                 className={rg !== "" ? "has-val input" : "input"}
@@ -141,8 +155,6 @@ function CadUsuario() {
               />
               <span className="focus-input" data-placeholder="RG"></span>
             </div>
-          </section>
-          <section className="section-cadastro justify-center-mobile-user">
 
             <div className="wrap-input">
               <IMaskInput
