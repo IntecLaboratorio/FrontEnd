@@ -23,7 +23,7 @@ function Index() {
     let errors = {}
 
     if (enviar == "") {
-      errors.enviar = toast.error("Tipo de usuário é obrigatório", {
+      errors.enviar = toast.warn("Tipo de usuário é obrigatório", {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -34,7 +34,7 @@ function Index() {
       });
     }
     if (!email) {
-      errors.email = toast.error("E-Mail é obrigatório", {
+      errors.email = toast.warn("E-Mail é obrigatório", {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -45,7 +45,7 @@ function Index() {
       });
     }
     if (!password) {
-      errors.password = toast.error("Senha é obrigatória", {
+      errors.password = toast.warn("Senha é obrigatória", {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
