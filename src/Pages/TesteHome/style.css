@@ -1,0 +1,89 @@
+.row-home {
+  width: 90%;
+  height: 400px;
+  display: flex;
+  margin: 20px auto;
+  gap: 10px;
+}
+
+.carousel-inner {
+  height: 400px;
+}
+
+.logo :is(img) {
+  width: 60%;
+}
+
+.row-home :is(.w-70) {
+  width: 70%;
+}
+
+.row-home :is(.w-30) {
+  width: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #fff;
+  border-radius: 0.25rem;
+}
+
+/* Card */
+.cards-home {
+  display: grid;
+  gap: 1.5rem;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.cards-home a {
+  text-decoration: none;
+}
+
+.card-home {
+  padding: 3.625rem 2rem;
+  border: 1px solid #fff;
+  border-radius: 0.25rem;
+  text-align: center;
+  background: transparent;
+  transition: 0.3s;
+}
+
+.card-home:hover {
+  background: #7b7474;
+}
+
+.card-home .title-home {
+  font-size: 1.25rem;
+  margin: 0.75rem 0;
+  color: #fff;
+}
+
+/* End Card */
+
+@media (min-width: 1000px) {
+
+  /* services */
+  .cards-home {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+
+  .card-home {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+
+}
+
+@media screen and (max-width: 768px) {
+  .row-home {
+    flex-direction: column;
+  }
+
+  .row-home :is(.w-70) {
+    width: 100%;
+  }
+
+  .row-home :is(.w-30) {
+    width: 100%;
+  }
+}

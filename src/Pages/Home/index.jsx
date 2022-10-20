@@ -6,9 +6,9 @@ import Carousel from '../../Components/Carousel';
 function Index() {
   return (
     <div className="conteiner-home">
-        <Carousel/>
-        <CardGroup/>    
-      </div>
+      <div className="teste"><Carousel /></div>
+      <CardGroup />
+    </div>
   );
 }
 

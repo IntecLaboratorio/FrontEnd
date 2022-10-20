@@ -2,7 +2,7 @@ import React from 'react';
 import ProtectRouter from './protectedRouter';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Navbar from './Components/Navbar/index.js';
-import Teste from './Components/TablePagination/index.jsx';
+import Teste from './Pages/TesteHome/index';
 import LandingPage from './Pages/LandingPage/index.js';
 import Home from './Pages/Home/index.jsx'
 import CronogramaLab from './Pages/Cronograma/cronograma-lab/index.jsx';
