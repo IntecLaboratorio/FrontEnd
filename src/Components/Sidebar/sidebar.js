@@ -12,6 +12,10 @@ function Sidebar() {
 
   const showSidebar = () => setSidebar(!sidebar);
 
+  function logout() {
+    sessionStorage.clear();
+  }
+
   return (
     <>
       <IconContext.Provider value={{ color: "#fff" }}>
@@ -62,7 +66,7 @@ function Sidebar() {
                 <div className="menu-item-icon">
                   <BiIcons.BiLogOut />
                 </div>
-                <span className="sidebar-span">Sair</span>
+                <span className="sidebar-span" onClick={logout}>Sair</span>
               </Link>
             </div>
           </ul>
