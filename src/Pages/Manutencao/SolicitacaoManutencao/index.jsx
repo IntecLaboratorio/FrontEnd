@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
 import { patrimoniosData } from './patrimoniosData.js'
 import { ToastContainer, toast } from 'react-toastify';
@@ -82,7 +82,7 @@ function SolicitacaoManutencao() {
         setLoading(<Spinner id="loading" animation='border' />);
 
         const data = { tipoPatrimonio, sala, nPatrimonio, fixedAssent }
-        await api.post('/reqMaintanance', data);
+        await api.post('/reqMaintanance', data);   
 
         toast.success("Solicitação enviada com sucesso!", {
           position: "top-right",
@@ -101,9 +101,8 @@ function SolicitacaoManutencao() {
         setFixedAssent("");
       }
       catch (err) {
-        console.log(err);
         setLoading("");
-        toast.error("Não foi possivel realizar sua solicitação!", {
+        toast.error(`Houve um problema: ${err}`, {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -111,7 +110,7 @@ function SolicitacaoManutencao() {
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-        })
+        });
       }
     }
   }
@@ -185,6 +184,7 @@ function SolicitacaoManutencao() {
           </section>
 
         </form>
+        <ToastContainer />
       </section>
     </div >
   )

@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { IMaskInput } from "react-imask";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Spinner } from "react-bootstrap";
 // import Sidebar from '../../../Components/Sidebar/sidebar.js'
 
 function CadUsuario() {
@@ -17,6 +18,7 @@ function CadUsuario() {
   const [cidade, setCidade] = useState(null);
   const [estado, setEstado] = useState(null);
   const [cep, setCep] = useState(null);
+  const [loading, setLoading] = useState("");
 
 
   const { register, setValue, setFocus, handleSubmit } = useForm();
@@ -39,16 +41,40 @@ function CadUsuario() {
     });
   }
 
+  function validate() {
+    let errors = {};
+
+    if (!tipoEndereco || !endereco || !numero || !bairro || !cidade || !estado || !cep) {
+      errors.input = toast.warn("Todos os campos devem ser preenchidos!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
+
+    if (errors.input) {
+      return false;
+    }
+
+    return true;
+
+  }
+
   async function createUser(e) {
     e.preventDefault();
+    if (validate()) {
+      try {
+        setLoading(<Spinner id="loading" animation='border' />);
 
-    try {
+        const data = {
+          tipoEndereco, endereco, numero, bairro, cidade, estado, cep
+        }
+        await api.post("/user", data)
 
-      const data = {
-        tipoEndereco, endereco, numero, bairro, cidade, estado, cep
-      }
-
-      if (tipoEndereco && endereco && numero && bairro && cidade && estado && cep) {
         toast.success(`Usuário cadastrado com sucesso!`, {
           position: "top-right",
           autoClose: 5000,
@@ -58,9 +84,13 @@ function CadUsuario() {
           draggable: true,
           progress: undefined,
         });
-      } else {
 
-        toast.warn('Todos os campos devem ser preenchidos', {
+        setLoading("");
+
+      } catch (err) {
+        setLoading("");
+        console.log(err)
+        toast.error(`Houve um problema: ${err}`, {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -70,19 +100,6 @@ function CadUsuario() {
           progress: undefined,
         });
       }
-
-      await api.post("/user", data)
-
-    } catch (err) {
-      toast.error(`Houve um problema: ${err}`, {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
     }
   }
 
@@ -192,6 +209,7 @@ function CadUsuario() {
         <ToastContainer />
 
       </div>
+      <div className='loading'>{loading}</div>
     </div>
   )
 }

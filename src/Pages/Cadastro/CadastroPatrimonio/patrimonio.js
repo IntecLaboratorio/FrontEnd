@@ -4,6 +4,7 @@ import NavCadastro from '../../../Components/NavCadastro';
 import api from '../../../Service/api.js';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Spinner } from "react-bootstrap";
 import Sidebar from '../../../Components/Sidebar/sidebar.js'
 
 function Patrimonio() {
@@ -20,54 +21,13 @@ function Patrimonio() {
   const [verify, setVerify] = useState("");
   const [color, setColor] = useState("")
   const [fk_labs, setFk_labs] = useState("");
+  const [loading, setLoading] = useState("");
 
-  async function insertFixedAssent(e) {
-    try {
-      e.preventDefault();
+  function validate() {
+    let errors = {};
 
-      const data = {
-        assent_name, serial_number, assent_number, brand, model, product_batch, tax_invoice, complement, value_assent, verify, color, fk_labs
-      }
-
-      if (assent_name && serial_number && assent_number && brand && model && product_batch && tax_invoice && complement && value_assent && verify && color && fk_labs) {
-        toast.success(`Patrimono ${assent_number} cadastrado com sucesso!`, {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-      } else {
-        toast.warn('Todos os campos devem ser preenchidos', {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-      }
-
-      await api.post('/fixedAssent', data);
-
-      setAssent_name("");
-      setSerial_number("");
-      setAssent_number("");
-      setBrand("");
-      setModel("");
-      setProduct_batch("");
-      setTax_invoice("");
-      setComplement("");
-      setValue_assent("");
-      setVerify("");
-      setColor("");
-      setFk_labs("");
-
-    } catch (err) {
-      toast.error(`Houve um problema: ${err}`, {
+    if (!assent_name || !serial_number || !assent_number || !brand || !model || !product_batch || !tax_invoice || !complement || !value_assent || !verify || !color || !fk_labs) {
+      errors.input = toast.warn('Todos os campos devem ser preenchidos', {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -76,6 +36,64 @@ function Patrimonio() {
         draggable: true,
         progress: undefined,
       });
+    }
+
+    if (errors.input) {
+      return false;
+    }
+
+    return true;
+
+  }
+
+  async function insertFixedAssent(e) {
+    e.preventDefault();
+    if (validate()) {
+      try {
+
+        setLoading(<Spinner id="loading" animation='border' />);
+
+        const data = {
+          assent_name, serial_number, assent_number, brand, model, product_batch, tax_invoice, complement, value_assent, verify, color, fk_labs
+        }
+        await api.post('/fixedAssent', data);
+
+        toast.success(`Patrimonio ${assent_number} cadastrado com sucesso!`, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+
+        setLoading("");
+        setAssent_name("");
+        setSerial_number("");
+        setAssent_number("");
+        setBrand("");
+        setModel("");
+        setProduct_batch("");
+        setTax_invoice("");
+        setComplement("");
+        setValue_assent("");
+        setVerify("");
+        setColor("");
+        setFk_labs("");
+
+      } catch (err) {
+        setLoading("");
+        toast.error(`Houve um problema: ${err}`, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
     }
   }
 
@@ -219,16 +237,17 @@ function Patrimonio() {
               </select>
               <span className="focus-input" data-placeholder="Estado do patrimonio"></span>
             </div>
-
           </section>
 
           <section className="section-btn-cadastro section-btn-cadastro--column">
             <button className="btn" onClick={insertFixedAssent}>Cadastro</button>
             <button className="btn btn-planilhas">Cadastro com Planilha</button>
           </section>
+          <div className='loading'>{loading}</div>
         </form>
         <ToastContainer />
       </div>
+
     </div>
   )
 }
