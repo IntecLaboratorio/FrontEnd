@@ -24,7 +24,7 @@ function GroupCard() {
           descricao="Cadastros"
         /></Link>
 
-        <Link to=""><Cardd
+        <Link to="/manutencao"><Cardd
           imagem="https://img.icons8.com/ios-filled/70/FFFFFF/search--v1.png"
           descricao="Consultar Patrimônios"
         /></Link>

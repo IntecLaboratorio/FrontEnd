@@ -11,7 +11,7 @@ import "react-bootstrap-table-next/dist/react-bootstrap-table2.css";
 import "react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css";
 import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory from "react-bootstrap-table2-paginator";
-
+import Sidebar from '../../../Components/Sidebar/sidebar.js'
 function Lab() {
 
     const [fk_instruction, setFk_instruction] = useState("");
@@ -186,8 +186,9 @@ function Lab() {
     }
 
     return (
-
+        
         <div className="d-flex-lab">
+            <Sidebar/>
             <div className="hide-mobile">
                 <NavCadastro />
             </div>

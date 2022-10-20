@@ -19,7 +19,7 @@ import './App.css';
 function App() {
   return (
     <BrowserRouter>
-      <Navbar />
+      
       <Routes>
         <Route element={<ProtectRouter />}>
           <Route path='/teste' element={<Teste />} />

@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form';
 import { IMaskInput } from "react-imask";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Sidebar from '../../../Components/Sidebar/sidebar.js'
 
 function CadUsuario() {
 
@@ -119,6 +120,7 @@ function CadUsuario() {
   return (
 
     <div className="d-flex-user">
+      <Sidebar/>
       <div className="hide-mobile">
         <NavCadastro />
       </div>

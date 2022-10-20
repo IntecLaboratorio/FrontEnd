@@ -6,12 +6,12 @@ import './style.css';
 function LandingPage() {
     return (
         <>
-            <div className='container'>
+            <div className='container-landing'>
+            <Navbar />
                 <main>
                     <section className='section-1'>
 
                         <div className='div_Img_Txt'>
-                            <p className='slgtxt'>InTec! Te conecta ao mundo.</p>
                             <img src={Logo} className="imgLanding" />
 
                         </div>
