@@ -4,5 +4,7 @@
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    text-decoration: none !important;
+    list-style: none !important;
 }
 /* Aqui estou alinhando os card no centro da tela */
