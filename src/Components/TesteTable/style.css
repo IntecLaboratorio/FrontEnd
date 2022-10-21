@@ -1,0 +1,47 @@
+.table-container {
+  width: 60%;
+  font-weight: 500;
+  margin-top: 7%;
+  margin-left: 20%;
+}
+
+.top {
+  background-color: #ffffff !important;
+}
+
+.btn-table {
+  display: flex;
+  justify-content: center;
+  border: none;
+  margin-top: 5vh;
+  padding-right: 2vh;
+}
+
+.btn-accept {
+  color: #0E1427;
+  background-color: #DFDEDE;
+  padding: 0.455rem 1rem !important;
+  border-radius: 2px;
+  border: none;
+  text-transform: uppercase;
+  font-size: 16px !important;
+  font-weight: bold !important;
+  cursor: pointer !important;
+  margin-right: 2vh;
+}
+
+.btn-deny {
+  color: #0E1427;
+  background-color: #DFDEDE;
+  padding: 0.455rem 1rem !important;
+  border-radius: 2px;
+  border: none;
+  text-transform: uppercase;
+  font-size: 16px !important;
+  font-weight: bold !important;
+  cursor: pointer !important;
+}
+
+table td {
+  width: 12vh;
+}
