@@ -69,7 +69,7 @@ function BtnEntrar() {
         const { response } = await api.post("/login", data);
 
         sessionStorage.setItem("login", true);
-        sessionStorage.setItem("jwt", response.token);
+        // sessionStorage.setItem("jwt", response.token);
         navigate("/home");
 
         toast.success("Seja bem-vindo!", {
@@ -89,7 +89,7 @@ function BtnEntrar() {
         setIsDisabled(false);
         setLoading("");
         console.log(err);
-        toast.error("Usuário ou senha inválidos", {
+        toast.error(`Houve um problema: ${err}`, {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -131,7 +131,7 @@ function BtnEntrar() {
                 name="select"
                 className={type_user !== "" ? "has-val input" : "input"}
                 type="text"
-                // value={type_user}
+                value={type_user}
                 onChange={(e) => setTipoUsuario(e.target.value)}
                 onKeyDown={handleKeyDown}
               >
