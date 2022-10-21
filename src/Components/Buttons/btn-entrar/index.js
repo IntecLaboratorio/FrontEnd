@@ -84,8 +84,7 @@ function BtnEntrar() {
         handleClose();
         setLoading("");
         // document.location.reload(true);
-      }
-       catch (err) {
+      } catch (err) {
         setIsDisabled(false);
         setLoading("");
         console.log(err);

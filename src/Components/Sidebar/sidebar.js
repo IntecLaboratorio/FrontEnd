@@ -14,6 +14,7 @@ function Sidebar() {
 
   function logout() {
     sessionStorage.clear();
+    document.location.reload(true);
   }
 
   return (
