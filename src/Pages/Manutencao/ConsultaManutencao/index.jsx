@@ -5,9 +5,10 @@ import "react-bootstrap-table-next/dist/react-bootstrap-table2.css";
 import "react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css";
 import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory from "react-bootstrap-table2-paginator";
-import api from "../../../Service/api.js";
-import { patrimoniosData } from "../SolicitacaoManutencao/patrimoniosData.js";
-import { ToastContainer, toast } from "react-toastify";
+import api from '../../../Service/api.js';
+import {patrimoniosData} from '../SolicitacaoManutencao/patrimoniosData.js'
+import { ToastContainer, toast } from 'react-toastify';
+import Sidebar from '../../../Components/Sidebar/sidebar.js'
 
 import "./style.css";
 import { Spinner } from "react-bootstrap";
@@ -189,7 +190,8 @@ function Manutencao() {
     },
   });
   return (
-    <div className="container-manuntencao">
+    <div className='container-manuntencao'>
+      <Sidebar/>
       <section className="table-pagination">
         <BootstrapTable
           bootstrap4

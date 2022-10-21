@@ -9,7 +9,7 @@ function userAuth() {
 function protectedRouter() {
   const isAuth = userAuth();
   return (
-    isAuth ? <Outlet /> : <Navigate to='/Home' />
+    isAuth ? <Outlet /> : <Navigate to='/' />
   );
 }
 

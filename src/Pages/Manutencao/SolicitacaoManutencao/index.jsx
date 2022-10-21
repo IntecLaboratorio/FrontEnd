@@ -6,6 +6,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import './style.css'
 import api from '../../../Service/api.js';
 import { Spinner } from 'react-bootstrap';
+import Sidebar from '../../../Components/Sidebar/sidebar.js'
+
 
 function SolicitacaoManutencao() {
 
@@ -114,9 +116,10 @@ function SolicitacaoManutencao() {
   }
 
   return (
-    <div className='container-manuntencao'>
+    <div className='container-sol-manuntencao'>
+      <Sidebar/>
 
-      <section className="form-manutencao">
+      <section className="form-sol-manutencao">
         <form className='form-man'>
 
           <section className='section-manutencao'>

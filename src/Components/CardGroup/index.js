@@ -14,17 +14,19 @@ function GroupCard() {
           descricao="Solicitar Laboratório"
         /></Link>
 
-        <Link to="/solicitacaoManutencao"><Cardd
+        <Link to="/solicitacaoManutencao">
+          <Cardd
           imagem="https://img.icons8.com/ios/70/FFFFFF/request-service.png"
           descricao="Solicitar Manutenção"
-        /></Link>
+        />
+        </Link>
 
         <Link to="/cadastro-patrimonio"><Cardd
           imagem="https://img.icons8.com/fluency-systems-regular/70/FFFFFF/edit-user.png"
           descricao="Cadastros"
         /></Link>
 
-        <Link to=""><Cardd
+        <Link to="/manutencao"><Cardd
           imagem="https://img.icons8.com/ios-filled/70/FFFFFF/search--v1.png"
           descricao="Consultar Patrimônios"
         /></Link>

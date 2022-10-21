@@ -12,6 +12,8 @@ import "react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.m
 import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import { Spinner } from 'react-bootstrap';
+import Sidebar from '../../../Components/Sidebar/sidebar.js'
+
 
 function Lab() {
 
@@ -148,8 +150,9 @@ function Lab() {
     }
 
     return (
-
+        
         <div className="d-flex-lab">
+            <Sidebar/>
             <div className="hide-mobile">
                 <NavCadastro />
             </div>

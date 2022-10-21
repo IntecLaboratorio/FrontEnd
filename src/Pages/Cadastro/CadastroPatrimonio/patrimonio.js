@@ -5,6 +5,7 @@ import api from '../../../Service/api.js';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Spinner } from "react-bootstrap";
+import Sidebar from '../../../Components/Sidebar/sidebar.js'
 
 function Patrimonio() {
 
@@ -99,6 +100,7 @@ function Patrimonio() {
   return (
 
     <div className="d-flex-patrimonio">
+      <Sidebar/>
       <div className="hide-mobile">
         <NavCadastro />
       </div>

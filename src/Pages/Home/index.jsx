@@ -3,10 +3,13 @@ import { Link } from 'react-router-dom';
 import './style.css';
 import Logo from '../../Img/branco.png'
 import Carousel from '../../Components/TesteCarrosel/index.jsx';
+import Sidebar from '../../Components/Sidebar/sidebar.js'
+
 
 function Index() {
   return (
     <>
+    <Sidebar></Sidebar>
       <div className="row-home">
         <div className="w-70">
           {/* Carousel */}

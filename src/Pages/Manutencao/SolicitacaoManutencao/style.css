@@ -14,14 +14,11 @@
     color: #FFF;
 }
 
-.form-manutencao {
+.form-sol-manutencao {
     display: flex;
-    flex-direction: column;
-    /* width: 60%; */
+    
     justify-content: center;
-    align-items: center;
-
-    margin-top: 15px;
+    margin-top: 45px;
 }
 
 .section-manutencao {
