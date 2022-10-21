@@ -85,7 +85,7 @@ function Index() {
         });
         handleClose()
         setLoading("");
-        document.location.reload(true);
+        // document.location.reload(true);
 
       }
       catch (err) {

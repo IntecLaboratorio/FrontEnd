@@ -83,7 +83,7 @@ function BtnEntrar() {
         });
         handleClose();
         setLoading("");
-        document.location.reload(true);
+        // document.location.reload(true);
       }
        catch (err) {
         setIsDisabled(false);
