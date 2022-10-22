@@ -65,7 +65,8 @@ function CadUsuario() {
       }
     }
 
-    if (password.length >= 1 && password.length < 8) {
+    if(!errors.input){
+    if (password.length < 8) {
       errors.password = toast.warn("Senha muito curta!", {
         position: "top-right",
         autoClose: 5000,
@@ -76,7 +77,7 @@ function CadUsuario() {
         progress: undefined,
       });
     }
-    if (!errors.input) {
+    if (!errors.password) {
       if (!minuscula.exec(password) || !maiuscula.exec(password)) {
         errors.password = toast.warn(
           "A senha deve conter ao menos uma letra maiuscula e uma minuscula",
@@ -92,6 +93,7 @@ function CadUsuario() {
         );
       }
     }
+  }
 
     if (errors.input || errors.email || errors.password) {
       return false;
