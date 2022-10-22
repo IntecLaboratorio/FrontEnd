@@ -50,7 +50,19 @@ function CadUsuario() {
       });
     }
 
-    if (errors.input) {
+    if(password.length < 8) {
+      errors.password = toast.warn("Senha muito curta!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
+
+    if (errors.input || errors.password) {
       return false;
     }
 
