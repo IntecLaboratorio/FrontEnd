@@ -7,8 +7,7 @@ import { IMaskInput } from "react-imask";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Spinner } from "react-bootstrap";
-import Sidebar from '../../../Components/Sidebar/sidebar.js'
-
+import Sidebar from "../../../Components/Sidebar/sidebar.js";
 
 function CadUsuario() {
   const [id_corporate, setId_corporate] = useState("");
@@ -25,6 +24,8 @@ function CadUsuario() {
 
   function validate() {
     let errors = {};
+    const minuscula = /(?=.*[a-z])/;
+    const maiuscula = /(?=.*[A-Z])/;
 
     if (
       !id_corporate ||
@@ -50,7 +51,21 @@ function CadUsuario() {
       });
     }
 
-    if(password.length < 8) {
+    if(!errors.input){
+      if(email.length > 256 || !email.includes("@") || !email.includes(".") || email.length <= 10){
+        errors.email = toast.warn("E-Mail inválido!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
+    }
+
+    if (password.length >= 1 && password.length < 8) {
       errors.password = toast.warn("Senha muito curta!", {
         position: "top-right",
         autoClose: 5000,
@@ -61,8 +76,24 @@ function CadUsuario() {
         progress: undefined,
       });
     }
+    if (!errors.input) {
+      if (!minuscula.exec(password) || !maiuscula.exec(password)) {
+        errors.password = toast.warn(
+          "A senha deve conter ao menos uma letra maiuscula e uma minuscula",
+          {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          }
+        );
+      }
+    }
 
-    if (errors.input || errors.password) {
+    if (errors.input || errors.email || errors.password) {
       return false;
     }
 
@@ -127,7 +158,7 @@ function CadUsuario() {
 
   return (
     <div className="d-flex-user">
-      <Sidebar/>
+      <Sidebar />
       <div className="hide-mobile">
         <NavCadastro />
       </div>
