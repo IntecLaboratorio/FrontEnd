@@ -18,9 +18,9 @@
 }
 
 .btn-accept {
-  color: #0E1427;
-  background-color: #DFDEDE;
-  padding: 0.455rem 1rem !important;
+  color: #efefef;
+  background-color: #182850;
+  padding: 0.455rem 0.5rem !important;
   border-radius: 2px;
   border: none;
   text-transform: uppercase;
@@ -31,9 +31,9 @@
 }
 
 .btn-deny {
-  color: #0E1427;
-  background-color: #DFDEDE;
-  padding: 0.455rem 1rem !important;
+  color: #EFEFEF;
+  background-color:  #b4b4b4;
+  padding: 0.455rem .5rem !important;
   border-radius: 2px;
   border: none;
   text-transform: uppercase;

@@ -20,29 +20,24 @@ function Table() {
               <td>Lab1</td>
               <td></td>
               <td></td>
-              <td></td>
+              <td>                <button className="btn-accept">Aceitar</button>
+                <button className="btn-deny">Negar</button></td>
           </tr>
 
           <tr>
               <td>Lab2</td>
               <td></td>
               <td></td>
-              <td></td>
+              <td>                <button className="btn-accept">Aceitar</button>
+                <button className="btn-deny">Negar</button></td>
           </tr>
 
           <tr>
               <td>Lab3</td>
               <td></td>
               <td></td>
-              <td></td>
-          </tr>
-
-          <tr>
-              <td colSpan="4">
-                <button className="btn-accept">Aceitar</button>
-                <button className="btn-deny">Negar</button>
-              </td>
-
+              <td>                <button className="btn-accept">Aceitar</button>
+                <button className="btn-deny">Negar</button></td>
           </tr>
         </tbody>
 
