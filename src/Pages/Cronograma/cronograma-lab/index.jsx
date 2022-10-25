@@ -17,7 +17,7 @@ function Index(props) {
 
         <section className='formulario-cronograma'>
           <Form interruptor={false} />
-          <button className="btn">Solicitação</button>
+          {/* <button className="btn">Solicitação</button> */}
         </section>
 
         

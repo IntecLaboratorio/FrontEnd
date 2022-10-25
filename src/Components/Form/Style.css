@@ -26,3 +26,12 @@ select {
 .form-container label .termos-uso {
   margin-right: 5px;
 } */
+
+.loading {
+  display: flex;
+  justify-content: center;
+}
+
+.spinner-border {
+  color: #FFFFFF;
+}
