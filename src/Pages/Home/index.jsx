@@ -22,7 +22,7 @@ function Index() {
         </div>
       </div>
       <div className="cards-home">
-        <Link to="/">
+        <Link to="/cronograma-lab">
           <div className="card-home">
             <img src="https://img.icons8.com/glyph-neue/70/FFFFFF/computer.png" alt="Solicitar Laboratório" title="Solicitar Laboratório" />
             <h3 className="title-home">Solicitar Laboratório</h3>

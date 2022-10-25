@@ -20,7 +20,7 @@ export const SidebarData = [
 
     {
     title: "Perfil",
-    path: "/",
+    path: "/perfil",
     icon: <AiIcons.AiOutlineUser/>,
     cName: 'nav-text'
     },

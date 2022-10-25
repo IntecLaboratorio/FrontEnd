@@ -15,6 +15,7 @@ import Manutencao from './Pages/Manutencao/ConsultaManutencao/index.jsx';
 import SolicitacaoManutencao from './Pages/Manutencao/SolicitacaoManutencao/index.jsx'
 // import AluguelArmario from './Pages/AluguelArmario/index.js';
 import './App.css';
+import Perfil from './Pages/Perfil/perfil.js';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route element={<ProtectRouter />}>
           <Route path='/teste' element={<Teste />} />
           <Route path='/home' element={<Home />} />
+          <Route path='/perfil' element={<Perfil />} />
           <Route path='/cronograma-lab' element={<CronogramaLab />} />
           {/* <Route path='/cronograma-quadra' element={<CronogramaQuadra />} /> */}
           <Route path='/cadastro-patrimonio' element={<CadastroPatrimonio />} />

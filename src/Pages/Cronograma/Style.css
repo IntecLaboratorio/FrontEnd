@@ -12,7 +12,38 @@
 }
 
 .formulario-cronograma {
-  padding: 0 20px;
+  /* padding: 0 20px;
+  width: 60%; */
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.table-cronograma{
+  padding: 20px 0;
+}
+
+
+.formulario-cronograma :is(.btn) {
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  border-radius: 2px;
+  color: #0E1427;
+  line-height: 1;
+  width: 150px;
+  background: #DFDEDE;
+  margin: 10px 10px;
+  transition: 0.3s;
+}
+
+.formulario-cronograma :is(.btn):hover {
+  color: #DFDEDE;
+  background: #696464;
+  cursor: pointer;
 }
 
 @media (max-width: 767px) {

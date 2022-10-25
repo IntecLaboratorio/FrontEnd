@@ -10,12 +10,17 @@ function Index(props) {
     <Sidebar></Sidebar>
     <div className='secoes container-cronograma'>
       <div className='container d-flex align-around'>
+        
         <section className='table-cronograma justify-center-mobile'>
           <Table />
         </section>
+
         <section className='formulario-cronograma'>
           <Form interruptor={false} />
+          <button className="btn">Solicitação</button>
         </section>
+
+        
       </div>
     </div>
     </>
