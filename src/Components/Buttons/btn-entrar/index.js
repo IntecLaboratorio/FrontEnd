@@ -60,11 +60,10 @@ function BtnEntrar() {
         const { data } = await api.post("/login", dados);
 
         const dataToken = jwt_decode(data.token);
-        console.log(dataToken);
 
         sessionStorage.setItem("login", true);
-        sessionStorage.setItem("jwt", data.token);
         sessionStorage.setItem('typeUser', dataToken.infoUser.typeUser)
+        sessionStorage.setItem('userName', dataToken.infoUser.userName)
 
         if(dataToken.infoUser.typeUser == 1) {
           navigate('/home')
