@@ -16,7 +16,7 @@ function NavBar() {
       <Navbar expand="m" className='navConfig'>
         <Container>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Link className='intec' to="/home">InTec</Link>
+          <Link className='intec' to="/">InTec</Link>
 
           <div className='btn-flex'>
             <BtnAcesso /> 

@@ -63,7 +63,7 @@ function Index() {
           </div>
          </Link> : null }
 
-         { showConsulta ? <Link to="/">
+         { showConsulta ? <Link to="/consulta-patrimonio">
           <div className="card-home">
             <img src="https://img.icons8.com/ios-filled/70/FFFFFF/search--v1.png" alt="Consultar Patrimônios" title="Consultar Patrimônios" />
             <h3 className="title-home">Consultar Patrimônios</h3>

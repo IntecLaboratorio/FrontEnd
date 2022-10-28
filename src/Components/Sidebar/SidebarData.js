@@ -27,7 +27,7 @@ export const SidebarData = [
 
     {
     title: "Horários",
-    path: "/",
+    path: "/horarios",
     icon: <AiIcons.AiOutlineCalendar/>,
     cName: 'nav-text'
     },

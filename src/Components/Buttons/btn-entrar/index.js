@@ -102,12 +102,6 @@ function BtnEntrar() {
     }
   }
 
-  function handleKeyDown(e) {
-    if (e.key === "Enter") {
-      handleLogin();
-    }
-  }
-
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   return (
@@ -134,7 +128,6 @@ function BtnEntrar() {
                 onChange={(e) => {
                   setEmail(e.target.value);
                 }}
-                onKeyDown={handleKeyDown}
               />
               <span className="focus-input" data-placeholder="Email"></span>
             </div>
@@ -147,7 +140,6 @@ function BtnEntrar() {
                 onChange={(e) => {
                   setPassword(e.target.value);
                 }}
-                onKeyDown={handleKeyDown}
               />
               <span className="focus-input" data-placeholder="Senha"></span>
             </div>
