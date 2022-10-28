@@ -72,7 +72,7 @@ function Index() {
         // local que sera enviado os dados
 
         sessionStorage.setItem("login", true);
-        navigate("/home")
+        navigate("/perfil")
 
         toast.success("Seja bem-vindo!", {
           position: "top-right",
