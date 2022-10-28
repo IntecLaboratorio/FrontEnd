@@ -63,11 +63,11 @@ function Sidebar() {
             </div>
 
             <div className="nav-text sidebar-item-logout">
-              <Link to="/">
+              <Link to="/" onClick={logout}>
                 <div className="menu-item-icon">
                   <BiIcons.BiLogOut />
                 </div>
-                <span className="sidebar-span" onClick={logout}>Sair</span>
+                <span className="sidebar-span" >Sair</span>
               </Link>
             </div>
           </ul>
