@@ -2,7 +2,7 @@ import { Navigate, Outlet } from "react-router-dom";
 
 
 const userAll = () => {
-  if(sessionStorage.getItem('login') == 'true'){
+  if(sessionStorage.getItem('login') === 'true'){
     const user = true;
     return user;
   }
@@ -10,7 +10,7 @@ const userAll = () => {
 }
 
 function userProf() {
-  if(sessionStorage.getItem('typeUser') == '1' || sessionStorage.getItem('typeUser') == '2' && sessionStorage.getItem('login') == 'true'){
+  if(sessionStorage.getItem('typeUser') === '1' || sessionStorage.getItem('typeUser') === '2' && sessionStorage.getItem('login') === 'true'){
       const user = true
       return user;
   }
@@ -19,7 +19,7 @@ function userProf() {
 
 function userCoordenador() {
 
-  if(sessionStorage.getItem('typeUser') == '1' && sessionStorage.getItem('login') == 'true'){
+  if(sessionStorage.getItem('typeUser') === '1' && sessionStorage.getItem('login') === 'true'){
       const user = true
       return user;
   }

@@ -4,6 +4,7 @@ import Sidebar from '../../Components/Sidebar/sidebar.js'
 import './style.css'
 import { IconContext } from "react-icons";
 
+
 function Perfil() {
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
@@ -38,7 +39,7 @@ function Perfil() {
                 <section className="section-perfil">
                     <div className="header-perfil">
                         <h2 className="titulo-typeUser">{typeUser}</h2>
-                       <div className="img-perfil"></div>
+                       <div className="img-perfil"> </div>
                         <h2 className="titulo-perfil">{userName}</h2>
                     </div>
 
