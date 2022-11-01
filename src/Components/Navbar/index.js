@@ -10,47 +10,18 @@ import { useEffect, useState } from 'react';
 
 
 function NavBar() {
-  
-  const [showAcesso, setShowAcesso] = useState(true);
-  const [showLogin, setShowLogin] = useState(true);
-  const [showLogout, setShowLogout] = useState(false);
-  const [showInicio, setShowInicio] = useState(false);
-  const [showHome, setShowHome] = useState(false);
-  const [showCadastros, setShowCadastros] = useState(false);
-  const [showManutencao, setShowManutencao] = useState(false);
-  const [showCronograma, setShowCronograma] = useState(false);
-
-
-  useEffect(() => {
-    if (sessionStorage.getItem("login")) {
-      setShowAcesso(false);
-      setShowLogin(false);
-      setShowLogout(true);
-      setShowInicio(true)
-      setShowHome(true)
-      setShowCadastros(true)
-      setShowManutencao(true)
-      setShowCronograma(true)
-    }
-  }, []);
-
-
-  function logout() {
-    sessionStorage.clear();
-    window.location.href = "/"
-  }
 
   return (
     <>
       <Navbar expand="m" className='navConfig'>
         <Container>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Link className='intec' to="/home">InTec</Link>
+          <Link className='intec' to="/">InTec</Link>
 
           <div className='btn-flex'>
-            {showAcesso ? <BtnAcesso /> : null}
-            {showLogin ? <BtnEntrar /> : null}
-            {showLogout ? <button onClick={logout} className='btn-sair'>Sair</button> : null}
+            <BtnAcesso /> 
+             <BtnEntrar /> 
+            
 
           </div>
           <Navbar.Collapse id="basic-navbar-nav">

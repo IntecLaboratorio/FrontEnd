@@ -9,7 +9,7 @@ function GroupCard() {
   return (
     <div>
       <CardGroup className='grupo'>
-       <Link to=""><Cardd
+       <Link to="/cronograma-lab"><Cardd
           imagem="https://img.icons8.com/glyph-neue/70/FFFFFF/computer.png"
           descricao="Solicitar Laboratório"
         /></Link>

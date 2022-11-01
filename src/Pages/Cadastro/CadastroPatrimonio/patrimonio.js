@@ -114,7 +114,7 @@ function Patrimonio() {
               <input
                 className={assent_name !== "" ? "has-val input" : "input"}
                 type="text"
-                Assent={assent_name}
+                value={assent_name}
                 onChange={(e) => setAssent_name(e.target.value)}
               />
               <span className="focus-input" data-placeholder="Nome"></span>
@@ -124,7 +124,7 @@ function Patrimonio() {
               <input
                 className={serial_number !== "" ? "has-val input" : "input"}
                 type="text"
-                Assent={serial_number}
+                value={serial_number}
                 onChange={(e) => setSerial_number(e.target.value)}
               />
               <span className="focus-input" data-placeholder="Numero de Série"></span>
@@ -134,7 +134,7 @@ function Patrimonio() {
               <input
                 className={assent_number !== "" ? "has-val input" : "input"}
                 type="number"
-                Assent={assent_number}
+                value={assent_number}
                 onChange={(e) => setAssent_number(e.target.value)}
               />
               <span className="focus-input" data-placeholder="Numero de Patrimônio"></span>
@@ -144,7 +144,7 @@ function Patrimonio() {
               <input
                 className={brand !== "" ? "has-val input" : "input"}
                 type="text"
-                Assent={brand}
+                value={brand}
                 onChange={(e) => setBrand(e.target.value)}
               />
               <span className="focus-input" data-placeholder="Marca"></span>

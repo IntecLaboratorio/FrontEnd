@@ -7,9 +7,10 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./style.css";
+import jwt_decode from "jwt-decode";
 
 function BtnEntrar() {
-  const [type_user, setTipoUsuario] = useState("");
+  // const [type_user, setTipoUsuario] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isDisabled, setIsDisabled] = useState(false);
@@ -41,18 +42,8 @@ function BtnEntrar() {
         progress: undefined,
       });
     }
-    if (type_user == "") {
-      errors.type_user = toast.warn("Tipo de usuário não especificado!", {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-    }
-    if (errors.email || errors.password || errors.type_user) {
+    
+    if (errors.email || errors.password) {
       return false;
     }
     return true;
@@ -65,12 +56,22 @@ function BtnEntrar() {
         setLoading(<Spinner id="loading" animation="border" />);
         setIsDisabled(true);
 
-        const data = { type_user, email, password };
-        const { response } = await api.post("/login", data);
+        const dados = { email, password};
+        const { data } = await api.post("/login", dados);
+
+        const dataToken = jwt_decode(data.token);
 
         sessionStorage.setItem("login", true);
-        sessionStorage.setItem("jwt", response.token);
-        navigate("/home");
+        sessionStorage.setItem('typeUser', dataToken.infoUser.typeUser)
+        sessionStorage.setItem('userName', dataToken.infoUser.userName)
+
+        if(dataToken.infoUser.typeUser == 1) {
+          navigate('/home')
+        } else if (dataToken.infoUser.typeUser == 2){
+          navigate('/home')
+        }else{
+          navigate('/home')
+        }
 
         toast.success("Seja bem-vindo!", {
           position: "top-right",
@@ -83,13 +84,12 @@ function BtnEntrar() {
         });
         handleClose();
         setLoading("");
-        document.location.reload(true);
-      }
-       catch (err) {
+
+      } catch (err) {
         setIsDisabled(false);
         setLoading("");
         console.log(err);
-        toast.error("Usuário ou senha inválidos", {
+        toast.error("Usuário ou senha invalidos!", {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -99,12 +99,6 @@ function BtnEntrar() {
           progress: undefined,
         });
       }
-    }
-  }
-
-  function handleKeyDown(e) {
-    if (e.key === "Enter") {
-      handleLogin();
     }
   }
 
@@ -127,26 +121,6 @@ function BtnEntrar() {
           </section>
           <section>
             <div className="wrap-input">
-              <select
-                name="select"
-                className={type_user !== "" ? "has-val input" : "input"}
-                type="text"
-                // value={type_user}
-                onChange={(e) => setTipoUsuario(e.target.value)}
-                onKeyDown={handleKeyDown}
-              >
-                <option value="" disable selected></option>
-                <option value={1}>Coordenador</option>
-                <option value={2}>Professor</option>
-                <option value={3}>Aluno</option>
-              </select>
-              <span
-                className="focus-input"
-                data-placeholder="Tipo de Usuário"
-              ></span>
-            </div>
-
-            <div className="wrap-input">
               <input
                 className={email !== "" ? "has-val input" : "input"}
                 type="email"
@@ -154,7 +128,6 @@ function BtnEntrar() {
                 onChange={(e) => {
                   setEmail(e.target.value);
                 }}
-                onKeyDown={handleKeyDown}
               />
               <span className="focus-input" data-placeholder="Email"></span>
             </div>
@@ -167,7 +140,6 @@ function BtnEntrar() {
                 onChange={(e) => {
                   setPassword(e.target.value);
                 }}
-                onKeyDown={handleKeyDown}
               />
               <span className="focus-input" data-placeholder="Senha"></span>
             </div>

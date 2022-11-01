@@ -20,14 +20,14 @@ export const SidebarData = [
 
     {
     title: "Perfil",
-    path: "/",
+    path: "/perfil",
     icon: <AiIcons.AiOutlineUser/>,
     cName: 'nav-text'
     },
 
     {
     title: "Horários",
-    path: "/",
+    path: "/horarios",
     icon: <AiIcons.AiOutlineCalendar/>,
     cName: 'nav-text'
     },
