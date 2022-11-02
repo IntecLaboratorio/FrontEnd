@@ -149,9 +149,9 @@ function SolicitacaoManutencao() {
                 onChange={(e) => setSala(e.target.value)}
               >
                 <option value="" disable selected></option>
-                <option value="1">Ativo</option>
-                <option value="2">Inativo</option>
-                <option value="3">Manutenção</option>
+                <option value="1">Sala de aula</option>
+                <option value="2">Lab de informática</option>
+                <option value="3">Lab de Eletro</option>
               </select>
               <span className="focus-input" data-placeholder="Sala"></span>
             </div>
