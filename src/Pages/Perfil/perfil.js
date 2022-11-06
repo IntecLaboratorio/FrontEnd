@@ -28,6 +28,7 @@ function Perfil() {
 
 
     const userName = sessionStorage.getItem('userName').split(" ")[0];
+    const eMail = sessionStorage.getItem('email');
     return (
         <div>
             <IconContext.Provider value={{ color: "#c4c4c4c4" }}>
@@ -49,7 +50,8 @@ function Perfil() {
                                 className={email !== "" ? "has-val input" : "input"}
                                 type="text"
                                 value={email}
-                                onChange={(e) => setEmail(e.target.value)}                  
+                                onChange={(e) => setEmail(e.target.value)}
+                                placeholder={eMail}                  
                                 />
                         </div>
                         <div>
@@ -64,6 +66,7 @@ function Perfil() {
                                 type="text"
                                 value={senha}
                                 onChange={(e) => setSenha(e.target.value)}
+                                placeholder="********"
                                 />
                         </div>
 

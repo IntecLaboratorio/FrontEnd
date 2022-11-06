@@ -73,6 +73,7 @@ function BtnEntrar() {
         sessionStorage.setItem("login", true);
         sessionStorage.setItem('typeUser', dataToken.infoUser.typeUser)
         sessionStorage.setItem('userName', dataToken.infoUser.userName)
+        sessionStorage.setItem('email', dataToken.infoUser.email)
 
         if(dataToken.infoUser.typeUser == 1) {
           navigate('/home')
