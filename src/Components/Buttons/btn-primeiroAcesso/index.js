@@ -78,6 +78,7 @@ function Index() {
         sessionStorage.setItem("login", true);
         sessionStorage.setItem('typeUser', dataToken.infoUser.typeUser)
         sessionStorage.setItem('userName', dataToken.infoUser.userName)
+        sessionStorage.setItem('email', email)
 
         if(dataToken.infoUser.typeUser == 1) {
           navigate('/perfil')

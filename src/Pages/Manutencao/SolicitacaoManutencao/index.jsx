@@ -14,6 +14,7 @@ function SolicitacaoManutencao() {
   const [tipoPatrimonio, setTipoPatrimonio] = useState("");
   const [sala, setSala] = useState("");
   const [nPatrimonio, setNpatrimonio] = useState("");
+  const [data, setData] = useState("");
   const [fixedAssent, setFixedAssent] = useState("");
   const [loading, setLoading] = useState("");
 
@@ -165,6 +166,16 @@ function SolicitacaoManutencao() {
                   setNpatrimonio(e.target.value)}
               />
               <span className="focus-input" data-placeholder="Numero de Patrimonio"></span>
+            </div>
+
+            <div className="wrap-input">
+              <input
+                className={data !== "" ? "has-val input" : "input"}
+                type="data"
+                value={data}
+                onChange={(e) => 
+                  setData(e.target.value)}
+              />
             </div>
           </section>
 
