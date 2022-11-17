@@ -28,7 +28,7 @@ function Perfil() {
     }, [])
 
     const userName = sessionStorage.getItem('userName').split(" ")[0];
-    const eMail = sessionStorage.getItem('email')
+    const eMail = sessionStorage.getItem('email');
     return (
         <div>
             <IconContext.Provider value={{ color: "#c4c4c4c4" }}>
@@ -44,20 +44,42 @@ function Perfil() {
                             <h2 className="titulo-perfil">{userName}</h2>
                         </div>
 
-                        <div>
-                            <div className="span-perfil">
-                                <span className="span-perfil">
-                                    {eMail}
-                                </span>
+                        <div className="div-input">
+                            <div className="wrap-input-perfil">
+                                <input
+                                    className={email !== "" ? "has-val input" : "input"}
+                                    type="text"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    placeholder={eMail}
+                                />
+                            </div>
+                            <div>
+                                <button className="btn "><AiIcons.AiOutlineForm /></button>
                             </div>
                         </div>
 
-                        <div>
-                            <div>
-                                <span>
-                                </span>
+                        <div className="div-input">
+                            <div className="wrap-input-perfil">
+                                <input
+                                    className={senha !== "" ? "has-val input" : "input"}
+                                    type="text"
+                                    value={senha}
+                                    onChange={(e) => setSenha(e.target.value)}
+                                    placeholder="********"
+                                />
                             </div>
-                        </div>
+
+                            <div>
+                                <div className="span-perfil">
+                                    <span className="span-perfil">
+                                        {eMail}
+                                    </span>
+                                </div>
+                            </div>
+                            </div>
+
+
                     </section>
 
                     <section>
