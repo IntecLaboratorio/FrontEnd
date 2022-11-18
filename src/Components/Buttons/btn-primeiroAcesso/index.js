@@ -76,7 +76,7 @@ function Index() {
         console.log(data)
 
 
-        if (data == 1) {
+        if (data.firstAccess == 0) {
           toast.warn("Você já utilizou o primeiro acesso!", {
             position: "top-right",
             autoClose: 5000,
@@ -88,11 +88,14 @@ function Index() {
           });
           setIsDisabled(false);
           setLoading("");
+          setEmail("")
+          setPassword("")
           handleClose();
         }
 
-        if (data == 0) {
-          firstAccess()
+        if (data.firstAccess == 1) {
+          firstAccess();
+          updateFirstAccess();
         }
         setLoading("");
         handleClose();
@@ -164,6 +167,11 @@ function Index() {
         progress: undefined,
       });
     }
+  }
+
+  const updateFirstAccess = async (e) => {
+    const dados = { email };
+    await api.put('/firstAccess', dados);
   }
 
   function handleKeyDown(e) {
