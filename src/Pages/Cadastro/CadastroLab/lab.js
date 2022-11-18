@@ -150,9 +150,9 @@ function Lab() {
     }
 
     return (
-        
+
         <div className="d-flex-lab">
-            <Sidebar/>
+            <Sidebar />
             <div className="hide-mobile">
                 <NavCadastro />
             </div>

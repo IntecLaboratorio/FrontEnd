@@ -7,22 +7,22 @@ import Sidebar from '../../../Components/Sidebar/sidebar.js'
 function Index(props) {
   return (
     <>
-    <Sidebar></Sidebar>
-    <div className='secoes container-cronograma'>
-      <div className='container d-flex align-around'>
-        
-        <section className='table-cronograma justify-center-mobile'>
-          <Table />
-        </section>
+      <Sidebar></Sidebar>
+      <div className='secoes container-cronograma'>
+        <div className='container d-flex align-around'>
 
-        <section className='formulario-cronograma'>
-          <Form interruptor={false} />
-          {/* <button className="btn">Solicitação</button> */}
-        </section>
+          <section className='table-cronograma justify-center-mobile'>
+            <Table />
+          </section>
 
-        
+          <section className='formulario-cronograma'>
+            <Form interruptor={false} />
+            {/* <button className="btn">Solicitação</button> */}
+          </section>
+
+
+        </div>
       </div>
-    </div>
     </>
   );
 }

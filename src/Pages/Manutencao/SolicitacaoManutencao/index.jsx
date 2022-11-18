@@ -14,6 +14,7 @@ function SolicitacaoManutencao() {
   const [tipoPatrimonio, setTipoPatrimonio] = useState("");
   const [sala, setSala] = useState("");
   const [nPatrimonio, setNpatrimonio] = useState("");
+  const [data, setData] = useState("");
   const [fixedAssent, setFixedAssent] = useState("");
   const [loading, setLoading] = useState("");
 
@@ -149,9 +150,9 @@ function SolicitacaoManutencao() {
                 onChange={(e) => setSala(e.target.value)}
               >
                 <option value="" disable selected></option>
-                <option value="1">Ativo</option>
-                <option value="2">Inativo</option>
-                <option value="3">Manutenção</option>
+                <option value="1">Sala de aula</option>
+                <option value="2">Lab de informática</option>
+                <option value="3">Lab de Eletro</option>
               </select>
               <span className="focus-input" data-placeholder="Sala"></span>
             </div>
@@ -165,6 +166,16 @@ function SolicitacaoManutencao() {
                   setNpatrimonio(e.target.value)}
               />
               <span className="focus-input" data-placeholder="Numero de Patrimonio"></span>
+            </div>
+
+            <div className="wrap-input">
+              <input
+                className={data !== "" ? "has-val input" : "input"}
+                type="data"
+                value={data}
+                onChange={(e) => 
+                  setData(e.target.value)}
+              />
             </div>
           </section>
 

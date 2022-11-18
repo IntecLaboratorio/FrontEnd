@@ -145,19 +145,16 @@ function Index(props) {
           </div>
 
           <div className="wrap-input">
-            <select
-              name="select"
-              className={date !== "" ? "has-val input" : "input"}
-              type="text"
-              value={date}
-              onChange={(e) => setDate(e.target.value)}
-            >
-              <option value="" disable selected></option>
-              <option value="Coordenador">Coordenador</option>
-              <option value="Professor">Professor</option>
-              <option value="Aluno">Aluno</option>
-            </select>
-            <span className="focus-input" data-placeholder="Data"></span>
+          <input
+                className={date !== "" ? "has-val input" : "input"}
+                type="text"
+                value={date}
+                onChange={(e) => setDate(e.target.value)}
+              />
+              <span
+                className="focus-input"
+                data-placeholder="Data"
+              ></span>
           </div>
 
           <div className="wrap-input">
@@ -169,9 +166,9 @@ function Index(props) {
               onChange={(e) => setHorario(e.target.value)}
             >
               <option value="" disable selected></option>
-              <option value="Coordenador">Coordenador</option>
-              <option value="Professor">Professor</option>
-              <option value="Aluno">Aluno</option>
+              <option value="Horario">Horario</option>
+              <option value="Horario">Horario</option>
+              <option value="Horario">Horario</option>
             </select>
             <span className="focus-input" data-placeholder="Horario"></span>
           </div>

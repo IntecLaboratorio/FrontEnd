@@ -11,7 +11,6 @@ import api from "../../../Service/api";
 import jwt_decode from "jwt-decode";
 
 function Index() {
-  // const [enviar, setEnviar] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isDisabled, setIsDisabled] = useState(false);
@@ -22,21 +21,9 @@ function Index() {
   let navigate = useNavigate();
 
   function validate() {
-    let errors = {}
 
-    // if (enviar == "") {
-    //   errors.enviar = toast.warn("Tipo de usuário é obrigatório", {
-    //     position: "top-right",
-    //     autoClose: 5000,
-    //     hideProgressBar: false,
-    //     closeOnClick: true,
-    //     pauseOnHover: true,
-    //     draggable: true,
-    //     progress: undefined,
-    //   });
-    // }
-    if (!email) {
-      errors.email = toast.warn("E-Mail é obrigatório", {
+    if (!email && !password) {
+      toast.warn("Preencha e-mail e senha!", {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -45,9 +32,23 @@ function Index() {
         draggable: true,
         progress: undefined,
       });
+      return false
+    }
+
+    if (!email) {
+      toast.warn("O e-mail é obrigatório", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      return false
     }
     if (!password) {
-      errors.password = toast.warn("Senha é obrigatória", {
+      toast.warn("A senha é obrigatória", {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -56,53 +57,52 @@ function Index() {
         draggable: true,
         progress: undefined,
       });
+      return false
     }
-    if ( errors.email || errors.password) { //errors.enviar ||
-      return false;
-    }
+
     return true;
   }
 
-  async function firstAccess(PA){
-    PA.preventDefault();
+  async function validateFirstAccess(e) {
+    e.preventDefault()
     if (validate()) {
-      try{
+      try {
+
         setLoading(<Spinner id="loading" animation="border" />);
         setIsDisabled(true);
 
-        const dados = {email, password};
-        const {data} = await api.post('/login', dados);
+        const dados = { email };
+        const { data } = await api.post('/firstAccess', dados);
+        console.log(data)
 
-        const dataToken = jwt_decode(data.token);
 
-        sessionStorage.setItem("login", true);
-        sessionStorage.setItem('typeUser', dataToken.infoUser.typeUser)
-        sessionStorage.setItem('userName', dataToken.infoUser.userName)
-
-        if(dataToken.infoUser.typeUser == 1) {
-          navigate('/perfil')
-        } else if (dataToken.infoUser.typeUser == 2){
-          navigate('/perfil')
-        }else{
-          navigate('/perfil')
+        if (data == 1) {
+          toast.warn("Você já utilizou o primeiro acesso!", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+          setIsDisabled(false);
+          setLoading("");
+          handleClose();
         }
-        toast.success("Seja bem-vindo!", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-        handleClose();
-        setLoading("");
 
-      } catch (err) {
+        if (data == 0) {
+          firstAccess()
+        }
+        setLoading("");
+        handleClose();
+
+      }
+      catch (err) {
         setIsDisabled(false);
         setLoading("");
         console.log(err);
-        toast.error("Email ou senha invalidos!", {
+        toast.error("deu erro!", {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -115,54 +115,60 @@ function Index() {
     }
   }
 
+  async function firstAccess() {
+    try {
 
-  // async function firstAccess(e) {
-  //   e.preventDefault();
-  //   if (validate()) {
-  //     try {
-  //       setLoading(<Spinner id="loading" animation='border' />);
-  //       setIsDisabled(true);
+      setLoading(<Spinner id="loading" animation="border" />);
+      setIsDisabled(true);
 
-  //       const data = {  email, password } //enviar,
-  //       // local que sera enviado os dados
+      const dados = { email, password };
+      const { data } = await api.post('/login', dados);
 
-  //       sessionStorage.setItem("login", true);
-  //       navigate("/perfil")
+      const dataToken = jwt_decode(data.token);
 
-  //       toast.success("Seja bem-vindo!", {
-  //         position: "top-right",
-  //         autoClose: 5000,
-  //         hideProgressBar: false,
-  //         closeOnClick: true,
-  //         pauseOnHover: true,
-  //         draggable: true,
-  //         progress: undefined,
-  //       });
-  //       handleClose()
-  //       setLoading("");
-  //       // document.location.reload(true);
+      sessionStorage.setItem("login", true);
+      sessionStorage.setItem('typeUser', dataToken.infoUser.typeUser)
+      sessionStorage.setItem('userName', dataToken.infoUser.userName)
+      sessionStorage.setItem('email', email)
 
-  //     }
-  //     catch (err) {
-  //       setIsDisabled(false);
-  //       setLoading("");
-  //       console.log(err)
-  //       toast.error("Usuário ou senha inválidos", {
-  //         position: "top-right",
-  //         autoClose: 5000,
-  //         hideProgressBar: false,
-  //         closeOnClick: true,
-  //         pauseOnHover: true,
-  //         draggable: true,
-  //         progress: undefined,
-  //       })
-  //     }
-  //   }
-  // }
+      if (dataToken.infoUser.typeUser == 1) {
+        navigate('/perfil')
+      } else if (dataToken.infoUser.typeUser == 2) {
+        navigate('/perfil')
+      } else {
+        navigate('/perfil')
+      }
+      toast.success("Seja bem-vindo!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      handleClose();
+      setLoading("");
+
+    } catch (err) {
+      setIsDisabled(false);
+      setLoading("");
+      console.log(err);
+      toast.error("Email ou senha invalidos!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
+  }
 
   function handleKeyDown(e) {
     if (e.key === "Enter") {
-      firstAccess();
+      validateFirstAccess();
     }
   }
 
@@ -187,23 +193,6 @@ function Index() {
               </Modal.Header>
 
               <Modal.Body>
-                {/* <div className="wrap-input">
-                  <select name="select"
-                    className={enviar !== "" ? "has-val input" : "input"}
-                    type="email"
-                    value={enviar}
-                    onChange={(e) => {
-                      setEnviar(e.target.value);
-                    }}
-                    onKeyDown={handleKeyDown}
-                  >
-                    <option value={""} disable selected></option>
-                    <option value="Coordenador">Coordenador</option>
-                    <option value="Professor">Professor</option>
-                    <option value="Aluno">Aluno</option>
-                  </select>
-                  <span className="focus-input" data-placeholder="Enviar como"></span>
-                </div> */}
 
                 <div className="wrap-input">
                   <input
@@ -228,7 +217,7 @@ function Index() {
                     }}
                     onKeyDown={handleKeyDown}
                   />
-                  <span className="focus-input" data-placeholder="Password"></span>
+                  <span className="focus-input" data-placeholder="Senha"></span>
                 </div>
 
               </Modal.Body>
@@ -236,7 +225,7 @@ function Index() {
               <section className="footer">
 
                 <div className="container-login-form-btn">
-                  <button className="login-form-btn" onClick={firstAccess} disabled={isDisabled}>Enviar</button>
+                  <button className="login-form-btn" onClick={validateFirstAccess} disabled={isDisabled}>Enviar</button>
                 </div>
 
                 <div className="text-center">

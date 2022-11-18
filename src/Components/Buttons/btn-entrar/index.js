@@ -1,5 +1,5 @@
-import { Alert, Button, Modal, Spinner } from "react-bootstrap";
-import React, { useState } from "react";
+import { Button, Modal, Spinner } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
 import RecuperarSenha from "../../recuperarSenha/index.js";
 import Logo from "../../../Img/branco.png";
 import api from "../../../Service/api.js";
@@ -10,7 +10,6 @@ import "./style.css";
 import jwt_decode from "jwt-decode";
 
 function BtnEntrar() {
-  // const [type_user, setTipoUsuario] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isDisabled, setIsDisabled] = useState(false);
@@ -18,10 +17,9 @@ function BtnEntrar() {
   let navigate = useNavigate();
 
   function validate() {
-    let errors = {};
 
-    if (!email) {
-      errors.email = toast.warn("E-Mail é obrigatório", {
+    if(!email && !password){
+        toast.warn("Preencha e-mail e senha!", {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -30,9 +28,22 @@ function BtnEntrar() {
         draggable: true,
         progress: undefined,
       });
+      return false
+    }
+    if (!email) {
+        toast.warning("O e-mail é obrigatório", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      return false
     }
     if (!password) {
-      errors.password = toast.warn("Senha é obrigatória", {
+        toast.warning(" A senha é obrigatória", {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -41,11 +52,9 @@ function BtnEntrar() {
         draggable: true,
         progress: undefined,
       });
+      return false
     }
     
-    if (errors.email || errors.password) {
-      return false;
-    }
     return true;
   }
 
@@ -64,6 +73,7 @@ function BtnEntrar() {
         sessionStorage.setItem("login", true);
         sessionStorage.setItem('typeUser', dataToken.infoUser.typeUser)
         sessionStorage.setItem('userName', dataToken.infoUser.userName)
+        sessionStorage.setItem('email', email)
 
         if(dataToken.infoUser.typeUser == 1) {
           navigate('/home')
@@ -101,6 +111,12 @@ function BtnEntrar() {
       }
     }
   }
+
+  useEffect(() => {
+    if (sessionStorage.getItem("login") == true){
+      window.location.href = "/home"
+    }
+  }, [])
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
