@@ -22,8 +22,8 @@ function Index() {
 
   function validate() {
 
-    if(!email && !password){
-        toast.warn("Preencha e-mail e senha!", {
+    if (!email && !password) {
+      toast.warn("Preencha e-mail e senha!", {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -34,9 +34,9 @@ function Index() {
       });
       return false
     }
-    
+
     if (!email) {
-        toast.warn("O e-mail é obrigatório", {
+      toast.warn("O e-mail é obrigatório", {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -48,7 +48,7 @@ function Index() {
       return false
     }
     if (!password) {
-        toast.warn("A senha é obrigatória", {
+      toast.warn("A senha é obrigatória", {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -59,51 +59,50 @@ function Index() {
       });
       return false
     }
-    
+
     return true;
   }
 
-  async function firstAccess(PA){
-    PA.preventDefault();
+  async function validateFirstAccess(e) {
+    e.preventDefault()
     if (validate()) {
-      try{
+      try {
+
         setLoading(<Spinner id="loading" animation="border" />);
         setIsDisabled(true);
 
-        const dados = {email, password};
-        const {data} = await api.post('/login', dados);
+        const dados = { email };
+        const { data } = await api.post('/firstAccess', dados);
+        console.log(data)
 
-        const dataToken = jwt_decode(data.token);
 
-        sessionStorage.setItem("login", true);
-        sessionStorage.setItem('typeUser', dataToken.infoUser.typeUser)
-        sessionStorage.setItem('userName', dataToken.infoUser.userName)
-        sessionStorage.setItem('email', dataToken.infoUser.email)
-
-        if(dataToken.infoUser.typeUser == 1) {
-          navigate('/perfil')
-        } else if (dataToken.infoUser.typeUser == 2){
-          navigate('/perfil')
-        }else{
-          navigate('/perfil')
+        if (data == 1) {
+          toast.warn("Você já utilizou o primeiro acesso!", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+          setIsDisabled(false);
+          setLoading("");
+          handleClose();
         }
-        toast.success("Seja bem-vindo!", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-        handleClose();
-        setLoading("");
 
-      } catch (err) {
+        if (data == 0) {
+          firstAccess()
+        }
+        setLoading("");
+        handleClose();
+
+      }
+      catch (err) {
         setIsDisabled(false);
         setLoading("");
         console.log(err);
-        toast.error("Email ou senha invalidos!", {
+        toast.error("deu erro!", {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -116,9 +115,60 @@ function Index() {
     }
   }
 
+  async function firstAccess() {
+    try {
+
+      setLoading(<Spinner id="loading" animation="border" />);
+      setIsDisabled(true);
+
+      const dados = { email, password };
+      const { data } = await api.post('/login', dados);
+
+      const dataToken = jwt_decode(data.token);
+
+      sessionStorage.setItem("login", true);
+      sessionStorage.setItem('typeUser', dataToken.infoUser.typeUser)
+      sessionStorage.setItem('userName', dataToken.infoUser.userName)
+      sessionStorage.setItem('email', email)
+
+      if (dataToken.infoUser.typeUser == 1) {
+        navigate('/perfil')
+      } else if (dataToken.infoUser.typeUser == 2) {
+        navigate('/perfil')
+      } else {
+        navigate('/perfil')
+      }
+      toast.success("Seja bem-vindo!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      handleClose();
+      setLoading("");
+
+    } catch (err) {
+      setIsDisabled(false);
+      setLoading("");
+      console.log(err);
+      toast.error("Email ou senha invalidos!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
+  }
+
   function handleKeyDown(e) {
     if (e.key === "Enter") {
-      firstAccess();
+      validateFirstAccess();
     }
   }
 
@@ -143,7 +193,7 @@ function Index() {
               </Modal.Header>
 
               <Modal.Body>
-                
+
                 <div className="wrap-input">
                   <input
                     className={email !== "" ? "has-val input" : "input"}
@@ -175,7 +225,7 @@ function Index() {
               <section className="footer">
 
                 <div className="container-login-form-btn">
-                  <button className="login-form-btn" onClick={firstAccess} disabled={isDisabled}>Enviar</button>
+                  <button className="login-form-btn" onClick={validateFirstAccess} disabled={isDisabled}>Enviar</button>
                 </div>
 
                 <div className="text-center">
