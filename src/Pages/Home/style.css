@@ -67,6 +67,10 @@
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 
+  .cards-home--professor {
+    grid-template-columns: 1fr 1fr;
+  }
+
   .card-home {
     padding-left: 3rem;
     padding-right: 3rem;
