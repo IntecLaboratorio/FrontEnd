@@ -77,7 +77,7 @@ function Index() {
 
 
         if (data.firstAccess == 0) {
-          toast.warn("Você já utilizou o primeiro acesso!", {
+          toast.error("Você já utilizou o primeiro acesso!", {
             position: "top-right",
             autoClose: 5000,
             hideProgressBar: false,
@@ -105,7 +105,7 @@ function Index() {
         setIsDisabled(false);
         setLoading("");
         console.log(err);
-        toast.error("deu erro!", {
+        toast.error("tente mais tarde!", {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
