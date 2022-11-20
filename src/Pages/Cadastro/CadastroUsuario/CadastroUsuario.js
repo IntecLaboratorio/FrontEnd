@@ -26,6 +26,7 @@ function CadUsuario() {
     let errors = {};
     const minuscula = /(?=.*[a-z])/;
     const maiuscula = /(?=.*[A-Z])/;
+    const especial = /(?=.*[$*&@#])/;
 
     if (
       !id_corporate ||
@@ -51,8 +52,13 @@ function CadUsuario() {
       });
     }
 
-    if(!errors.input){
-      if(email.length > 256 || !email.includes("@") || !email.includes(".") || email.length <= 10){
+    if (!errors.input) {
+      if (
+        email.length > 256 ||
+        !email.includes("@") ||
+        !email.includes(".") ||
+        email.length <= 10
+      ) {
         errors.email = toast.warn("E-Mail inválido!", {
           position: "top-right",
           autoClose: 5000,
@@ -65,35 +71,87 @@ function CadUsuario() {
       }
     }
 
-    if(!errors.input){
-    if (password.length < 8) {
-      errors.password = toast.warn("Senha muito curta!", {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-    }
-    if (!errors.password) {
-      if (!minuscula.exec(password) || !maiuscula.exec(password)) {
-        errors.password = toast.warn(
-          "A senha deve conter ao menos uma letra maiuscula e uma minuscula",
-          {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-          }
-        );
+    if (!errors.input) {
+      if (password.length < 8) {
+        errors.password = toast.warn("Senha muito curta!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
+      if (!errors.password) {
+        if (
+          !minuscula.exec(password) &&
+          !maiuscula.exec(password) &&
+          !especial.exec(password)
+        ) {
+          errors.password = toast.warn(
+            "A senha deve conter letra minúscula, maiúscula e caractere especial",
+            {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            }
+          );
+        }
+      }
+      if (!errors.password) {
+        if (!minuscula.exec(password)) {
+          errors.password = toast.warn(
+            "A senha deve conter ao menos uma letra minúscula",
+            {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            }
+          );
+        }
+      }
+      if (!errors.password) {
+        if (!maiuscula.exec(password)) {
+          errors.password = toast.warn(
+            "A senha deve conter ao menos uma letra maiúscula",
+            {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            }
+          );
+        }
+      }
+      if (!errors.password) {
+        if (!especial.exec(password)) {
+          errors.password = toast.warn(
+            "A senha deve conter ao menos um caractere especial",
+            {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            }
+          );
+        }
       }
     }
-  }
 
     if (errors.input || errors.email || errors.password) {
       return false;
