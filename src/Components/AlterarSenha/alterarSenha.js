@@ -1,4 +1,4 @@
-import { Button, Modal, Spinner } from "react-bootstrap";
+import { Button, Modal, Spinner, OverlayTrigger, Tooltip } from "react-bootstrap";
 import React, { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -7,6 +7,7 @@ import api from "../../Service/api.js";
 import { useNavigate } from "react-router-dom";
 
 function AlterarSenha() {
+  const [senhaAtual, setsenhaAtual] = useState("");
   const [senha, setsenha] = useState("");
   const [confirmSenha, setConfirmsenha] = useState("");
   const handleShow = () => setShow(true);
@@ -78,7 +79,7 @@ function AlterarSenha() {
         const email = sessionStorage.getItem("email");
         const dados = { email, senha };
         await api.post("/passwordUser", dados);
-        
+
 
         setLoading("");
         handleClose();
@@ -111,11 +112,27 @@ function AlterarSenha() {
           <section>
             <div className="wrap-input">
               <input
-                className={senha !== "" ? "has-val input" : "input"}
+                className={senhaAtual !== "" ? "has-val input" : "input"}
                 type="senha"
-                value={senha}
-                onChange={(e) => setsenha(e.target.value)}
+                value={senhaAtual}
+                onChange={(e) => setsenhaAtual(e.target.value)}
               />
+              <span className="focus-input" data-placeholder="Senha Atual"></span>
+            </div>
+            <div className="wrap-input">
+
+              <OverlayTrigger
+                placement="right"
+                overlay={<Tooltip id="button-tooltip-2">Sua senha deverá ter no mínimo 8 caracteres e incluir combinação de números, letras e caracteres especiais (@#!%$).
+                </Tooltip>}
+              >
+                <input
+                  className={senha !== "" ? "has-val input" : "input"}
+                  type="senha"
+                  value={senha}
+                  onChange={(e) => setsenha(e.target.value)}
+                />
+              </OverlayTrigger>
               <span className="focus-input" data-placeholder="Senha"></span>
             </div>
 

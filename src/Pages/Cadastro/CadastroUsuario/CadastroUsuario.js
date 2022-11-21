@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { IMaskInput } from "react-imask";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Spinner } from "react-bootstrap";
+import { Spinner, OverlayTrigger, Tooltip } from "react-bootstrap";
 import Sidebar from "../../../Components/Sidebar/sidebar.js";
 
 function CadUsuario() {
@@ -321,12 +321,19 @@ function CadUsuario() {
             </div>
 
             <div className="wrap-input">
-              <input
-                className={password !== "" ? "has-val input" : "input"}
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
+              <OverlayTrigger
+                placement="right"
+                overlay={<Tooltip id="button-tooltip-2">Sua senha deverá ter no mínimo 8 caracteres e incluir combinação de números, letras e caracteres especiais (@#!%$).
+                </Tooltip>}
+              >
+                <input
+                  className={password !== "" ? "has-val input" : "input"}
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </OverlayTrigger>
+
               <span className="focus-input" data-placeholder="Senha"></span>
             </div>
 

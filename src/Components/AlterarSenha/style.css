@@ -15,6 +15,8 @@
   margin-top: 20px !important;
 }
 
+
+
 .modal-content {
   width: 100% !important;
 }
@@ -27,3 +29,15 @@
 .spinner-border {
   color: #ffffff;
 }
+
+.desc-container{
+  max-width: 80%;
+  margin: auto;
+}
+
+.desc-alterarSenha{
+  font-size: 14px;
+  color: #dfdede;
+}
+
+
