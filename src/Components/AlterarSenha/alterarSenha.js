@@ -10,7 +10,6 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./style.css";
 import api from "../../Service/api.js";
-import { useNavigate } from "react-router-dom";
 
 function AlterarSenha() {
   const [senhaAtual, setsenhaAtual] = useState("");
@@ -21,7 +20,6 @@ function AlterarSenha() {
   const handleClose = () => setShow(false);
   const [isDisabled, setIsDisabled] = useState(false);
   const [loading, setLoading] = useState("");
-  let navigate = useNavigate();
 
   const validate = () => {
     
@@ -139,11 +137,9 @@ function AlterarSenha() {
 
         const email = sessionStorage.getItem("email");
         const dados = { email, senhaAtual };
-        const { data } = await api.post("/passwordUser", dados);
+        await api.post("/passwordUser", dados);
        
-        if(data == "true"){
-          updatePassword();
-        }
+        updatePassword();
 
         setIsDisabled(false);
         setLoading("");
@@ -210,7 +206,7 @@ function AlterarSenha() {
             <div className="wrap-input">
               <input
                 className={senhaAtual !== "" ? "has-val input" : "input"}
-                type="senha"
+                type="password"
                 value={senhaAtual}
                 onChange={(e) => setsenhaAtual(e.target.value)}
               />
@@ -232,7 +228,7 @@ function AlterarSenha() {
               >
                 <input
                   className={senha !== "" ? "has-val input" : "input"}
-                  type="senha"
+                  type="password"
                   value={senha}
                   onChange={(e) => setsenha(e.target.value)}
                 />
@@ -243,7 +239,7 @@ function AlterarSenha() {
             <div className="wrap-input">
               <input
                 className={confirmSenha !== "" ? "has-val input" : "input"}
-                type="email"
+                type="password"
                 value={confirmSenha}
                 onChange={(e) => setConfirmsenha(e.target.value)}
               />
