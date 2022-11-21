@@ -73,7 +73,6 @@ function Index() {
 
         const dados = { email };
         const { data } = await api.post('/firstAccess', dados);
-        console.log(data)
 
 
         if (data.firstAccess == 0) {
@@ -169,7 +168,7 @@ function Index() {
     }
   }
 
-  const updateFirstAccess = async (e) => {
+  const updateFirstAccess = async () => {
     const dados = { email };
     await api.put('/firstAccess', dados);
   }

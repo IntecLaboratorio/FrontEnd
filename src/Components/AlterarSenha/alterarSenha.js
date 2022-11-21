@@ -1,4 +1,10 @@
-import { Button, Modal, Spinner, OverlayTrigger, Tooltip } from "react-bootstrap";
+import {
+  Button,
+  Modal,
+  Spinner,
+  OverlayTrigger,
+  Tooltip,
+} from "react-bootstrap";
 import React, { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -18,8 +24,11 @@ function AlterarSenha() {
   let navigate = useNavigate();
 
   const validate = () => {
-    if (!senha && !confirmSenha) {
-      toast.warn("Preencha os dois campos!", {
+    
+    const senhaForte = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#%])(?=.*[0-9])/;
+
+    if (!senhaAtual && !senha && !confirmSenha) {
+      toast.warn("Preencha todos os campos!", {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -30,7 +39,7 @@ function AlterarSenha() {
       });
       return false;
     }
-    if (!senha) {
+    if (!senhaAtual) {
       toast.warn("Preencha sua senha atual", {
         position: "top-right",
         autoClose: 5000,
@@ -42,8 +51,20 @@ function AlterarSenha() {
       });
       return false;
     }
+    if (!senha) {
+      toast.warn("Preencha sua nova senha", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      return false;
+    }
     if (!confirmSenha) {
-      toast.warn("Confirme sua senha atual", {
+      toast.warn("Confirme sua nova senha", {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -64,12 +85,52 @@ function AlterarSenha() {
         draggable: true,
         progress: undefined,
       });
+      setsenha("");
+      setConfirmsenha("");
+      return false;
+    }
+    if (senha == senhaAtual) {
+      toast.warn("nova senha igual a atual", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      setsenha("");
+      setsenhaAtual("");
+      return false;
+    }
+    if (senha.length < 8) {
+      toast.warn("Senha muito curta!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      return false;
+    }
+    if (!senhaForte.exec(senha)) {
+      toast.warn("A senha deve conter numeros, letras minúsculas, maiúsculas e caracteres especiais", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
       return false;
     }
     return true;
   };
 
-  const updatePassword = async (e) => {
+  const selectPassword = async (e) => {
     e.preventDefault();
     if (validate()) {
       try {
@@ -77,19 +138,25 @@ function AlterarSenha() {
         setIsDisabled(true);
 
         const email = sessionStorage.getItem("email");
-        const dados = { email, senha };
-        await api.post("/passwordUser", dados);
+        const dados = { email, senhaAtual };
+        const { data } = await api.post("/passwordUser", dados);
+       
+        if(data == "true"){
+          updatePassword();
+        }
 
-
+        setIsDisabled(false);
         setLoading("");
-        handleClose();
-        navigate("*");
+        setsenhaAtual("");
+        setsenha("");
+        setConfirmsenha("");
+        handleClose()
 
       } catch (err) {
         setIsDisabled(false);
         setLoading("");
         console.log(err);
-        toast.error("Senha incorreta!", {
+        toast.error("Senha atual incorreta!", {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -99,6 +166,36 @@ function AlterarSenha() {
           progress: undefined,
         });
       }
+    }
+  };
+
+  const updatePassword = async () => {
+      try {
+        const email = sessionStorage.getItem("email");
+        const dados = { senha, email };
+        await api.put("/passwordUser", dados);
+
+        toast.success("Senha atualizada com sucesso!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+
+      } catch (err) {
+        console.log(err);
+        toast.error("Não foi possivel atualizar sua senha", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
     }
   };
   return (
@@ -117,14 +214,21 @@ function AlterarSenha() {
                 value={senhaAtual}
                 onChange={(e) => setsenhaAtual(e.target.value)}
               />
-              <span className="focus-input" data-placeholder="Senha Atual"></span>
+              <span
+                className="focus-input"
+                data-placeholder="Senha Atual"
+              ></span>
             </div>
             <div className="wrap-input">
-
               <OverlayTrigger
                 placement="right"
-                overlay={<Tooltip id="button-tooltip-2">Sua senha deverá ter no mínimo 8 caracteres e incluir combinação de números, letras e caracteres especiais (@#!%$).
-                </Tooltip>}
+                overlay={
+                  <Tooltip id="button-tooltip-2">
+                    Sua senha deverá ter no mínimo 8 caracteres e incluir
+                    combinação de números, letras e caracteres especiais
+                    (@#!%$).
+                  </Tooltip>
+                }
               >
                 <input
                   className={senha !== "" ? "has-val input" : "input"}
@@ -154,7 +258,7 @@ function AlterarSenha() {
             <div className="container-login-form-btn">
               <button
                 className="btn-alterarSenha"
-                onClick={updatePassword}
+                onClick={selectPassword}
                 disabled={isDisabled}
               >
                 Alterar Senha
