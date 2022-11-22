@@ -11,6 +11,7 @@ function Senha() {
 
   const [show, setShow] = useState(false);
 
+  // const { data } = await api.post("//forgotPassword", dados);
   const handleClose = () => setShow(false);
   return (
     <>

@@ -34,7 +34,6 @@ function Table() {
         <tbody>
           {
             reqLabs.map((reqLab) => (
-              reqLabs.verify == 0 ?
               <tr key={reqLab.id}>
                 <td>{reqLab.fk_discipline}</td>
                 <td>{reqLab.bloco_aula}</td>
@@ -44,7 +43,7 @@ function Table() {
                   <button className="btn-accept">Aceitar</button>
                   <button className="btn-deny">Negar</button>
                 </td>
-              </tr> : null
+              </tr> 
             ))
           }
         </tbody>

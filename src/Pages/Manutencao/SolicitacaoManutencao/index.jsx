@@ -7,6 +7,7 @@ import './style.css'
 import api from '../../../Service/api.js';
 import { Spinner } from 'react-bootstrap';
 import Sidebar from '../../../Components/Sidebar/sidebar.js'
+import DatePick from '../../../Components/calendario/calendario.js';
 
 
 function SolicitacaoManutencao() {
@@ -168,8 +169,8 @@ function SolicitacaoManutencao() {
               <span className="focus-input" data-placeholder="Numero de Patrimonio"></span>
             </div>
 
-            <div className="wrap-input">
-              <input
+            <div className="wrap-input calendar">
+              <DatePick
                 className={data !== "" ? "has-val input" : "input"}
                 type="data"
                 value={data}
