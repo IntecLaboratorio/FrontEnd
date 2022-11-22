@@ -84,7 +84,7 @@ function SolicitacaoManutencao() {
         setLoading(<Spinner id="loading" animation='border' />);
 
         const data = { tipoPatrimonio, sala, nPatrimonio, fixedAssent }
-        await api.post('/reqMaintanance', data);   
+        await api.post('/reqMaintanance', data);
 
         toast.success("Solicitação enviada com sucesso!", {
           position: "top-right",
@@ -119,7 +119,7 @@ function SolicitacaoManutencao() {
 
   return (
     <div className='container-sol-manuntencao'>
-      <Sidebar/>
+      <Sidebar />
 
       <section className="form-sol-manutencao">
         <form className='form-man'>
@@ -163,7 +163,7 @@ function SolicitacaoManutencao() {
                 className={nPatrimonio !== "" ? "has-val input" : "input"}
                 type="text"
                 value={nPatrimonio}
-                onChange={(e) => 
+                onChange={(e) =>
                   setNpatrimonio(e.target.value)}
               />
               <span className="focus-input" data-placeholder="Numero de Patrimonio"></span>
@@ -174,9 +174,10 @@ function SolicitacaoManutencao() {
                 className={data !== "" ? "has-val input" : "input"}
                 type="data"
                 value={data}
-                onChange={(e) => 
+                onChange={(e) =>
                   setData(e.target.value)}
               />
+              <span className="focus-input" data-placeholder="Data"></span>
             </div>
           </section>
 

@@ -39,7 +39,7 @@ function Perfil() {
                         <h2 className="titulo-perfil">{userName}</h2>
                     </div>
                     <div>
-                        <div className="span-perfil">
+                        <div className="div-perfil">
                             <span className="span-perfil">
                                 {eMail}
                             </span>

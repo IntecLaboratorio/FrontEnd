@@ -73,11 +73,10 @@ function Index() {
 
         const dados = { email };
         const { data } = await api.post('/firstAccess', dados);
-        console.log(data)
 
 
-        if (data == 1) {
-          toast.warn("Você já utilizou o primeiro acesso!", {
+        if (data.firstAccess == 0) {
+          toast.error("Você já utilizou o primeiro acesso!", {
             position: "top-right",
             autoClose: 5000,
             hideProgressBar: false,
@@ -88,11 +87,14 @@ function Index() {
           });
           setIsDisabled(false);
           setLoading("");
+          setEmail("")
+          setPassword("")
           handleClose();
         }
 
-        if (data == 0) {
-          firstAccess()
+        if (data.firstAccess == 1) {
+          firstAccess();
+          updateFirstAccess();
         }
         setLoading("");
         handleClose();
@@ -102,7 +104,7 @@ function Index() {
         setIsDisabled(false);
         setLoading("");
         console.log(err);
-        toast.error("deu erro!", {
+        toast.error("tente mais tarde!", {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -164,6 +166,11 @@ function Index() {
         progress: undefined,
       });
     }
+  }
+
+  const updateFirstAccess = async () => {
+    const dados = { email };
+    await api.put('/firstAccess', dados);
   }
 
   function handleKeyDown(e) {

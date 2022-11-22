@@ -65,7 +65,7 @@
   align-items: center;
   height: 50px;
   background: #DFDEDE;
-  width: 38%;
+  width: 38% !important;
   font-size: 16.5px;
 }
 

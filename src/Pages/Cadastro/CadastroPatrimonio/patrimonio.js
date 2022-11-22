@@ -100,11 +100,11 @@ function Patrimonio() {
   return (
 
     <div className="d-flex-patrimonio">
-      <Sidebar/>
+      <Sidebar />
       <div className="hide-mobile">
         <NavCadastro />
       </div>
-      <div className="container-cadastro secoes">
+      <div className="container-cadastro">
 
         <form className="form-cadastro">
 
