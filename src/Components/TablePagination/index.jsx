@@ -9,6 +9,7 @@ import api from '../../Service/api.js';
 
 function App() {
   const [fixedAssent, setFixedAssent] = useState([]);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     async function getFixedAssent() {
@@ -20,7 +21,13 @@ function App() {
   }, [fixedAssent]);
 
   const products =
-    fixedAssent.map((fixedAssent) => (
+    fixedAssent.filter((val) => {
+      if(search == "") {
+        return val
+      } else if(val.assent_name.toUpperCase().includes(search.toUpperCase())) {
+        return val
+      }
+    }).map((fixedAssent) => (
       { id: parseInt(`${fixedAssent.id}`), name: `${fixedAssent.assent_name}`, verify: `(${fixedAssent.verify})`, fk_labs: `${fixedAssent.fk_labs}` }
     ));
 
@@ -60,6 +67,7 @@ function App() {
   });
   return (
     <div className="App">
+      <input type="text" onChange={(e) => setSearch(e.target.value)} />
       <BootstrapTable
         bootstrap4
         keyField="id"

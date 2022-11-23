@@ -17,6 +17,7 @@ import CadastroUsuario from "./Pages/Cadastro/CadastroUsuario/CadastroUsuario.js
 import Endereco from "./Pages/Cadastro/CadastroUsuario/endereco.js";
 import Manutencao from "./Pages/Manutencao/ConsultaManutencao/index.jsx";
 import SolicitacaoManutencao from "./Pages/Manutencao/SolicitacaoManutencao/index.jsx";
+import TesteTable from "./Components/TablePagination/index.jsx";
 import PageError from './Pages/pageError/index.js'
 // import AluguelArmario from './Pages/AluguelArmario/index.js';
 import "./App.css";
@@ -37,6 +38,7 @@ function App() {
         <Route path="/cronograma-lab" element={<CronogramaLab />} />
         <Route path="/manutencao" element={<Manutencao />} />
         <Route path="/solicitacaoManutencao" element={<SolicitacaoManutencao />} /> 
+        <Route path="/teste-pagination" element={<TesteTable />} /> 
         </Route>
 
         <Route element={<ProtectedCoordenador/>}>
