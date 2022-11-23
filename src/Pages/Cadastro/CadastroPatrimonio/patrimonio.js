@@ -123,7 +123,7 @@ function Patrimonio() {
             <div className="wrap-input">
               <input
                 className={serial_number !== "" ? "has-val input" : "input"}
-                type="text"
+                type="number"
                 value={serial_number}
                 onChange={(e) => setSerial_number(e.target.value)}
               />
