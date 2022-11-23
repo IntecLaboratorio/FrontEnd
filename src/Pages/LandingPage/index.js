@@ -17,14 +17,17 @@ function LandingPage() {
     <>
       <div className="container-landing">
         <Navbar />
+
         <main>
+
           <section className="section-1">
+            <h1 className="landing-txt">Intec, te conecta ao mundo!</h1>
+
             <div className="div_Img_Txt">
               <img src={Logo} className="imgLanding" />
-              <h2 className="nomeLogo">InTec</h2>
             </div>
-
           </section>
+
         </main>
       </div>
     </>

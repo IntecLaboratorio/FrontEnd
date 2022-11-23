@@ -5,20 +5,29 @@ body {
 
 .section-1 {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     margin-top: 6%;
+}
+
+.landing-txt{
+    color: #ffff;
+    margin-top: 10%;
+    height: 60px;
+    padding-right: 1px;
+    padding-left: 1px;
+    font-size: 50px;
+    text-align: center;
+    display: flex;
+    border-right: 2px solid #ffff;
+    animation: blinkCursor /*steps(40)*/ 500ms infinite normal, typing 4s /*steps(40)*/ normal;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .imgLanding {
     width: 100%;
     filter: drop-shadow(4px 4px 2px #4F4F4F);
 
-}
-
-.nomeLogo{
-    color: #D3D3D3;
-    font-weight: 700;
-    font-size: 50px;
 }
 
 .slgtxt {
@@ -31,12 +40,26 @@ body {
 .div_Img_Txt {
     border-radius: 0;
     border: none;
-
-    width: 35%;
-
+    width: 37%;
     display: flex;
-    flex-direction: column;
-    text-align: center;
+}
+
+@keyframes blinkCursor {
+    from {
+        border-right: 2px solid #ffff;
+    }
+    to {
+        border-right: transparent;
+    }
+}
+
+@keyframes typing {
+    from{
+        width: 0;
+    }
+    to{
+        width: 40%;
+    }
 }
 
 @media screen and (max-width:383px) {
