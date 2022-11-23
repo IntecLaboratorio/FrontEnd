@@ -19,6 +19,7 @@ import Manutencao from "./Pages/Manutencao/ConsultaManutencao/index.jsx";
 import SolicitacaoManutencao from "./Pages/Manutencao/SolicitacaoManutencao/index.jsx";
 import TesteTable from "./Components/TablePagination/index.jsx";
 import PageError from './Pages/pageError/index.js'
+import ConsultarPatrimonio from './Pages/ConsultarPatrimonio/consultarPat.js'
 // import AluguelArmario from './Pages/AluguelArmario/index.js';
 import "./App.css";
 import Perfil from "./Pages/Perfil/perfil.js";
@@ -47,6 +48,7 @@ function App() {
           <Route path="/endereco" element={<Endereco />} />
           <Route path="/cadastro-laboratorio" element={<CadastroLab />} />
           <Route path="/cadastro-usuario" element={<CadastroUsuario />} />
+          <Route path="/consulta-patrimonio" element={<ConsultarPatrimonio />} />
         </Route>
 
         <Route path="/" element={<LandingPage />} />

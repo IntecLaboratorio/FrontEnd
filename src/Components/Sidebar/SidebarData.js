@@ -44,7 +44,7 @@ export const SidebarData = [
     },
     {
     title: "Consultar Patrimônios",
-    path: "/card-home",
+    path: "/consulta-patrimonio",
     icon: <AiIcons.AiOutlineSearch/>,
     cName: 'nav-text'
     },

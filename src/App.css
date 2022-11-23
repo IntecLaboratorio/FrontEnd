@@ -36,7 +36,7 @@
 } 
 
 .react-bootstrap-table-pagination {
-    margin: 0 !important;
+    margin: 0 auto !important;
 }
 
 @keyframes App-logo-spin {

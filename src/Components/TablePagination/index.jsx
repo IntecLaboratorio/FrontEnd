@@ -6,10 +6,12 @@ import "react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.m
 import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import api from '../../Service/api.js';
+import './style.css'
 
 function App() {
   const [fixedAssent, setFixedAssent] = useState([]);
   const [search, setSearch] = useState("");
+  const [name_lab, setName_lab] = useState("");
 
   useEffect(() => {
     async function getFixedAssent() {
@@ -22,9 +24,9 @@ function App() {
 
   const products =
     fixedAssent.filter((val) => {
-      if(search == "") {
+      if (search == "") {
         return val
-      } else if(val.assent_name.toUpperCase().includes(search.toUpperCase())) {
+      } else if (val.assent_name.toUpperCase().includes(search.toUpperCase())) {
         return val
       }
     }).map((fixedAssent) => (
@@ -67,7 +69,19 @@ function App() {
   });
   return (
     <div className="App">
-      <input type="text" onChange={(e) => setSearch(e.target.value)} />
+      <div className="wrap-input-pagination">
+
+      <input
+        className={search !== "" ? "has-val input" : "input"}
+        type="text"
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+
+      />
+      <span className="focus-input" data-placeholder="Pesquisar Patrimônio"></span>
+      </div>
+
+      {/* <input type="text" onChange={(e) => setSearch(e.target.value)} /> */}
       <BootstrapTable
         bootstrap4
         keyField="id"

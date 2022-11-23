@@ -5,17 +5,19 @@ body {
 
 .section-1 {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column-reverse;
     margin-top: 6%;
 }
 
 .landing-txt{
     color: #ffff;
-    margin-top: 10%;
+    margin-top: 10px;
     height: 60px;
     padding-right: 1px;
     padding-left: 1px;
-    font-size: 50px;
+    font-size: 40px;
     text-align: center;
     display: flex;
     border-right: 2px solid #ffff;
@@ -58,7 +60,7 @@ body {
         width: 0;
     }
     to{
-        width: 40%;
+        width: 38%;
     }
 }
 
