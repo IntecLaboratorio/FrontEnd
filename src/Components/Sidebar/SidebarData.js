@@ -12,13 +12,6 @@ export const SidebarData = [
     },
 
     {
-    title: "Notificações",
-    path: "/notificacao",
-    icon: <AiIcons.AiOutlineBell/>,
-    cName: 'nav-text'
-    },
-
-    {
     title: "Perfil",
     path: "/perfil",
     icon: <AiIcons.AiOutlineUser/>,
@@ -29,6 +22,30 @@ export const SidebarData = [
     title: "Horários",
     path: "/horarios",
     icon: <AiIcons.AiOutlineCalendar/>,
+    cName: 'nav-text'
+    },
+    {
+    title: "Solicitar Laboratorio",
+    path: "/cronograma-lab",
+    icon: <AiIcons.AiOutlineDesktop/>,
+    cName: 'nav-text'
+    },
+    {
+    title: "Solicitar Manutenção",
+    path: "/solicitacaoManutencao",
+    icon: <AiIcons.AiOutlineTool/>,
+    cName: 'nav-text'
+    },
+    {
+    title: "Cadastros",
+    path: "/cadastro-usuario",
+    icon: <AiIcons.AiOutlinePlus/>,
+    cName: 'nav-text'
+    },
+    {
+    title: "Consultar Patrimônios",
+    path: "/card-home",
+    icon: <AiIcons.AiOutlineSearch/>,
     cName: 'nav-text'
     },
 

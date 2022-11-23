@@ -25,18 +25,17 @@ function Sidebar() {
             <BsIcons.BsFilterLeft onClick={showSidebar} />
           </Link>
           {/* <Link to="/home" className="wrap-img-logo-navbar">Intec</Link> */}
-        <div className="wrap-img-logo-navbar">
-          <Link to="/home" >
-            <img src={Logo} alt="Intec" className="img-logo-navbar"></img>
-          </Link>
-        </div>
+          <div className="wrap-img-logo-navbar">
+            <Link to="/home" >
+              <img src={Logo} alt="Intec" className="img-logo-navbar"></img>
+            </Link>
+          </div>
         </div>
 
         <nav className={sidebar ? "nav-menu active" : "nav-menu"}>
           <div className="navbar-toggle">
             <div className="logo-wrapper">
               <img src={Logo} alt="Logo" className="logo-sidebar" />
-              <p className="logo-caption">Intec</p>
             </div>
 
             <Link

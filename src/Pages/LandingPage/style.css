@@ -6,11 +6,19 @@ body {
 .section-1 {
     display: flex;
     justify-content: center;
-    margin-top: 8%;
+    margin-top: 6%;
 }
 
 .imgLanding {
     width: 100%;
+    filter: drop-shadow(4px 4px 2px #4F4F4F);
+
+}
+
+.nomeLogo{
+    color: #D3D3D3;
+    font-weight: 700;
+    font-size: 50px;
 }
 
 .slgtxt {
@@ -21,11 +29,7 @@ body {
 }
 
 .div_Img_Txt {
-    background: rgba(227, 221, 221, 0.06);
     border-radius: 0;
-    box-shadow: 0 4px 30px rgb(0 0 0 / 10%);
-    backdrop-filter: blur(3.1px);
-    -webkit-backdrop-filter: blur(3.1px);
     border: none;
 
     width: 35%;

@@ -12,7 +12,9 @@ function LandingPage() {
           <section className="section-1">
             <div className="div_Img_Txt">
               <img src={Logo} className="imgLanding" />
+              <h2 className="nomeLogo">InTec</h2>
             </div>
+            
           </section>
         </main>
       </div>
