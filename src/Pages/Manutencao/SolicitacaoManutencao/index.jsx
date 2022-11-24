@@ -14,6 +14,7 @@ function SolicitacaoManutencao() {
 
   const [tipoPatrimonio, setTipoPatrimonio] = useState("");
   const [sala, setSala] = useState("");
+  const [nSala, setNsala] = useState("")
   const [nPatrimonio, setNpatrimonio] = useState("");
   const [data, setData] = useState("");
   const [fixedAssent, setFixedAssent] = useState("");
@@ -160,6 +161,17 @@ function SolicitacaoManutencao() {
 
             <div className="wrap-input">
               <input
+                className={nSala !== "" ? "has-val input" : "input"}
+                type="text"
+                value={nSala}
+                onChange={(e) =>
+                  setNsala(e.target.value)}
+              />
+              <span className="focus-input" data-placeholder="Numero da sala"></span>
+            </div>
+
+            <div className="wrap-input">
+              <input
                 className={nPatrimonio !== "" ? "has-val input" : "input"}
                 type="text"
                 value={nPatrimonio}
@@ -169,7 +181,8 @@ function SolicitacaoManutencao() {
               <span className="focus-input" data-placeholder="Numero de Patrimonio"></span>
             </div>
 
-            <div className="wrap-input calendar">
+
+            <div className='flex-center'>
               <DatePick
                 className={data !== "" ? "has-val input" : "input"}
                 type="data"
@@ -177,7 +190,7 @@ function SolicitacaoManutencao() {
                 onChange={(e) =>
                   setData(e.target.value)}
               />
-              <span className="focus-input" data-placeholder="Data"></span>
+              <span className="focus-input" data-placeholder=""></span>
             </div>
           </section>
 

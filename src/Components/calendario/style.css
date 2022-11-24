@@ -1,0 +1,7 @@
+.calendar :is(input){
+    background: transparent;
+    color: #fff;
+    border: 1px solid;
+    border-radius: 2px;
+    padding: 5px;
+}
