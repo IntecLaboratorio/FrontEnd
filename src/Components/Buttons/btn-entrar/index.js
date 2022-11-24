@@ -114,7 +114,7 @@ function BtnEntrar() {
 
   useEffect(() => {
     if (sessionStorage.getItem("login") == true){
-      window.location.href = "/home"
+      navigate('/home')
     }
   }, [])
 

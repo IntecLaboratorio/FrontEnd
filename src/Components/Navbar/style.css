@@ -4,7 +4,7 @@
 }
 
 .btn-fill {
-  background-color: #182850;
+  background-color: #DFDEDE;
   padding: 0.455rem 1rem;
   border-radius: 8px;
   border: none;
@@ -41,8 +41,9 @@
 }
 
 .navConfig {
-  background: #DFDEDE;
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 0px 15px 1px;
+  background: transparent;
+  height: 70px;
+  border-bottom: #DFDEDE 1px solid;
   padding: 5px;
 }
 
@@ -54,12 +55,15 @@
   display: contents;
 }
 
+.navbar>.container, .navbar>.container-fluid, .navbar>.container-lg, .navbar>.container-md, .navbar>.container-sm, .navbar>.container-xl, .navbar>.container-xxl {
+  justify-content: flex-end !important;
+}
+
 .nav-link {
   border-bottom: 1px solid white !important;
 }
 
 .container :is(.intec) {
-  padding-left: 10%;
   text-decoration: none;
   color: #0000008c;
   font-weight: bold;

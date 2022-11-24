@@ -184,13 +184,13 @@
 }
 
 .btn-fill {
-  background-color: #182850 !important;
+  background-color:   #efefef !important;
   padding: 0.455rem 1rem !important;
   border-radius: 8px !important;
   border: none !important;
-  color: #efefef !important;
+  color: #182850 !important;
   font-size: 16px !important;
-  font-weight: 600 !important;
+  font-weight: 700 !important;
   cursor: pointer !important;
   transition: 0.3s !important;
 }
@@ -198,6 +198,7 @@
 .btn-fill:hover {
   background-color: #0083fd !important;
   box-shadow: #0083fd 0px 0px 7px 1px !important;
+  color:  #efefef !important;
 }
 
 .modal {

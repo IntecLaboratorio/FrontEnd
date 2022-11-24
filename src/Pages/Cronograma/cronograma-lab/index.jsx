@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-// import api from "../../Service/api.js";
+import api from "../../../Service/api.js";
 import { ToastContainer, toast } from "react-toastify";
 import Table from 'react-bootstrap/Table';
 import './style.css'
@@ -48,7 +48,7 @@ function Index(props) {
 
         const data = { disciplina, turma, bloco, periodo, date, horario };
 
-        // await api.post("/cronograma", data);
+        await api.post("/cronograma", data);
 
         toast.success("Seu cronograma foi cadastrado com sucesso!", {
           position: "top-right",
@@ -217,7 +217,7 @@ function Index(props) {
             <button className="btn">
               Confirmar
             </button>
-            <button className="btn">Recusar</button>
+            <button className="btn" onCLick={insertCronograma}>Recusar</button>
           </section>
           <div className="loading">{loading}</div>
         </form>

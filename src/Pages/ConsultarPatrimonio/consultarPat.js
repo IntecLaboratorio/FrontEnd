@@ -7,11 +7,11 @@ import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import api from '../../Service/api.js';
 import './style.css'
+import Sidebar from '../../Components/Sidebar/sidebar.js'
 
 function App() {
   const [fixedAssent, setFixedAssent] = useState([]);
   const [search, setSearch] = useState("");
-  const [name_lab, setName_lab] = useState("");
 
   useEffect(() => {
     async function getFixedAssent() {
@@ -68,29 +68,33 @@ function App() {
     }
   });
   return (
-    <div className="App">
-      <div className="wrap-input-pagination">
+    <>
 
-      <input
-        className={search !== "" ? "has-val input" : "input"}
-        type="text"
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
+      <div className="App">
+      <Sidebar></Sidebar>
+        <div className="wrap-input-pagination">
 
-      />
-      <span className="focus-input" data-placeholder="Pesquisar Patrimônio"></span>
+          <input
+            className={search !== "" ? "has-val input" : "input"}
+            type="text"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+
+          />
+          <span className="focus-input" data-placeholder="Pesquisar Patrimônio"></span>
+        </div>
+
+        {/* <input type="text" onChange={(e) => setSearch(e.target.value)} /> */}
+        <BootstrapTable
+          bootstrap4
+          keyField="id"
+          data={products}
+          columns={columns}
+          defaultSorted={defaultSorted}
+          pagination={pagination}
+        />
       </div>
-
-      {/* <input type="text" onChange={(e) => setSearch(e.target.value)} /> */}
-      <BootstrapTable
-        bootstrap4
-        keyField="id"
-        data={products}
-        columns={columns}
-        defaultSorted={defaultSorted}
-        pagination={pagination}
-      />
-    </div>
+    </>
   );
 }
 

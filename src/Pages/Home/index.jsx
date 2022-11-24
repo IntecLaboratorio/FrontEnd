@@ -60,7 +60,7 @@ function Index() {
           {showCadastroUsuario ? <Link to="/cadastro-usuario">
             <div className="card-home">
               <img src="https://img.icons8.com/fluency-systems-regular/70/FFFFFF/edit-user.png" alt="Cadastro de Usuário" title="Cadastro de Usuário" />
-              <h3 className="title-home">Cadastro de Usuário</h3>
+              <h3 className="title-home">Cadastros</h3>
             </div>
           </Link> : null}
 
@@ -88,8 +88,8 @@ function Index() {
 
           {showCadastroUsuario ? <Link to="/cadastro-usuario">
             <div className="card-home">
-              <img src="https://img.icons8.com/fluency-systems-regular/70/FFFFFF/edit-user.png" alt="Cadastro de Usuário" title="Cadastro de Usuário" />
-              <h3 className="title-home">Cadastro de Usuário</h3>
+              <img src="https://img.icons8.com/fluency-systems-regular/70/FFFFFF/edit-user.png" alt="Cadastros" title="Cadastros" />
+              <h3 className="title-home">Cadastros</h3>
             </div>
           </Link> : null}
 

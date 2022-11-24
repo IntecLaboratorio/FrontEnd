@@ -6,11 +6,30 @@ body {
 .section-1 {
     display: flex;
     justify-content: center;
-    margin-top: 8%;
+    align-items: center;
+    flex-direction: column-reverse;
+    margin-top: 6%;
+}
+
+.landing-txt{
+    color: #ffff;
+    margin-top: 10px;
+    height: 60px;
+    padding-right: 1px;
+    padding-left: 1px;
+    font-size: 40px;
+    text-align: center;
+    display: flex;
+    border-right: 2px solid #ffff;
+    animation: blinkCursor /*steps(40)*/ 500ms infinite normal, typing 4s /*steps(40)*/ normal;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .imgLanding {
     width: 100%;
+    filter: drop-shadow(4px 4px 2px #4F4F4F);
+
 }
 
 .slgtxt {
@@ -21,18 +40,28 @@ body {
 }
 
 .div_Img_Txt {
-    background: rgba(227, 221, 221, 0.06);
     border-radius: 0;
-    box-shadow: 0 4px 30px rgb(0 0 0 / 10%);
-    backdrop-filter: blur(3.1px);
-    -webkit-backdrop-filter: blur(3.1px);
     border: none;
-
-    width: 35%;
-
+    width: 37%;
     display: flex;
-    flex-direction: column;
-    text-align: center;
+}
+
+@keyframes blinkCursor {
+    from {
+        border-right: 2px solid #ffff;
+    }
+    to {
+        border-right: transparent;
+    }
+}
+
+@keyframes typing {
+    from{
+        width: 0;
+    }
+    to{
+        width: 38%;
+    }
 }
 
 @media screen and (max-width:383px) {
