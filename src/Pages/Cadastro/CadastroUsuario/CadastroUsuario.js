@@ -160,50 +160,21 @@ function CadUsuario() {
     return true;
   }
 
-  async function createUser(e) {
+  const validateCpf = async (e) => {
     e.preventDefault();
     if (validate()) {
       try {
         setLoading(<Spinner id="loading" animation="border" />);
         const data = {
-          id_corporate,
-          address,
-          type_user,
-          name_user,
           cpf,
-          rg,
-          phone,
-          email,
-          password,
-          verify,
         };
+        await api.post("/validateCpf", data);
 
-        await api.post("/user", data);
-
-        toast.success(`${name_user} cadastrado com sucesso!`, {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-
-        setLoading("");
-        setId_corporate("");
-        setAddress("");
-        setNome("");
-        setTipoUsuario("");
-        setCpf("");
-        setRg("");
-        setPhone("");
-        setEmail("");
-        setPassword("");
-        setVerify("");
+        validateRg();
       } catch (err) {
         setLoading("");
-        toast.error(`Houve um problema: ${err}`, {
+        setCpf("");
+        toast.error("Este cpf já está cadastrado!", {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -213,6 +184,104 @@ function CadUsuario() {
           progress: undefined,
         });
       }
+    }
+  };
+
+  const validateRg = async () => {
+    try {
+      const data = {
+        rg,
+      };
+      await api.post("/validateRg", data);
+
+      validateEmail();
+    } catch (err) {
+      setLoading("");
+      setRg("");
+      toast.error("Este rg já está cadastrado!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
+  };
+
+  const validateEmail = async () => {
+    try {
+      const data = {
+        email,
+      };
+      await api.post("/validateEmail", data);
+
+      createUser();
+    } catch (err) {
+      setLoading("");
+      setEmail("");
+      toast.error("Este email já está cadastrado!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
+  };
+
+  async function createUser() {
+    try {
+      const data = {
+        id_corporate,
+        address,
+        type_user,
+        name_user,
+        cpf,
+        rg,
+        phone,
+        email,
+        password,
+        verify,
+      };
+
+      await api.post("/user", data);
+
+      toast.success(`${name_user} cadastrado com sucesso!`, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+
+      setLoading("");
+      setId_corporate("");
+      setAddress("");
+      setNome("");
+      setTipoUsuario("");
+      setCpf("");
+      setRg("");
+      setPhone("");
+      setEmail("");
+      setPassword("");
+      setVerify("");
+    } catch (err) {
+      setLoading("");
+      toast.error(`Houve um problema: ${err}`, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
   }
 
@@ -293,7 +362,7 @@ function CadUsuario() {
             <div className="wrap-input">
               <IMaskInput
                 className={rg !== "" ? "has-val input" : "input"}
-                mask="00.000.000-0"
+                type="text"
                 value={rg}
                 onChange={(e) => setRg(e.target.value)}
               />
@@ -323,8 +392,13 @@ function CadUsuario() {
             <div className="wrap-input">
               <OverlayTrigger
                 placement="right"
-                overlay={<Tooltip id="button-tooltip-2">Sua senha deverá ter no mínimo 8 caracteres e incluir combinação de números, letras e caracteres especiais (@#!%$).
-                </Tooltip>}
+                overlay={
+                  <Tooltip id="button-tooltip-2">
+                    Sua senha deverá ter no mínimo 8 caracteres e incluir
+                    combinação de números, letras e caracteres especiais
+                    (@#!%$).
+                  </Tooltip>
+                }
               >
                 <input
                   className={password !== "" ? "has-val input" : "input"}
@@ -357,7 +431,7 @@ function CadUsuario() {
           </section>
 
           <section className="section-btn-cadastro section-btn-cadastro--column">
-            <button className="btn" onClick={createUser}>
+            <button className="btn" onClick={validateCpf}>
               Cadastrar
             </button>
             <button className="btn btn-planilhas">Cadastro com Planilha</button>
