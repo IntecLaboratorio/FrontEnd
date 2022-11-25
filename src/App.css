@@ -89,8 +89,12 @@ body {
     width: 35% !important;
 }
 
-.table-pagination :is(.row) {
+/* .table-pagination :is(.row) {
     margin: 20px 0 !important;
+    justify-content: center;
+} */
+.table-pagination :is(.row) {
+    margin: 20px auto !important;
     justify-content: center;
 }
 
