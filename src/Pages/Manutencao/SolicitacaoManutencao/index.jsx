@@ -69,18 +69,18 @@ function SolicitacaoManutencao() {
       });
       return false;
     }
-    if (!data) {
-      toast.warn("Insira a data", {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-      return false;
-    }
+    // if (!data) {
+    //   toast.warn("Insira a data", {
+    //     position: "top-right",
+    //     autoClose: 5000,
+    //     hideProgressBar: false,
+    //     closeOnClick: true,
+    //     pauseOnHover: true,
+    //     draggable: true,
+    //     progress: undefined,
+    //   });
+    //   return false;
+    // }
     if (!fixedAssent) {
       toast.warn("Descreva o problema", {
         position: "top-right",
@@ -103,7 +103,7 @@ function SolicitacaoManutencao() {
       try {
         setLoading(<Spinner id="loading" animation="border" />);
 
-        const data = { tipoPatrimonio, sala, nPatrimonio, fixedAssent };
+        const data = { tipoPatrimonio, sala, nSala ,nPatrimonio, fixedAssent, data };
         await api.post("/reqMaintanance", data);
 
         toast.success("Solicitação enviada com sucesso!", {
@@ -119,8 +119,11 @@ function SolicitacaoManutencao() {
         setLoading("");
         setTipoPatrimonio("");
         setSala("");
+        setNsala("");
         setNpatrimonio("");
         setFixedAssent("");
+        setData("")
+
       } catch (err) {
         setLoading("");
         toast.error(`Houve um problema: ${err}`, {
@@ -135,6 +138,8 @@ function SolicitacaoManutencao() {
       }
     }
   };
+
+
 
   return (
     <div className="container-sol-manuntencao">
