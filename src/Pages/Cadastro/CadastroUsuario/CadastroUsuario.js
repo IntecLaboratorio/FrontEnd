@@ -309,16 +309,6 @@ function CadUsuario() {
             </div>
 
             <div className="wrap-input">
-              <input
-                className={address !== "" ? "has-val input" : "input"}
-                type="text"
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
-              />
-              <span className="focus-input" data-placeholder="Endereço"></span>
-            </div>
-
-            <div className="wrap-input">
               <select
                 name="select"
                 className={type_user !== "" ? "has-val input" : "input"}
@@ -357,18 +347,19 @@ function CadUsuario() {
               />
               <span className="focus-input" data-placeholder="CPF"></span>
             </div>
-          </section>
-          <section className="section-cadastro justify-center-mobile-user">
+
             <div className="wrap-input">
               <IMaskInput
                 className={rg !== "" ? "has-val input" : "input"}
                 type="text"
+                mask="00.000.000-00"
                 value={rg}
                 onChange={(e) => setRg(e.target.value)}
               />
               <span className="focus-input" data-placeholder="RG"></span>
             </div>
-
+          </section>
+          <section className="section-cadastro justify-center-mobile-user">
             <div className="wrap-input">
               <IMaskInput
                 className={phone !== "" ? "has-val input" : "input"}
