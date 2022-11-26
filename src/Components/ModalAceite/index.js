@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Modal from "react-modal";
+import { Button, Modal, Spinner } from "react-bootstrap";
 import axios from "axios";
 
 const customStyles = {

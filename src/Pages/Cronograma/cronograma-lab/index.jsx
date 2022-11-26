@@ -85,16 +85,6 @@ function Index(props) {
           <thead>
             <tr>
               <th>
-                <div className="wrap-input-table">
-                  <input
-                    className={pesquisarLab !== "" ? "has-val input" : "input-table"}
-                    type="text"
-                    value={pesquisarLab}
-                    onChange={(e) =>
-                      setPLab(e.target.value)}
-                  />
-                  <span className="focus-input-table" data-placeholder="Pesquisar Laboratorio"></span>
-                </div>
               </th>
 
               <th>
@@ -217,7 +207,6 @@ function Index(props) {
             <button className="btn">
               Confirmar
             </button>
-            <button className="btn" onCLick={insertCronograma}>Recusar</button>
           </section>
           <div className="loading">{loading}</div>
         </form>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as BsIcons from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { SidebarData } from "./SidebarData";
@@ -52,10 +52,11 @@ function Sidebar() {
               {SidebarData.map((item, index) => {
                 return (
                   <div key={index} className={item.cName}>
-                    <Link to={item.path}>
+                    {((sessionStorage.getItem("typeUser") == 2 && item.admin2 == "professor")  || (sessionStorage.getItem("typeUser") == 1 && item.admin == "coordenador") ) ? 
+                      <Link to={item.path}>
                       <div className="menu-item-icon">{item.icon}</div>
                       <span className="sidebar-span">{item.title}</span>
-                    </Link>
+                    </Link> : null}
                   </div>
                 );
               })}

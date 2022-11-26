@@ -192,7 +192,7 @@ function CadUsuario() {
 
       await api.post("/user", data);
 
-      toast.success(`${name_user} cadastrado com sucesso!`, {
+      toast.success(`${name_user} cadastrado(a) com sucesso!`, {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
