@@ -234,11 +234,6 @@ function Index() {
                 <div className="container-login-form-btn">
                   <button className="login-form-btn" onClick={validateFirstAccess} disabled={isDisabled}>Enviar</button>
                 </div>
-
-                <div className="text-center">
-                  <span className="txt1">Já possui conta? </span>
-                  <a className="txt2" href="#">Entrar</a>
-                </div>
                 <div className='loading-login'>{loading}</div>
               </section>
 
