@@ -250,7 +250,7 @@ function CadUsuario() {
 
       await api.post("/user", data);
 
-      toast.success(`${name_user} cadastrado com sucesso!`, {
+      toast.success(`${name_user} cadastrado(a) com sucesso!`, {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -362,7 +362,6 @@ function CadUsuario() {
             <div className="wrap-input">
               <IMaskInput
                 className={rg !== "" ? "has-val input" : "input"}
-                type="text"
                 value={rg}
                 onChange={(e) => setRg(e.target.value)}
               />

@@ -1,52 +1,62 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import * as AiIcons from "react-icons/ai";
-
-
 
 export const SidebarData = [
     {
     title: "Pagina Inicial",
     path: "/home",
     icon: <AiIcons.AiOutlineHome/>,
-    cName: 'nav-text'
+    cName: 'nav-text',
+    admin: "coordenador",
+    admin2: "professor"
     },
 
     {
     title: "Perfil",
     path: "/perfil",
     icon: <AiIcons.AiOutlineUser/>,
-    cName: 'nav-text'
+    cName: 'nav-text',
+    admin: "coordenador",
+    admin2: "professor"
     },
 
     {
     title: "Horários",
     path: "/horarios",
     icon: <AiIcons.AiOutlineCalendar/>,
-    cName: 'nav-text'
+    cName: 'nav-text',
+    admin: "coordenador",
+    admin2: "professor"
     },
     {
     title: "Solicitar Laboratorio",
     path: "/cronograma-lab",
     icon: <AiIcons.AiOutlineDesktop/>,
-    cName: 'nav-text'
+    cName: 'nav-text',
+    admin: "coordenador",
+    admin2: "professor"
     },
     {
     title: "Solicitar Manutenção",
     path: "/solicitacaoManutencao",
     icon: <AiIcons.AiOutlineTool/>,
-    cName: 'nav-text'
+    cName: 'nav-text',
+    admin: "coordenador",
+    admin2: "professor"
     },
     {
     title: "Cadastros",
     path: "/cadastro-usuario",
     icon: <AiIcons.AiOutlinePlus/>,
-    cName: 'nav-text'
+    cName: 'nav-text',
+    admin: "coordenador"
     },
     {
     title: "Consultar Patrimônios",
     path: "/consulta-patrimonio",
     icon: <AiIcons.AiOutlineSearch/>,
-    cName: 'nav-text'
+    cName: 'nav-text',
+    admin: "coordenador"
     },
 
 ]
