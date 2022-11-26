@@ -11,12 +11,8 @@ import Sidebar from "../../../Components/Sidebar/sidebar.js";
 
 function CadUsuario() {
   const [id_corporate, setId_corporate] = useState("");
-  const [address, setAddress] = useState("");
   const [name_user, setNome] = useState("");
   const [type_user, setTipoUsuario] = useState("");
-  const [cpf, setCpf] = useState("");
-  const [rg, setRg] = useState("");
-  const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [verify, setVerify] = useState("");
@@ -30,12 +26,8 @@ function CadUsuario() {
 
     if (
       !id_corporate ||
-      !address ||
       !name_user ||
       !type_user ||
-      !cpf ||
-      !rg ||
-      !phone ||
       !email ||
       !password ||
       !verify ||
@@ -160,21 +152,21 @@ function CadUsuario() {
     return true;
   }
 
-  const validateCpf = async (e) => {
+  const validateEmail = async (e) => {
     e.preventDefault();
     if (validate()) {
       try {
         setLoading(<Spinner id="loading" animation="border" />);
         const data = {
-          cpf,
+          email,
         };
-        await api.post("/validateCpf", data);
+        await api.post("/validateEmail", data);
 
-        validateRg();
+        createUser();
       } catch (err) {
         setLoading("");
-        setCpf("");
-        toast.error("Este cpf já está cadastrado!", {
+        setEmail("");
+        toast.error("Este email já está cadastrado!", {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -187,62 +179,12 @@ function CadUsuario() {
     }
   };
 
-  const validateRg = async () => {
-    try {
-      const data = {
-        rg,
-      };
-      await api.post("/validateRg", data);
-
-      validateEmail();
-    } catch (err) {
-      setLoading("");
-      setRg("");
-      toast.error("Este rg já está cadastrado!", {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-    }
-  };
-
-  const validateEmail = async () => {
-    try {
-      const data = {
-        email,
-      };
-      await api.post("/validateEmail", data);
-
-      createUser();
-    } catch (err) {
-      setLoading("");
-      setEmail("");
-      toast.error("Este email já está cadastrado!", {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-    }
-  };
-
   async function createUser() {
     try {
       const data = {
         id_corporate,
-        address,
         type_user,
         name_user,
-        cpf,
-        rg,
-        phone,
         email,
         password,
         verify,
@@ -262,12 +204,8 @@ function CadUsuario() {
 
       setLoading("");
       setId_corporate("");
-      setAddress("");
       setNome("");
       setTipoUsuario("");
-      setCpf("");
-      setRg("");
-      setPhone("");
       setEmail("");
       setPassword("");
       setVerify("");
@@ -338,37 +276,8 @@ function CadUsuario() {
               <span className="focus-input" data-placeholder="Nome"></span>
             </div>
 
-            <div className="wrap-input">
-              <IMaskInput
-                className={cpf !== "" ? "has-val input" : "input"}
-                mask="000.000.000-00"
-                value={cpf}
-                onChange={(e) => setCpf(e.target.value)}
-              />
-              <span className="focus-input" data-placeholder="CPF"></span>
-            </div>
-
-            <div className="wrap-input">
-              <IMaskInput
-                className={rg !== "" ? "has-val input" : "input"}
-                type="text"
-                mask="00.000.000-00"
-                value={rg}
-                onChange={(e) => setRg(e.target.value)}
-              />
-              <span className="focus-input" data-placeholder="RG"></span>
-            </div>
           </section>
           <section className="section-cadastro justify-center-mobile-user">
-            <div className="wrap-input">
-              <IMaskInput
-                className={phone !== "" ? "has-val input" : "input"}
-                mask="(00) 00000-0000"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-              />
-              <span className="focus-input" data-placeholder="Telefone"></span>
-            </div>
 
             <div className="wrap-input">
               <input
@@ -422,7 +331,7 @@ function CadUsuario() {
           </section>
 
           <section className="section-btn-cadastro section-btn-cadastro--column">
-            <button className="btn" onClick={validateCpf}>
+            <button className="btn" onClick={validateEmail}>
               Cadastrar
             </button>
             <button className="btn btn-planilhas">Cadastro com Planilha</button>

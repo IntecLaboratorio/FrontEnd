@@ -15,13 +15,12 @@ function SolicitacaoManutencao() {
   const [sala, setSala] = useState("");
   const [nSala, setNsala] = useState("")
   const [nPatrimonio, setNpatrimonio] = useState("");
-  const [data, setData] = useState("");
+  const [dataReq, setDataReq] = useState();
   const [fixedAssent, setFixedAssent] = useState("");
   const [loading, setLoading] = useState("");
 
-  
   const validate = () => {
-    if (!tipoPatrimonio && !sala && !nPatrimonio && !fixedAssent) {
+    if (!tipoPatrimonio && !sala && !nPatrimonio && !fixedAssent && !dataReq) {
       toast.warn("Preencha todos os campos!", {
         position: "top-right",
         autoClose: 5000,
@@ -69,18 +68,18 @@ function SolicitacaoManutencao() {
       });
       return false;
     }
-    // if (!data) {
-    //   toast.warn("Insira a data", {
-    //     position: "top-right",
-    //     autoClose: 5000,
-    //     hideProgressBar: false,
-    //     closeOnClick: true,
-    //     pauseOnHover: true,
-    //     draggable: true,
-    //     progress: undefined,
-    //   });
-    //   return false;
-    // }
+    if (!dataReq) {
+      toast.warn("Insira a data", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      return false;
+    }
     if (!fixedAssent) {
       toast.warn("Descreva o problema", {
         position: "top-right",
@@ -100,10 +99,11 @@ function SolicitacaoManutencao() {
   const tryRequest = async (e) => {
     e.preventDefault();
     if (validate()) {
+      console.log("dentro da função" + dataReq)
       try {
         setLoading(<Spinner id="loading" animation="border" />);
 
-        const data = { tipoPatrimonio, sala, nSala ,nPatrimonio, fixedAssent, data };
+        const data = { tipoPatrimonio, sala, nSala, nPatrimonio, fixedAssent, dataReq };
         await api.post("/reqMaintanance", data);
 
         toast.success("Solicitação enviada com sucesso!", {
@@ -122,7 +122,7 @@ function SolicitacaoManutencao() {
         setNsala("");
         setNpatrimonio("");
         setFixedAssent("");
-        setData("")
+        setDataReq("");
 
       } catch (err) {
         setLoading("");
@@ -209,12 +209,8 @@ function SolicitacaoManutencao() {
 
 
             <div className='flex-center'>
-              <DatePick
-                className={data !== "" ? "has-val input" : "input"}
-                type="text"
-                value={data}
-                onChange={(e) => setData(e.target.value)}
-              />
+              <input type='date' value={dataReq} onChange={e => setDataReq(e.target.value)} />
+
               <span className="focus-input" data-placeholder=""></span>
             </div>
           </section>
