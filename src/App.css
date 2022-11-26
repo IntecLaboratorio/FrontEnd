@@ -6,6 +6,13 @@
     margin: 35px 0;
 }
 
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0px;
+}
+
 .App-logo {
     height: 40vmin;
     pointer-events: none;
@@ -82,8 +89,12 @@ body {
     width: 35% !important;
 }
 
-.table-pagination :is(.row) {
+/* .table-pagination :is(.row) {
     margin: 20px 0 !important;
+    justify-content: center;
+} */
+.table-pagination :is(.row) {
+    margin: 20px auto !important;
     justify-content: center;
 }
 

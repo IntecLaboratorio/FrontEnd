@@ -1,16 +1,19 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { patrimoniosData } from "./patrimoniosData.js";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import "./style.css";
-import api from "../../../Service/api.js";
-import { Spinner } from "react-bootstrap";
-import Sidebar from "../../../Components/Sidebar/sidebar.js";
+import { patrimoniosData } from './patrimoniosData.js'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import './style.css'
+import api from '../../../Service/api.js';
+import { Spinner } from 'react-bootstrap';
+import Sidebar from '../../../Components/Sidebar/sidebar.js'
+import DatePick from '../../../Components/calendario/calendario.js';
+
 
 function SolicitacaoManutencao() {
   const [tipoPatrimonio, setTipoPatrimonio] = useState("");
   const [sala, setSala] = useState("");
+  const [nSala, setNsala] = useState("")
   const [nPatrimonio, setNpatrimonio] = useState("");
   const [data, setData] = useState("");
   const [fixedAssent, setFixedAssent] = useState("");
@@ -66,18 +69,18 @@ function SolicitacaoManutencao() {
       });
       return false;
     }
-    if (!data) {
-      toast.warn("Insira a data", {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-      return false;
-    }
+    // if (!data) {
+    //   toast.warn("Insira a data", {
+    //     position: "top-right",
+    //     autoClose: 5000,
+    //     hideProgressBar: false,
+    //     closeOnClick: true,
+    //     pauseOnHover: true,
+    //     draggable: true,
+    //     progress: undefined,
+    //   });
+    //   return false;
+    // }
     if (!fixedAssent) {
       toast.warn("Descreva o problema", {
         position: "top-right",
@@ -100,7 +103,7 @@ function SolicitacaoManutencao() {
       try {
         setLoading(<Spinner id="loading" animation="border" />);
 
-        const data = { tipoPatrimonio, sala, nPatrimonio, fixedAssent };
+        const data = { tipoPatrimonio, sala, nSala ,nPatrimonio, fixedAssent, data };
         await api.post("/reqMaintanance", data);
 
         toast.success("Solicitação enviada com sucesso!", {
@@ -116,8 +119,11 @@ function SolicitacaoManutencao() {
         setLoading("");
         setTipoPatrimonio("");
         setSala("");
+        setNsala("");
         setNpatrimonio("");
         setFixedAssent("");
+        setData("")
+
       } catch (err) {
         setLoading("");
         toast.error(`Houve um problema: ${err}`, {
@@ -132,6 +138,8 @@ function SolicitacaoManutencao() {
       }
     }
   };
+
+
 
   return (
     <div className="container-sol-manuntencao">
@@ -177,6 +185,17 @@ function SolicitacaoManutencao() {
 
             <div className="wrap-input">
               <input
+                className={nSala !== "" ? "has-val input" : "input"}
+                type="text"
+                value={nSala}
+                onChange={(e) =>
+                  setNsala(e.target.value)}
+              />
+              <span className="focus-input" data-placeholder="Numero da sala"></span>
+            </div>
+
+            <div className="wrap-input">
+              <input
                 className={nPatrimonio !== "" ? "has-val input" : "input"}
                 type="number"
                 value={nPatrimonio}
@@ -188,14 +207,15 @@ function SolicitacaoManutencao() {
               ></span>
             </div>
 
-            <div className="wrap-input">
-              <input
+
+            <div className='flex-center'>
+              <DatePick
                 className={data !== "" ? "has-val input" : "input"}
                 type="text"
                 value={data}
                 onChange={(e) => setData(e.target.value)}
               />
-              <span className="focus-input" data-placeholder="Data"></span>
+              <span className="focus-input" data-placeholder=""></span>
             </div>
           </section>
 
