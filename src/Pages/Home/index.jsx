@@ -43,7 +43,7 @@ function Index() {
 
       {sessionStorage.getItem('typeUser') == 1 ?
         <div className="cards-home">
-          {showCronograma ? <Link to="/cronograma-lab">
+          {showCronograma ? <Link to="/solicitacao-lab">
             <div className="card-home">
               <img src="https://img.icons8.com/glyph-neue/70/FFFFFF/computer.png" alt="Solicitar Laboratório" title="Solicitar Laboratório" />
               <h3 className="title-home">Solicitar Laboratório</h3>

@@ -9,7 +9,7 @@ import Navbar from "./Components/Navbar/index.js";
 import Teste from "./Components/TesteTable/index.jsx";
 import LandingPage from "./Pages/LandingPage/index.js";
 import Home from "./Pages/Home/index.jsx";
-import CronogramaLab from "./Pages/Cronograma/cronograma-lab/index.jsx";
+import SolicitacaoLab from "./Pages/RequisicaoLaboratorio/index.jsx";
 // import CronogramaQuadra from './Pages/Cronograma/cronograma-quadra/index.jsx';
 import CadastroLab from "./Pages/Cadastro/CadastroLab/lab.js";
 import CadastroPatrimonio from "./Pages/Cadastro/CadastroPatrimonio/patrimonio.js";
@@ -36,7 +36,7 @@ function App() {
 
         <Route element={<ProtectedProf/>}>
         {/* <Route path='/cronograma-quadra' element={<CronogramaQuadra />} /> */}
-        <Route path="/cronograma-lab" element={<CronogramaLab />} />
+        <Route path="/solicitacao-lab" element={<SolicitacaoLab />} />
         <Route path="/manutencao" element={<Manutencao />} />
         <Route path="/solicitacaoManutencao" element={<SolicitacaoManutencao />} /> 
         <Route path="/teste-pagination" element={<TesteTable />} /> 

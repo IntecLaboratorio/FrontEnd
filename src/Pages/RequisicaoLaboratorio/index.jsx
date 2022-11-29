@@ -1,27 +1,25 @@
 import React, { useState } from "react";
-import api from "../../../Service/api.js";
+import api from "../../Service/api.js";
 import { ToastContainer, toast } from "react-toastify";
 import Table from 'react-bootstrap/Table';
 import './style.css'
 import "react-toastify/dist/ReactToastify.css";
 import { Spinner } from "react-bootstrap";
-import Sidebar from '../../../Components/Sidebar/sidebar.js'
+import Sidebar from '../../Components/Sidebar/sidebar.js'
 
 function Index(props) {
-  const [disciplina, setDisciplina] = useState("");
-  const [turma, setTurma] = useState("");
-  const [bloco, setBloco] = useState("");
+  const [discipline, setDiscipline] = useState("");
+  // const [turma, setTurma] = useState("");
+  const [bloco_aula, setBloco_aula] = useState("");
   const [periodo, setPeriodo] = useState("");
-  const [date, setDate] = useState("");
-  const [horario, setHorario] = useState("");
-  const [pesquisarLab, setPLab] = useState("");
-  const [dataLab, setDataLab] = useState("");
+  const [data_req, setData_req] = useState("");
   const [loading, setLoading] = useState("");
 
+  console.log(`diciplina: ${discipline}, bloco: ${bloco_aula}, periodo: ${periodo}, data: ${data_req} `)
   const validate = () => {
     let errors = {};
 
-    if (!disciplina || !turma || !bloco || !periodo || !date || !horario) {
+    if (!discipline || !bloco_aula || !periodo || !data_req) {
       errors.inputs = toast.warn("Preencha todos os campos!", {
         position: "top-right",
         autoClose: 5000,
@@ -40,17 +38,18 @@ function Index(props) {
     return true;
   };
 
-  async function insertCronograma(e) {
+  async function insertSolicitacao(e) {
     e.preventDefault();
     if (validate()) {
       try {
         setLoading(<Spinner id="loading" animation="border" />);
 
-        const data = { disciplina, turma, bloco, periodo, date, horario };
+        const data = { discipline, bloco_aula, periodo, data_req };
+        console.log(data)
 
-        await api.post("/cronograma", data);
+        await api.post("/reqLabs", data);
 
-        toast.success("Seu cronograma foi cadastrado com sucesso!", {
+        toast.success("Sua Solicitacao foi cadastrado com sucesso!", {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -80,54 +79,31 @@ function Index(props) {
     <>
       <Sidebar></Sidebar>
 
-      <div className='table-container'>
-        <Table striped bordered hover>
-          <thead>
-            <tr>
-              <th>
-              </th>
-
-              <th>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td></td>
-              <td></td>
-            </tr>
-          </tbody>
-        </Table>
-      </div>
-
-
       <div className="container-cadastro secoes">
         <form className="form-cadastro">
           <section className="section-cadastro justify-center-mobile-user">
             <div className="wrap-input">
               <select
                 name="select"
-                className={disciplina !== "" ? "has-val input" : "input"}
+                className={discipline !== "" ? "has-val input" : "input"}
                 type="text"
-                value={disciplina}
-                onChange={(e) => setDisciplina(e.target.value)}
+                value={discipline}
+                onChange={(e) => setDiscipline(e.target.value)}
               >
                 <option value="" disable selected></option>
+                <option value={1}>Desenvolvimento de Sistemas</option>
                 <option value="Administração">Administração</option>
                 <option value="Contabilidade">Contabilidade</option>
-                <option value="Desenvolvimento de Sistemas">
-                  Desenvolvimento de Sistemas
-                </option>
                 <option value="Eletroeletrônica">Eletroeletrônica</option>
                 <option value="Logística">Logística</option>
                 <option value="Redes de Computadores">
                   Redes de Computadores
                 </option>
               </select>
-              <span className="focus-input" data-placeholder="Disciplina"></span>
+              <span className="focus-input" data-placeholder="Discipline"></span>
             </div>
 
-            <div className="wrap-input">
+            {/* <div className="wrap-input">
               <select
                 name="select"
                 className={turma !== "" ? "has-val input" : "input"}
@@ -139,19 +115,19 @@ function Index(props) {
                 <option value={"teste"}>teste</option>
               </select>
               <span className="focus-input" data-placeholder="Turma"></span>
-            </div>
+            </div> */}
 
             <div className="wrap-input">
               <select
                 name="select"
-                className={bloco !== "" ? "has-val input" : "input"}
+                className={bloco_aula !== "" ? "has-val input" : "input"}
                 type="text"
-                value={bloco}
-                onChange={(e) => setBloco(e.target.value)}
+                value={bloco_aula}
+                onChange={(e) => setBloco_aula(e.target.value)}
               >
                 <option value="" disable selected></option>
-                <option value="Coordenador">Primeiro Bloco</option>
-                <option value="Professor">Segundo Bloco</option>
+                <option value="Primeiro Bloco">Primeiro Bloco</option>
+                <option value="Segundo Bloco">Segundo Bloco</option>
               </select>
               <span className="focus-input" data-placeholder="Bloco"></span>
             </div>
@@ -166,45 +142,29 @@ function Index(props) {
                 onChange={(e) => setPeriodo(e.target.value)}
               >
                 <option value="" disable selected></option>
-                <option value="Coordenador">Manhã</option>
-                <option value="Professor">Tarde</option>
-                <option value="Aluno">Noite</option>
+                <option value="Manhã">Manhã</option>
+                <option value="Tarde">Tarde</option>
+                <option value="Noite">Noite</option>
               </select>
               <span className="focus-input" data-placeholder="Periodo"></span>
             </div>
 
             <div className="wrap-input">
               <input
-                className={date !== "" ? "has-val input" : "input"}
-                type="text"
-                value={date}
-                onChange={(e) => setDate(e.target.value)}
+                className={data_req !== "" ? "has-val input" : "input"}
+                type="date"
+                value={data_req}
+                onChange={(e) => setData_req(e.target.value)}
               />
               <span
                 className="focus-input"
-                data-placeholder="Data"
               ></span>
             </div>
 
-            <div className="wrap-input">
-              <select
-                name="select"
-                className={horario !== "" ? "has-val input" : "input"}
-                type="text"
-                value={horario}
-                onChange={(e) => setHorario(e.target.value)}
-              >
-                <option value="" disable selected></option>
-                <option value="Horario">Horario</option>
-                <option value="Horario">Horario</option>
-                <option value="Horario">Horario</option>
-              </select>
-              <span className="focus-input" data-placeholder="Horario"></span>
-            </div>
           </section>
 
           <section className="section-btn-cadastro section-btn-cadastro--column">
-            <button className="btn">
+            <button className="btn" onClick={insertSolicitacao}>
               Confirmar
             </button>
           </section>
