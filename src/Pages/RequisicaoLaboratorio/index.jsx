@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import api from "../../Service/api.js";
 import { ToastContainer, toast } from "react-toastify";
 import Table from 'react-bootstrap/Table';
@@ -14,6 +14,16 @@ function Index(props) {
   const [periodo, setPeriodo] = useState("");
   const [data_req, setData_req] = useState("");
   const [loading, setLoading] = useState("");
+  const [cursos, setCursos] = useState([]);
+
+  useEffect(() => {
+    async function findCourses() {
+      const { data } = await api.get('/courses');
+      setCursos(data)
+      console.log(data)
+    }
+    findCourses();
+  }, [cursos]);
 
   console.log(`diciplina: ${discipline}, bloco: ${bloco_aula}, periodo: ${periodo}, data: ${data_req} `)
   const validate = () => {
@@ -91,31 +101,14 @@ function Index(props) {
                 onChange={(e) => setDiscipline(e.target.value)}
               >
                 <option value="" disable selected></option>
-                <option value={1}>Desenvolvimento de Sistemas</option>
-                <option value="Administração">Administração</option>
-                <option value="Contabilidade">Contabilidade</option>
-                <option value="Eletroeletrônica">Eletroeletrônica</option>
-                <option value="Logística">Logística</option>
-                <option value="Redes de Computadores">
-                  Redes de Computadores
-                </option>
+                {
+                  cursos.map((curso) => (
+                    <option value={curso.id}>{curso.name_course}</option>
+                  ))
+                }
               </select>
               <span className="focus-input" data-placeholder="Discipline"></span>
             </div>
-
-            {/* <div className="wrap-input">
-              <select
-                name="select"
-                className={turma !== "" ? "has-val input" : "input"}
-                type="text"
-                value={turma}
-                onChange={(e) => setTurma(e.target.value)}
-              >
-                <option value={""} disable selected></option>
-                <option value={"teste"}>teste</option>
-              </select>
-              <span className="focus-input" data-placeholder="Turma"></span>
-            </div> */}
 
             <div className="wrap-input">
               <select
@@ -171,7 +164,6 @@ function Index(props) {
           <div className="loading">{loading}</div>
         </form>
         <ToastContainer />
-        <div className="loading">{loading}</div>
       </div>
     </>
   );
