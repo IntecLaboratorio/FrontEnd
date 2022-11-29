@@ -7,20 +7,22 @@ import './style.css'
 import api from '../../../Service/api.js';
 import { Spinner } from 'react-bootstrap';
 import Sidebar from '../../../Components/Sidebar/sidebar.js'
-import DatePick from '../../../Components/calendario/calendario.js';
+// import DatePick from '../../../Components/calendario/calendario.js';
+
 
 
 function SolicitacaoManutencao() {
-  const [tipoPatrimonio, setTipoPatrimonio] = useState("");
-  const [sala, setSala] = useState("");
-  const [nSala, setNsala] = useState("")
-  const [nPatrimonio, setNpatrimonio] = useState("");
-  const [dataReq, setDataReq] = useState();
-  const [fixedAssent, setFixedAssent] = useState("");
+  const [type_assent, settype_Assent] = useState("");
+  const [room, setRoom] = useState("");
+  const [num_room, setNum_room] = useState("");
+  const [num_assent, setNum_assent] = useState("");
+  const [requerement_date, setRequerement_date] = useState("");
+  const [observation, setObservation] = useState("")
+  // const [num_assent, setFixedAssent] = useState("");
   const [loading, setLoading] = useState("");
 
   const validate = () => {
-    if (!tipoPatrimonio && !sala && !nPatrimonio && !fixedAssent && !dataReq) {
+    if (!type_assent && !room && !num_room && !num_assent && !requerement_date && !observation) {
       toast.warn("Preencha todos os campos!", {
         position: "top-right",
         autoClose: 5000,
@@ -32,7 +34,7 @@ function SolicitacaoManutencao() {
       });
       return false;
     }
-    if (!tipoPatrimonio) {
+    if (!type_assent) {
       toast.warn("Selecione o tipo de patrimonio", {
         position: "top-right",
         autoClose: 5000,
@@ -44,7 +46,7 @@ function SolicitacaoManutencao() {
       });
       return false;
     }
-    if (!sala) {
+    if (!room) {
       toast.warn("Selecione a sala", {
         position: "top-right",
         autoClose: 5000,
@@ -56,8 +58,8 @@ function SolicitacaoManutencao() {
       });
       return false;
     }
-    if (!nPatrimonio) {
-      toast.warn("Insira o número de patrimonio", {
+    if (!num_room) {
+      toast.warn("Insira o número da sala ou laboratório", {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -68,7 +70,7 @@ function SolicitacaoManutencao() {
       });
       return false;
     }
-    if (!dataReq) {
+    if (!requerement_date) {
       toast.warn("Insira a data", {
         position: "top-right",
         autoClose: 5000,
@@ -80,7 +82,19 @@ function SolicitacaoManutencao() {
       });
       return false;
     }
-    if (!fixedAssent) {
+    if (!num_assent) {
+      toast.warn("Insira o número do patrimonio", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      return false;
+    }
+    if (!observation) {
       toast.warn("Descreva o problema", {
         position: "top-right",
         autoClose: 5000,
@@ -99,11 +113,11 @@ function SolicitacaoManutencao() {
   const tryRequest = async (e) => {
     e.preventDefault();
     if (validate()) {
-      console.log("dentro da função" + dataReq)
+      console.log("dentro da função " + requerement_date)
       try {
         setLoading(<Spinner id="loading" animation="border" />);
 
-        const data = { tipoPatrimonio, sala, nSala, nPatrimonio, fixedAssent, dataReq };
+        const data = { type_assent, room, num_room, num_assent, requerement_date,  };
         await api.post("/reqMaintanance", data);
 
         toast.success("Solicitação enviada com sucesso!", {
@@ -117,12 +131,13 @@ function SolicitacaoManutencao() {
         });
 
         setLoading("");
-        setTipoPatrimonio("");
-        setSala("");
-        setNsala("");
-        setNpatrimonio("");
-        setFixedAssent("");
-        setDataReq("");
+        settype_Assent("");
+        setRoom("");
+        setNum_room("");
+        // setNum_room("");
+        setNum_assent("");
+        setRequerement_date("");
+        setObservation("")
 
       } catch (err) {
         setLoading("");
@@ -151,10 +166,10 @@ function SolicitacaoManutencao() {
             <div className="wrap-input">
               <select
                 name="select"
-                className={tipoPatrimonio !== "" ? "has-val input" : "input"}
+                className={type_assent !== "" ? "has-val input" : "input"}
                 type="text"
-                value={tipoPatrimonio}
-                onChange={(e) => setTipoPatrimonio(e.target.value)}
+                value={type_assent}
+                onChange={(e) => settype_Assent(e.target.value)}
               >
                 <option value="" disable selected></option>
                 {patrimoniosData.map((item, index) => {
@@ -170,10 +185,10 @@ function SolicitacaoManutencao() {
             <div className="wrap-input">
               <select
                 name="select"
-                className={sala !== "" ? "has-val input" : "input"}
+                className={room !== "" ? "has-val input" : "input"}
                 type="text"
-                value={sala}
-                onChange={(e) => setSala(e.target.value)}
+                value={room}
+                onChange={(e) => setRoom(e.target.value)}
               >
                 <option value="" disable selected></option>
                 <option value="1">Sala de aula</option>
@@ -185,21 +200,21 @@ function SolicitacaoManutencao() {
 
             <div className="wrap-input">
               <input
-                className={nSala !== "" ? "has-val input" : "input"}
+                className={num_room !== "" ? "has-val input" : "input"}
                 type="text"
-                value={nSala}
+                value={num_room}
                 onChange={(e) =>
-                  setNsala(e.target.value)}
+                  setNum_room(e.target.value)}
               />
               <span className="focus-input" data-placeholder="Numero da sala"></span>
             </div>
 
             <div className="wrap-input">
               <input
-                className={nPatrimonio !== "" ? "has-val input" : "input"}
+                className={num_assent !== "" ? "has-val input" : "input"}
                 type="number"
-                value={nPatrimonio}
-                onChange={(e) => setNpatrimonio(e.target.value)}
+                value={num_assent}
+                onChange={(e) => setNum_assent(e.target.value)}
               />
               <span
                 className="focus-input"
@@ -209,8 +224,11 @@ function SolicitacaoManutencao() {
 
 
             <div className='flex-center'>
-              <input type='date' value={dataReq} onChange={e => setDataReq(e.target.value)} />
-
+              <input type='date' 
+              value={requerement_date} 
+              onChange={(e) => setRequerement_date(e.target.value)}
+              />
+                  
               <span className="focus-input" data-placeholder=""></span>
             </div>
           </section>
@@ -222,8 +240,8 @@ function SolicitacaoManutencao() {
               id="descricao-problema"
               cols="20"
               rows="7"
-              value={fixedAssent}
-              onChange={(e) => setFixedAssent(e.target.value)}
+              value={observation}
+              onChange={(e) => setObservation(e.target.value)}
             ></textarea>
           </section>
           <div className="loading">{loading}</div>

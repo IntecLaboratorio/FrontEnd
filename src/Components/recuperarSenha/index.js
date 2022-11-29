@@ -1,5 +1,6 @@
 import { Alert, Button, Modal } from 'react-bootstrap';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import api from '../../Service/api.js'
 import Logo from '../../Img/branco.png';
 import './style.css';
 
@@ -8,10 +9,19 @@ function Senha() {
 
   const [email, setEmail] = useState("");
   const [ConfirEmail, setConfirEmail] = useState("");
-
+  const [resetPassword, SetResetPassword] = useState("");
   const [show, setShow] = useState(false);
 
-  // const { data } = await api.post("//forgotPassword", dados);
+
+  useEffect(() => {
+
+    async function newPassword() {
+      const { data } = await api.get('/login');
+      SetResetPassword(data)
+    }
+    newPassword(resetPassword);
+  }, [])
+
   const handleClose = () => setShow(false);
   return (
     <>
