@@ -3,6 +3,7 @@ import './style.css'
 import api from '../../Service/api.js';
 import { useEffect, useState } from "react";
 import ModalAceite from '../ModalAceite/index.js';
+import Sidebar from '../Sidebar/sidebar.js'
 import axios from "axios";
 
 
@@ -28,7 +29,9 @@ function Table() {
 
   return (
     <>
+      <Sidebar></Sidebar>
       {loadModalAceite && <ModalAceite isOpen={loadModalAceite} dataAceite={aceiteItem} />}
+
       <table border="1" className="table-container">
         <thead>
           <tr>
