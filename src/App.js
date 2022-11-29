@@ -43,7 +43,7 @@ function App() {
         </Route>
 
         <Route element={<ProtectedCoordenador/>}>
-          <Route path="/teste" element={<Teste />} />
+          <Route path="/aceite" element={<Teste />} />
           <Route path="/cadastro-patrimonio" element={<CadastroPatrimonio />} />
           <Route path="/endereco" element={<Endereco />} />
           <Route path="/cadastro-laboratorio" element={<CadastroLab />} />

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Modal, Spinner } from "react-bootstrap";
+import Modal from "react-modal";
 import axios from "axios";
 
 const customStyles = {
@@ -10,6 +10,8 @@ const customStyles = {
     bottom: 'auto',
     marginRight: '-50%',
     transform: 'translate(-50%, -50%)',
+    background: '#0E1427',
+    color: '#EFEFEF'
   },
 };
 
@@ -54,8 +56,8 @@ function Index({ isOpen, dataAceite }) {
         onRequestClose={closeModal}
         style={customStyles}
       >
-        <h2>Aceite de requisições</h2>
-        <form>
+        <h2 className="title-modal">Aceite de requisições</h2>
+        <form className="form-modal">
           <button type="submit" name="action" onClick={handleSubmit}>Aceitar</button>
           <button type="submit" name="action" onClick={handleDelete}>Negar</button>
           <button onClick={() => { window.location.reload(true) }}>Cancelar</button>

@@ -58,5 +58,12 @@ export const SidebarData = [
     cName: 'nav-text',
     admin: "coordenador"
     },
+    {
+    title: "Solicitações de laboratorio",
+    path: "/aceite",
+    icon: <AiIcons.AiFillQuestionCircle/>,
+    cName: 'nav-text',
+    admin: "coordenador"
+    },
 
 ]
