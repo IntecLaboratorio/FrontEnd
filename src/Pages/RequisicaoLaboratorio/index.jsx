@@ -48,32 +48,22 @@ function Index(props) {
     return true;
   };
 
-  async function insertSolicitacao(e) {
+  const validateDate = async (e) => {
     e.preventDefault();
     if (validate()) {
       try {
         setLoading(<Spinner id="loading" animation="border" />);
 
-        const data = { discipline, bloco_aula, periodo, data_req };
-        console.log(data)
+        const dataReq = { data_req, periodo, bloco_aula };
+        await api.post("/validateData", dataReq);
 
-        await api.post("/reqLabs", data);
-
-        toast.success("Sua Solicitacao foi cadastrado com sucesso!", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-
+        insertSolicitacao();
+      }
+      catch (err) {
         setLoading("");
-      } catch (err) {
-        setLoading("");
+        setData_req("");
         console.log(err);
-        toast.error("Não foi possível concluir o cadastro", {
+        toast.error("Este horario já esta sendo utilizado!", {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -83,6 +73,42 @@ function Index(props) {
           progress: undefined,
         });
       }
+    }
+  }
+
+  async function insertSolicitacao() {
+
+    try {
+      setLoading(<Spinner id="loading" animation="border" />);
+
+      const data = { discipline, bloco_aula, periodo, data_req };
+      console.log(data)
+
+      await api.post("/reqLabs", data);
+
+      toast.success("Sua Solicitacao foi cadastrado com sucesso!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+
+      setLoading("");
+    } catch (err) {
+      setLoading("");
+      console.log(err);
+      toast.error("Não foi possível concluir o cadastro", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
   }
   return (
@@ -157,7 +183,7 @@ function Index(props) {
           </section>
 
           <section className="section-btn-cadastro section-btn-cadastro--column">
-            <button className="btn" onClick={insertSolicitacao}>
+            <button className="btn" onClick={validateDate}>
               Confirmar
             </button>
           </section>

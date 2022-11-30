@@ -18,6 +18,7 @@ import Endereco from "./Pages/Cadastro/CadastroUsuario/endereco.js";
 import Manutencao from "./Pages/Manutencao/ConsultaManutencao/index.jsx";
 import SolicitacaoManutencao from "./Pages/Manutencao/SolicitacaoManutencao/index.jsx";
 import TesteTable from "./Components/TablePagination/index.jsx";
+import MantencoesSolicitadas from "./Pages/Manutencao/ManutencoesSolicitadas/index.jsx";
 import PageError from './Pages/pageError/index.js'
 import ConsultarPatrimonio from './Pages/ConsultarPatrimonio/consultarPat.js'
 // import AluguelArmario from './Pages/AluguelArmario/index.js';
@@ -29,26 +30,27 @@ function App() {
     <BrowserRouter>
       <Routes>
 
-        <Route element={<ProtectedAll/>}>
-          <Route path="/home" element={<Home/>}/>
+        <Route element={<ProtectedAll />}>
+          <Route path="/home" element={<Home />} />
           <Route path="/perfil" element={<Perfil />} />
         </Route>
 
-        <Route element={<ProtectedProf/>}>
-        {/* <Route path='/cronograma-quadra' element={<CronogramaQuadra />} /> */}
-        <Route path="/solicitacao-lab" element={<SolicitacaoLab />} />
-        <Route path="/manutencao" element={<Manutencao />} />
-        <Route path="/solicitacaoManutencao" element={<SolicitacaoManutencao />} /> 
-        <Route path="/teste-pagination" element={<TesteTable />} /> 
+        <Route element={<ProtectedProf />}>
+          {/* <Route path='/cronograma-quadra' element={<CronogramaQuadra />} /> */}
+          <Route path="/solicitacao-lab" element={<SolicitacaoLab />} />
+          <Route path="/manutencao" element={<Manutencao />} />
+          <Route path="/solicitacaoManutencao" element={<SolicitacaoManutencao />} />
+          <Route path="/teste-pagination" element={<TesteTable />} />
         </Route>
 
-        <Route element={<ProtectedCoordenador/>}>
+        <Route element={<ProtectedCoordenador />}>
           <Route path="/aceite" element={<Teste />} />
           <Route path="/cadastro-patrimonio" element={<CadastroPatrimonio />} />
           <Route path="/endereco" element={<Endereco />} />
           <Route path="/cadastro-laboratorio" element={<CadastroLab />} />
           <Route path="/cadastro-usuario" element={<CadastroUsuario />} />
           <Route path="/consulta-patrimonio" element={<ConsultarPatrimonio />} />
+          <Route path="/consulta-manutencao" element={<MantencoesSolicitadas />} />
         </Route>
 
         <Route path="/" element={<LandingPage />} />

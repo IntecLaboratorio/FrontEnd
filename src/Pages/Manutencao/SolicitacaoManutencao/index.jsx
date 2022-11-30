@@ -117,7 +117,7 @@ function SolicitacaoManutencao() {
       try {
         setLoading(<Spinner id="loading" animation="border" />);
 
-        const data = { type_assent, room, num_room, num_assent, requerement_date,  };
+        const data = { type_assent, room, num_room, requerement_date, observation, num_assent  };
         await api.post("/reqMaintanance", data);
 
         toast.success("Solicitação enviada com sucesso!", {
