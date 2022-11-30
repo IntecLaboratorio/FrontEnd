@@ -9,17 +9,18 @@ function Senha() {
 
   const [email, setEmail] = useState("");
   const [ConfirEmail, setConfirEmail] = useState("");
-  const [resetPassword, SetResetPassword] = useState("");
+  const [reset, SetReset] = useState("");
   const [show, setShow] = useState(false);
 
+  // criar função para chamar a api de envio de senha
 
   useEffect(() => {
 
     async function newPassword() {
       const { data } = await api.get('/login');
-      SetResetPassword(data)
+      SetReset(data)
     }
-    newPassword(resetPassword);
+    newPassword();
   }, [])
 
   const handleClose = () => setShow(false);
