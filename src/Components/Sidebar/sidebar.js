@@ -26,8 +26,8 @@ function Sidebar() {
           </Link>
           {/* <Link to="/home" className="wrap-img-logo-navbar">Intec</Link> */}
           <div className="wrap-img-logo-navbar">
-            <Link to="/home" >
-              <img src={Logo} alt="Intec" className="img-logo-navbar"></img>
+            <Link className="link-nav" to="/home" >
+              <h3 className="logo-navbar">InTec</h3>
             </Link>
           </div>
         </div>

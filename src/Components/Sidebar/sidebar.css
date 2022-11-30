@@ -143,10 +143,15 @@
   justify-content: center;
 }
 
-.img-logo-navbar{
+.link-nav{
+  text-decoration: none !important;
+}
+
+.logo-navbar{
   margin: 10px 32.2px 0 0;
   width: 50px;
   height: auto;
+  color: #FFF;
 }
 
 .img-logo-navbar:hover{
