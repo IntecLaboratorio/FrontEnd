@@ -1,3 +1,13 @@
 .btn-senha {
     padding-top: 20px;
 }
+
+.loading-login {
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+  }
+  
+  .spinner-border {
+    color: #FFFFFF;
+  }
