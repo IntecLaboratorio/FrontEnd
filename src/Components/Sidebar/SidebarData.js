@@ -30,7 +30,7 @@ export const SidebarData = [
     },
     {
     title: "Solicitar Laboratorio",
-    path: "/cronograma-lab",
+    path: "/solicitacao-lab",
     icon: <AiIcons.AiOutlineDesktop/>,
     cName: 'nav-text',
     admin: "coordenador",

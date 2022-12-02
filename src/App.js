@@ -2,6 +2,7 @@ import React from "react";
 import {
   ProtectedProf,
   ProtectedCoordenador,
+  ProtectedAdmin,
   ProtectedAll
 } from "./protectedRouter";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -48,9 +49,12 @@ function App() {
           <Route path="/cadastro-patrimonio" element={<CadastroPatrimonio />} />
           <Route path="/endereco" element={<Endereco />} />
           <Route path="/cadastro-laboratorio" element={<CadastroLab />} />
-          <Route path="/cadastro-usuario" element={<CadastroUsuario />} />
           <Route path="/consulta-patrimonio" element={<ConsultarPatrimonio />} />
           <Route path="/consulta-manutencao" element={<MantencoesSolicitadas />} />
+        </Route>
+
+        <Route element={<ProtectedAdmin/>}>
+          <Route path="/cadastro-usuario" element={<CadastroUsuario />} />
         </Route>
 
         <Route path="/" element={<LandingPage />} />

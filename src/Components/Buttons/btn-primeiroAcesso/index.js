@@ -137,6 +137,8 @@ function Index() {
         navigate('/perfil')
       } else if (dataToken.infoUser.typeUser == 2) {
         navigate('/perfil')
+      } else if (dataToken.infoUser.typeUser == 3) {
+        navigate('/perfil')
       } else {
         navigate('/perfil')
       }

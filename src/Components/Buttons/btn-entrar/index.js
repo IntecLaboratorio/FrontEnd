@@ -79,6 +79,8 @@ function BtnEntrar() {
           navigate('/home')
         } else if (dataToken.infoUser.typeUser == 2){
           navigate('/home')
+        } else if (dataToken.infoUser.typeUser == 3){
+          navigate('/home')
         }else{
           navigate('/home')
         }

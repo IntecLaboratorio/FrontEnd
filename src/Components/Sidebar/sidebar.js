@@ -52,7 +52,7 @@ function Sidebar() {
               {SidebarData.map((item, index) => {
                 return (
                   <div key={index} className={item.cName}>
-                    {((sessionStorage.getItem("typeUser") == 2 && item.admin2 == "professor")  || (sessionStorage.getItem("typeUser") == 1 && item.admin == "coordenador") ) ? 
+                    {((sessionStorage.getItem("typeUser") == 3 && item.admin2 == "professor")  || (sessionStorage.getItem("typeUser") == 2 && item.admin == "coordenador") || (sessionStorage.getItem("typeUser") == 1 && item.admin == "coordenador")) ? 
                       <Link to={item.path}>
                       <div className="menu-item-icon">{item.icon}</div>
                       <span className="sidebar-span">{item.title}</span>
