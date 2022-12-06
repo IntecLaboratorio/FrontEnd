@@ -156,7 +156,7 @@ function Lab() {
             <div className="hide-mobile">
                 <NavCadastro />
             </div>
-            {/* <section className="table-pagination justify-center-mobile-lab">
+            <section className="table-pagination justify-center-mobile-lab">
                 <BootstrapTable
                     bootstrap4
                     keyField="id"
@@ -165,7 +165,7 @@ function Lab() {
                     defaultSorted={defaultSorted}
                     pagination={pagination}
                 />
-            </section> */}
+            </section>
             <div className="container-cadastro secoes">
                 <form className="form-cadastro">
                     <section className="section-cadastro justify-center-mobile-lab">
@@ -238,7 +238,7 @@ function Lab() {
 
                     <section className="section-btn-cadastro">
                         <button className="btn" onClick={insertLab}>Cadastrar</button>
-                        <button className="btn">Alterar</button>
+                        {/* <button className="btn">Alterar</button> */}
                     </section>
                 </form>
                 <ToastContainer />

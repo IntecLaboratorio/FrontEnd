@@ -73,3 +73,7 @@ table td {
   border-radius: 1px;
   padding: 0 20px;
 }
+
+.form-modal-manutencao {
+  flex-direction: column;
+}

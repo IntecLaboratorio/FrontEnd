@@ -18,6 +18,7 @@ function SolicitacaoManutencao() {
   const [num_assent, setNum_assent] = useState("");
   const [requerement_date, setRequerement_date] = useState("");
   const [observation, setObservation] = useState("")
+  const user_req = sessionStorage.getItem('userName');
   // const [num_assent, setFixedAssent] = useState("");
   const [loading, setLoading] = useState("");
 
@@ -117,7 +118,8 @@ function SolicitacaoManutencao() {
       try {
         setLoading(<Spinner id="loading" animation="border" />);
 
-        const data = { type_assent, room, num_room, requerement_date, observation, num_assent  };
+        const data = { type_assent, room, num_room, requerement_date, observation, num_assent, user_req  };
+        console.log(data)
         await api.post("/reqMaintanance", data);
 
         toast.success("Solicitação enviada com sucesso!", {

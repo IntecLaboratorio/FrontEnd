@@ -133,7 +133,7 @@ function Index(props) {
                   ))
                 }
               </select>
-              <span className="focus-input" data-placeholder="Discipline"></span>
+              <span className="focus-input" data-placeholder="Disciplina"></span>
             </div>
 
             <div className="wrap-input">

@@ -334,7 +334,7 @@ function CadUsuario() {
             <button className="btn" onClick={validateEmail}>
               Cadastrar
             </button>
-            <button className="btn btn-planilhas">Cadastro com Planilha</button>
+            {/* <button className="btn btn-planilhas">Cadastro com Planilha</button> */}
           </section>
           <div className="loading">{loading}</div>
         </form>

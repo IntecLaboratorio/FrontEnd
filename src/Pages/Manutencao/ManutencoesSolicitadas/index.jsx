@@ -40,6 +40,7 @@ function Table() {
             <th className="top">Número da sala</th>
             <th className="top">Número do pratrimônio</th>
             <th className="top">Observação</th>
+            <th className="top">Solicitado por:</th>
             <th className="top"></th>
           </tr>
         </thead>
@@ -54,6 +55,7 @@ function Table() {
                 <td>{reqManutencao.num_assent}</td>
                 <td>{ formatDate(reqManutencao.requerement_date)}</td>
                 <td>{reqManutencao.observation}</td>
+                <td>{reqManutencao.user_req}</td>
                 <td>
                   <button className="btn-accept" onClick={() => showModalAceite(reqManutencao)}>Selecionar</button>
                 </td>

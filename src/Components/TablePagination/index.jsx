@@ -80,8 +80,7 @@ function App() {
       />
       <span className="focus-input" data-placeholder="Pesquisar Patrimônio"></span>
       </div>
-
-      {/* <input type="text" onChange={(e) => setSearch(e.target.value)} /> */}
+      
       <BootstrapTable
         bootstrap4
         keyField="id"

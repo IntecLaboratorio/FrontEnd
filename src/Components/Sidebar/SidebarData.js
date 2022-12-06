@@ -21,16 +21,8 @@ export const SidebarData = [
     },
 
     {
-    title: "Horários",
-    path: "/horarios",
-    icon: <AiIcons.AiOutlineCalendar/>,
-    cName: 'nav-text',
-    admin: "coordenador",
-    admin2: "professor"
-    },
-    {
     title: "Solicitar Laboratorio",
-    path: "/cronograma-lab",
+    path: "/solicitacao-lab",
     icon: <AiIcons.AiOutlineDesktop/>,
     cName: 'nav-text',
     admin: "coordenador",

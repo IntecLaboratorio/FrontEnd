@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const customStyles = {
   content: {
@@ -30,8 +32,15 @@ function Index({ isOpen, dataAceite }) {
     }
 
     const { data } = await axios.put('http://localhost:3334/aceite', AceiteData);
-    alert(data.message);
-    // console.log(data.message)
+    toast.success(data.message, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
     window.location.reload(true);
   }
 
@@ -45,7 +54,15 @@ function Index({ isOpen, dataAceite }) {
       await axios.delete(`http://localhost:3334/reqLabs/${dataAceite.id}`);
       window.location.reload(true);
     } catch (err) {
-      alert(`Não foi possível deletar. \nErro: ${err}`)
+      toast.error(`Houve um problema: ${err}`, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
   }
 
@@ -63,6 +80,7 @@ function Index({ isOpen, dataAceite }) {
           <button onClick={() => { window.location.reload(true) }}>Cancelar</button>
         </form >
       </Modal >
+      <ToastContainer />
     </div >
   )
 }

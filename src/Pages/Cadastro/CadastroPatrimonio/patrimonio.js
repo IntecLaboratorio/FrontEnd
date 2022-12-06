@@ -241,7 +241,7 @@ function Patrimonio() {
 
           <section className="section-btn-cadastro section-btn-cadastro--column">
             <button className="btn" onClick={insertFixedAssent}>Cadastro</button>
-            <button className="btn btn-planilhas">Cadastro com Planilha</button>
+            {/* <button className="btn btn-planilhas">Cadastro com Planilha</button> */}
           </section>
           <div className='loading'>{loading}</div>
         </form>

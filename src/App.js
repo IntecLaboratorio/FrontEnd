@@ -36,8 +36,8 @@ function App() {
         </Route>
 
         <Route element={<ProtectedProf />}>
-          {/* <Route path='/cronograma-quadra' element={<CronogramaQuadra />} /> */}
-          <Route path="/solicitacao-lab" element={<SolicitacaoLab />} />
+          <Route path='/solicitacao-lab' element={<SolicitacaoLab />} />
+          <Route path="/cadastro-laboratorio" element={<CadastroLab />} />
           <Route path="/manutencao" element={<Manutencao />} />
           <Route path="/solicitacaoManutencao" element={<SolicitacaoManutencao />} />
           <Route path="/teste-pagination" element={<TesteTable />} />
