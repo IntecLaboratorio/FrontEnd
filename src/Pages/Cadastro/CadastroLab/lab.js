@@ -26,10 +26,9 @@ function Lab() {
 
 
     function validate() {
-        let errors = {};
 
-        if (!fk_instruction || !name_lab || !room_index || !floor_lab) {
-            errors.input = toast.warn("Todos os campos devem ser preenchidos!", {
+        if (!fk_instruction && !name_lab && !room_index && !floor_lab) {
+            toast.warn("Todos os campos devem ser preenchidos!", {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -38,9 +37,54 @@ function Lab() {
                 draggable: true,
                 progress: undefined,
             });
+            return false;
         }
-
-        if (errors.input) {
+        if (!fk_instruction) {
+            toast.warn("Informe a instituição!", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+            return false;
+        }
+        if (!name_lab) {
+            toast.warn("Informe o nome do lab/sala!", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+            return false;
+        }
+        if (!room_index) {
+            toast.warn("Informe o tipo de sala!", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+            return false;
+        }
+        if (!floor_lab) {
+            toast.warn("Informe o andar!", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
             return false;
         }
 

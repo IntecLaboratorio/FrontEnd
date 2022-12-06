@@ -67,9 +67,36 @@ function Senha() {
     return true;
   }
 
-  const envioPassword = async (e) => {
+  const validateEmail = async (e) => {
     e.preventDefault();
     if (validate()) {
+      try {
+        setLoading(<Spinner id="loading" animation="border" />);
+
+        const dados = { email };
+        await api.post("/validateRecPassword", dados);
+
+        envioPassword();
+
+      } catch (err) {
+        setLoading("");
+        setEmail("");
+        setConfirEmail("");
+        console.log(err);
+        toast.warning("Este e-mail não está cadastrado!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
+    }
+  }
+
+  const envioPassword = async () => {
       try {
         setLoading(<Spinner id="loading" animation="border" />);
 
@@ -100,7 +127,6 @@ function Senha() {
           progress: undefined,
         });
       }
-    }
   };
 
   useEffect(() => {
@@ -149,7 +175,7 @@ function Senha() {
           </section>
         </Modal.Body>
         <Modal.Footer>
-          <button onClick={envioPassword} className="button">
+          <button onClick={validateEmail} className="button">
             {" "}
             Avançar{" "}
           </button>

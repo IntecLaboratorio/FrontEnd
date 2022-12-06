@@ -15,10 +15,10 @@ function Index() {
   const [showConsulta, setShowConsulta] = useState(true)
 
   useEffect(() => {
-    if (sessionStorage.getItem('typeUser') == '2' && sessionStorage.getItem('login') == 'true') {
+    if (sessionStorage.getItem('typeUser') == '3' && sessionStorage.getItem('login') == 'true') {
       setShowCadastroUsuario(false)
       setShowConsulta(false)
-    } else if (sessionStorage.getItem('typeUser') == '3' && sessionStorage.getItem('login') == 'true') {
+    } else if (sessionStorage.getItem('typeUser') == '4' && sessionStorage.getItem('login') == 'true') {
       setShowCadastroUsuario(false)
       setShowConsulta(false)
       setShowSolicitacaoManutencao(false)
@@ -41,7 +41,7 @@ function Index() {
         </div>
       </div>
 
-      {sessionStorage.getItem('typeUser') == 1 ?
+      {(sessionStorage.getItem('typeUser') == 1) || (sessionStorage.getItem('typeUser') == 2)?
         <div className="cards-home">
           {showCronograma ? <Link to="/solicitacao-lab">
             <div className="card-home">

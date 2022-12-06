@@ -9,9 +9,12 @@ function Perfil() {
 
     const transforming = () => {
         if (sessionStorage.getItem('typeUser') == 1) {
-            setTypeUser("Coordenador");
+            setTypeUser("Admin");
         }
         else if (sessionStorage.getItem('typeUser') == 2) {
+            setTypeUser("Coordenador");
+        }
+        else if (sessionStorage.getItem('typeUser') == 3) {
             setTypeUser("Professor");
         }
         else {

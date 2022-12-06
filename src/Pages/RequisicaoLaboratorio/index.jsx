@@ -26,11 +26,10 @@ function Index(props) {
   }, [cursos]);
 
   console.log(`diciplina: ${discipline}, bloco: ${bloco_aula}, periodo: ${periodo}, data: ${data_req} `)
-  const validate = () => {
-    let errors = {};
 
-    if (!discipline || !bloco_aula || !periodo || !data_req) {
-      errors.inputs = toast.warn("Preencha todos os campos!", {
+  const validate = () => {
+    if (!discipline && !bloco_aula && !periodo && !data_req) {
+      toast.warn("Preencha todos os campos!", {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -39,9 +38,54 @@ function Index(props) {
         draggable: true,
         progress: undefined,
       });
+      return false;
     }
-
-    if (errors.inputs) {
+    if(!discipline){
+      toast.warn("Informe a disciplina!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      return false;
+    }
+    if(!bloco_aula){
+      toast.warn("Informe o bloco da aula!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      return false;
+    }
+    if(!periodo){
+      toast.warn("Informe o periodo!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      return false;
+    }
+    if(!data_req){
+      toast.warn("Informe a data!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
       return false;
     }
 

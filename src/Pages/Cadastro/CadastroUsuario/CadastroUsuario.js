@@ -255,9 +255,9 @@ function CadUsuario() {
                 onChange={(e) => setTipoUsuario(e.target.value)}
               >
                 <option value="" disable selected></option>
-                <option value="1">Coordenador</option>
-                <option value="2">Professor</option>
-                <option value="3">Aluno</option>
+                {(sessionStorage.getItem("typeUser") == 1) ? <option value="2">Coordenador</option> : null}
+                <option value="3">Professor</option>
+                <option value="4">Aluno</option>
               </select>
               <span
                 className="focus-input"
