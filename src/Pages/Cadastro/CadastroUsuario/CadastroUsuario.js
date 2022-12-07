@@ -257,7 +257,7 @@ function CadUsuario() {
                 <option value="" disable selected></option>
                 {(sessionStorage.getItem("typeUser") == 1) ? <option value="2">Coordenador</option> : null}
                 <option value="3">Professor</option>
-                <option value="4">Aluno</option>
+                {/* <option value="4">Aluno</option> */}
               </select>
               <span
                 className="focus-input"
