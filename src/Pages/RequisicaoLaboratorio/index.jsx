@@ -8,27 +8,27 @@ import { Spinner } from "react-bootstrap";
 import Sidebar from '../../Components/Sidebar/sidebar.js'
 
 function Index(props) {
-  const [discipline, setDiscipline] = useState("");
+  const [fk_discipline, setfk_Discipline] = useState("");
   // const [turma, setTurma] = useState("");
   const [bloco_aula, setBloco_aula] = useState("");
   const [periodo, setPeriodo] = useState("");
   const [data_req, setData_req] = useState("");
   const [loading, setLoading] = useState("");
-  const [cursos, setCursos] = useState([]);
+  const [courses, setCourses] = useState([]);
 
   useEffect(() => {
     async function findCourses() {
       const { data } = await api.get('/courses');
-      setCursos(data)
+      setCourses(data)
       console.log(data)
     }
     findCourses();
-  }, [cursos]);
+  }, [courses]);
 
-  console.log(`diciplina: ${discipline}, bloco: ${bloco_aula}, periodo: ${periodo}, data: ${data_req} `)
+  console.log(`diciplina: ${fk_discipline}, bloco: ${bloco_aula}, periodo: ${periodo}, data: ${data_req} `)
 
   const validate = () => {
-    if (!discipline && !bloco_aula && !periodo && !data_req) {
+    if (!fk_discipline && !bloco_aula && !periodo && !data_req) {
       toast.warn("Preencha todos os campos!", {
         position: "top-right",
         autoClose: 5000,
@@ -40,7 +40,7 @@ function Index(props) {
       });
       return false;
     }
-    if(!discipline){
+    if(!fk_discipline){
       toast.warn("Informe a disciplina!", {
         position: "top-right",
         autoClose: 5000,
@@ -125,7 +125,7 @@ function Index(props) {
     try {
       setLoading(<Spinner id="loading" animation="border" />);
 
-      const data = { discipline, bloco_aula, periodo, data_req };
+      const data = { fk_discipline, bloco_aula, periodo, data_req };
       console.log(data)
 
       await api.post("/reqLabs", data);
@@ -165,14 +165,14 @@ function Index(props) {
             <div className="wrap-input">
               <select
                 name="select"
-                className={discipline !== "" ? "has-val input" : "input"}
+                className={fk_discipline !== "" ? "has-val input" : "input"}
                 type="text"
-                value={discipline}
-                onChange={(e) => setDiscipline(e.target.value)}
+                value={fk_discipline}
+                onChange={(e) => setfk_Discipline(e.target.value)}
               >
                 <option value="" disable selected></option>
                 {
-                  cursos.map((curso) => (
+                  courses.map((curso) => (
                     <option value={curso.id}>{curso.name_course}</option>
                   ))
                 }
