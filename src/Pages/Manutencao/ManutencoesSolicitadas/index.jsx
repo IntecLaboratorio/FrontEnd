@@ -10,8 +10,12 @@ import axios from "axios";
 function Table() {
 
   const [reqManutencoes, setReqManutencoes] = useState([]);
-  const [aceiteItem, setAceiteItem] = useState('');
   const [loadModalAceite, setLoadModalAceite] = useState(false);
+  const [aceiteItem, setAceiteItem] = useState("");
+  const [search, setSearch] = useState("");
+  const [status_manutencao, setStatus_manutencao] = useState("");
+  const [data_inicial, setData_inicial] = useState("");
+  const [data_final, setData_final] = useState("");
 
   function showModalAceite(aceite) {
     setLoadModalAceite(true);
@@ -32,6 +36,34 @@ function Table() {
       <Sidebar></Sidebar>
       {loadModalAceite && <ModalAceite isOpen={loadModalAceite} dataAceite={aceiteItem} />}
 
+      <div className="wrap-input-pagination">
+
+        <input
+          className={search !== "" ? "has-val input" : "input"}
+          type="text"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+
+        />
+        <span className="focus-input" data-placeholder="Pesquisar Solicitação"></span>
+      </div>
+
+      {/* <p>Status de manutenção</p> */}
+      <select
+        name="select"
+        type="text"
+        value={status_manutencao}
+        onChange={(e) => setStatus_manutencao(e.target.value)}
+      >
+        <option value={1}>Em Manutenção</option>
+        <option value={2}>Manutenção Realizada</option>
+        <option value="">Mostrar tudo</option>
+      </select>
+
+      <input type="date" value={data_inicial} onChange={(e) => setData_inicial(e.target.value)} />
+
+      <input type="date" value={data_final} onChange={(e) => setData_final(e.target.value)} />
+
       <table border="1" className="table-container">
         <thead>
           <tr>
@@ -40,6 +72,7 @@ function Table() {
             <th className="top">Número da sala</th>
             <th className="top">Número do pratrimônio</th>
             <th className="top">Observação</th>
+            <th className="top">Data de Solicitação:</th>
             <th className="top">Solicitado por:</th>
             <th className="top"></th>
           </tr>
@@ -48,19 +81,26 @@ function Table() {
         <tbody>
           {
             reqManutencoes.length == 0 ? <td colSpan={6}>Não há dados</td> :
-            reqManutencoes.map((reqManutencao) => (
-              <tr key={reqManutencao.id}>
-                <td>{reqManutencao.room}</td>
-                <td>{reqManutencao.num_room}</td>
-                <td>{reqManutencao.num_assent}</td>
-                <td>{ formatDate(reqManutencao.requerement_date)}</td>
-                <td>{reqManutencao.observation}</td>
-                <td>{reqManutencao.user_req}</td>
-                <td>
-                  <button className="btn-accept" onClick={() => showModalAceite(reqManutencao)}>Selecionar</button>
-                </td>
-              </tr>
-            ))
+              reqManutencoes.filter((val) => {
+                if (search == "") {
+                  return val
+                } else if (val.type_assent.toUpperCase().includes(search.toUpperCase()) || val.user_req.toUpperCase().includes(search.toUpperCase()) || val.num_assent.toUpperCase().includes(search.toUpperCase())) {
+                  return val
+                }
+              }).map((reqManutencao) => (
+                <tr key={reqManutencao.id}>
+                  <td>{reqManutencao.type_assent}</td>
+                  <td>{reqManutencao.room}</td>
+                  <td>{reqManutencao.num_room}</td>
+                  <td>{reqManutencao.num_assent}</td>
+                  <td>{reqManutencao.observation}</td>
+                  <td>{formatDate(reqManutencao.requerement_date)}</td>
+                  <td>{reqManutencao.user_req}</td>
+                  <td>
+                    <button className="btn-accept" onClick={() => showModalAceite(reqManutencao)}>Selecionar</button>
+                  </td>
+                </tr>
+              ))
           }
         </tbody>
 

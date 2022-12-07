@@ -175,7 +175,7 @@ function SolicitacaoManutencao() {
               >
                 <option value="" disable selected></option>
                 {patrimoniosData.map((item, index) => {
-                  return <option value={item.value}>{item.title}</option>;
+                  return <option value={item.title}>{item.title}</option>;
                 })}
               </select>
               <span
@@ -193,9 +193,9 @@ function SolicitacaoManutencao() {
                 onChange={(e) => setRoom(e.target.value)}
               >
                 <option value="" disable selected></option>
-                <option value="1">Sala de aula</option>
-                <option value="2">Lab de informática</option>
-                <option value="3">Lab de Eletro</option>
+                <option value="Sala de aula">Sala de aula</option>
+                <option value="Lab de informática">Lab de informática</option>
+                <option value="Lab de Eletro">Lab de Eletro</option>
               </select>
               <span className="focus-input" data-placeholder="Sala"></span>
             </div>

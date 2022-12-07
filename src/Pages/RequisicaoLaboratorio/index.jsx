@@ -14,16 +14,16 @@ function Index(props) {
   const [periodo, setPeriodo] = useState("");
   const [data_req, setData_req] = useState("");
   const [loading, setLoading] = useState("");
-  const [cursos, setCursos] = useState([]);
+  const [diciplinadb, setDiciplinadb] = useState([]);
 
   useEffect(() => {
     async function findCourses() {
-      const { data } = await api.get('/courses');
-      setCursos(data)
+      const { data } = await api.get('/schoolSubject');
+      setDiciplinadb(data)
       console.log(data)
     }
     findCourses();
-  }, [cursos]);
+  }, [diciplinadb]);
 
   console.log(`diciplina: ${discipline}, bloco: ${bloco_aula}, periodo: ${periodo}, data: ${data_req} `)
 
@@ -172,8 +172,8 @@ function Index(props) {
               >
                 <option value="" disable selected></option>
                 {
-                  cursos.map((curso) => (
-                    <option value={curso.id}>{curso.name_course}</option>
+                  diciplinadb.map((diciplinas) => (
+                    <option value={diciplinas.id}>{diciplinas.name_school_subjetc}</option>
                   ))
                 }
               </select>
