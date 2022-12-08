@@ -16,14 +16,13 @@ function SolicitacaoManutencao() {
   const [room, setRoom] = useState("");
   const [num_room, setNum_room] = useState("");
   const [num_assent, setNum_assent] = useState("");
-  const [requerement_date, setRequerement_date] = useState("");
   const [observation, setObservation] = useState("")
   const user_req = sessionStorage.getItem('userName');
   // const [num_assent, setFixedAssent] = useState("");
   const [loading, setLoading] = useState("");
 
   const validate = () => {
-    if (!type_assent && !room && !num_room && !num_assent && !requerement_date && !observation) {
+    if (!type_assent && !room && !num_room && !num_assent && !observation) {
       toast.warn("Preencha todos os campos!", {
         position: "top-right",
         autoClose: 5000,
@@ -71,18 +70,6 @@ function SolicitacaoManutencao() {
       });
       return false;
     }
-    if (!requerement_date) {
-      toast.warn("Insira a data", {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-      return false;
-    }
     if (!num_assent) {
       toast.warn("Insira o número do patrimonio", {
         position: "top-right",
@@ -114,11 +101,10 @@ function SolicitacaoManutencao() {
   const tryRequest = async (e) => {
     e.preventDefault();
     if (validate()) {
-      console.log("dentro da função " + requerement_date)
       try {
         setLoading(<Spinner id="loading" animation="border" />);
 
-        const data = { type_assent, room, num_room, requerement_date, observation, num_assent, user_req  };
+        const data = { type_assent, room, num_room, observation, num_assent, user_req  };
         console.log(data)
         await api.post("/reqMaintanance", data);
 
@@ -138,10 +124,10 @@ function SolicitacaoManutencao() {
         setNum_room("");
         // setNum_room("");
         setNum_assent("");
-        setRequerement_date("");
         setObservation("")
 
       } catch (err) {
+        console.log(err)
         setLoading("");
         toast.error(`Houve um problema: ${err}`, {
           position: "top-right",
@@ -224,15 +210,6 @@ function SolicitacaoManutencao() {
               ></span>
             </div>
 
-
-            <div className='flex-center'>
-              <input type='date' 
-              value={requerement_date} 
-              onChange={(e) => setRequerement_date(e.target.value)}
-              />
-                  
-              <span className="focus-input" data-placeholder=""></span>
-            </div>
           </section>
 
           <section className="section-manutencao">

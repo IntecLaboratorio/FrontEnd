@@ -1,8 +1,7 @@
 .table-container {
-  width: 60%;
+  width: 80%;
   font-weight: 500;
-  margin-top: 7%;
-  margin-left: 20%;
+  margin: 30px auto;
   border: 1px solid #ffffff;
 }
 
@@ -12,6 +11,7 @@
 
 .table-container :is(td, th) {
   text-align: center;
+  border: 1px solid #fff;
 }
 
 .top {
@@ -76,4 +76,15 @@ table td {
 
 .form-modal-manutencao {
   flex-direction: column;
+}
+
+.filtros {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0 20px;
+}
+
+.filtros :is(.wrap-input-pagination) {
+  margin: 0;
 }
