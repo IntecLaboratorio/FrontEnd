@@ -8,22 +8,23 @@ import { Spinner } from "react-bootstrap";
 import Sidebar from '../../Components/Sidebar/sidebar.js'
 
 function Index(props) {
-  const [fk_discipline, setfk_Discipline] = useState("");
+  const [fk_discipline, setfk_discipline] = useState("");
   // const [turma, setTurma] = useState("");
   const [bloco_aula, setBloco_aula] = useState("");
   const [periodo, setPeriodo] = useState("");
   const [data_req, setData_req] = useState("");
+  const user_req = sessionStorage.getItem('userName');
   const [loading, setLoading] = useState("");
-  const [courses, setCourses] = useState([]);
+  const [diciplinadb, setDiciplinadb] = useState([]);
 
   useEffect(() => {
     async function findCourses() {
-      const { data } = await api.get('/courses');
-      setCourses(data)
+      const { data } = await api.get('/schoolSubject');
+      setDiciplinadb(data)
       console.log(data)
     }
     findCourses();
-  }, [courses]);
+  }, [diciplinadb]);
 
   console.log(`diciplina: ${fk_discipline}, bloco: ${bloco_aula}, periodo: ${periodo}, data: ${data_req} `)
 
@@ -125,7 +126,7 @@ function Index(props) {
     try {
       setLoading(<Spinner id="loading" animation="border" />);
 
-      const data = { fk_discipline, bloco_aula, periodo, data_req };
+      const data = { fk_discipline, bloco_aula, periodo, data_req, user_req };
       console.log(data)
 
       await api.post("/reqLabs", data);
@@ -168,12 +169,12 @@ function Index(props) {
                 className={fk_discipline !== "" ? "has-val input" : "input"}
                 type="text"
                 value={fk_discipline}
-                onChange={(e) => setfk_Discipline(e.target.value)}
+                onChange={(e) => setfk_discipline(e.target.value)}
               >
                 <option value="" disable selected></option>
                 {
-                  courses.map((curso) => (
-                    <option value={curso.id}>{curso.name_course}</option>
+                  diciplinadb.map((diciplinas) => (
+                    <option value={diciplinas.id}>{diciplinas.name_school_subjetc}</option>
                   ))
                 }
               </select>

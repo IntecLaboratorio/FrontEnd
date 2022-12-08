@@ -71,16 +71,16 @@ function App() {
     <div className="App">
       <div className="wrap-input-pagination">
 
-      <input
-        className={search !== "" ? "has-val input" : "input"}
-        type="text"
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
+        <input
+          className={search !== "" ? "has-val input" : "input"}
+          type="text"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
 
-      />
-      <span className="focus-input" data-placeholder="Pesquisar Patrimônio"></span>
+        />
+        <span className="focus-input" data-placeholder="Pesquisar Patrimônio"></span>
       </div>
-      
+
       <BootstrapTable
         bootstrap4
         keyField="id"
