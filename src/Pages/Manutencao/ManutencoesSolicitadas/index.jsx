@@ -13,10 +13,9 @@ function Table() {
   const [loadModalAceite, setLoadModalAceite] = useState(false);
   const [aceiteItem, setAceiteItem] = useState("");
   const [search, setSearch] = useState("");
-  const [status_manutencao, setStatus_manutencao] = useState("");
-  const [data_inicial, setData_inicial] = useState("");
-  const [data_final, setData_final] = useState("");
-
+  const [status_manutencao, setStatus_manutencao] = useState(1);
+  // const [dataInicial, setDataInicial] = useState("");
+  // console.log(dataInicial + "É o datas")
   function showModalAceite(aceite) {
     setLoadModalAceite(true);
     setAceiteItem(aceite);
@@ -24,45 +23,41 @@ function Table() {
 
   useEffect(() => {
     async function BuscaManutencao() {
-      const { data } = await api.get('/reqMaintanance');
+      const { data } = await api.get(`/reqMaintanance/${status_manutencao}`);
       setReqManutencoes(data)
       console.log(data)
     }
     BuscaManutencao();
-  }, [reqManutencoes]);
+  }, [status_manutencao]);
 
   return (
     <>
       <Sidebar></Sidebar>
       {loadModalAceite && <ModalAceite isOpen={loadModalAceite} dataAceite={aceiteItem} />}
 
-      <div className="wrap-input-pagination">
-
-        <input
-          className={search !== "" ? "has-val input" : "input"}
+      <section className="filtros">
+        <div className="wrap-input-pagination">
+          <input
+            className={search !== "" ? "has-val input" : "input"}
+            type="text"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+          <span className="focus-input" data-placeholder="Pesquisar Solicitação"></span>
+        </div>
+        <select
+          name="select"
           type="text"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-
-        />
-        <span className="focus-input" data-placeholder="Pesquisar Solicitação"></span>
-      </div>
-
-      {/* <p>Status de manutenção</p> */}
-      <select
-        name="select"
-        type="text"
-        value={status_manutencao}
-        onChange={(e) => setStatus_manutencao(e.target.value)}
-      >
-        <option value={1}>Em Manutenção</option>
-        <option value={2}>Manutenção Realizada</option>
-        <option value="">Mostrar tudo</option>
-      </select>
-
-      <input type="date" value={data_inicial} onChange={(e) => setData_inicial(e.target.value)} />
-
-      <input type="date" value={data_final} onChange={(e) => setData_final(e.target.value)} />
+          value={status_manutencao}
+          onChange={(e) =>
+            setStatus_manutencao(e.target.value)}
+        >
+          <option value="1" selected>Em Manutenção</option>
+          <option value="2">Manutenção Realizada</option>
+          <option value="0">Todas</option>
+        </select>
+        {/* <input type="date" value={dataInicial} onChange={(e) => setDataInicial(e.target.value)} /> */}
+      </section>
 
       <table border="1" className="table-container">
         <thead>
@@ -72,8 +67,9 @@ function Table() {
             <th className="top">Número da sala</th>
             <th className="top">Número do pratrimônio</th>
             <th className="top">Observação</th>
-            <th className="top">Data de Solicitação:</th>
-            <th className="top">Solicitado por:</th>
+            <th className="top">Data de Solicitação</th>
+            <th className="top">Solicitado por</th>
+            <th className="top">Status de Manutenção</th>
             <th className="top"></th>
           </tr>
         </thead>
@@ -96,6 +92,7 @@ function Table() {
                   <td>{reqManutencao.observation}</td>
                   <td>{formatDate(reqManutencao.requerement_date)}</td>
                   <td>{reqManutencao.user_req}</td>
+                  <td>{reqManutencao.fk_status_manutencao == 1 ? "Em Manutenção" : "Manutenção Realizada"}</td>
                   <td>
                     <button className="btn-accept" onClick={() => showModalAceite(reqManutencao)}>Selecionar</button>
                   </td>
