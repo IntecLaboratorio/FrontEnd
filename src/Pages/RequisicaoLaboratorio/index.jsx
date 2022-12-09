@@ -9,6 +9,7 @@ import Sidebar from '../../Components/Sidebar/sidebar.js'
 
 function Index(props) {
   const [fk_discipline, setfk_discipline] = useState("");
+  const [lab, setLab] = useState("");
   // const [turma, setTurma] = useState("");
   const [bloco_aula, setBloco_aula] = useState("");
   const [periodo, setPeriodo] = useState("");
@@ -126,7 +127,7 @@ function Index(props) {
     try {
       setLoading(<Spinner id="loading" animation="border" />);
 
-      const data = { fk_discipline, bloco_aula, periodo, data_req, user_req };
+      const data = { fk_discipline, lab, bloco_aula, periodo, data_req, user_req };
       console.log(data)
 
       await api.post("/reqLabs", data);
@@ -179,6 +180,26 @@ function Index(props) {
                 }
               </select>
               <span className="focus-input" data-placeholder="Disciplina"></span>
+            </div>
+
+            <div className="wrap-input">
+              <select
+                name="select"
+                className={lab !== "" ? "has-val input" : "input"}
+                type="text"
+                value={lab}
+                onChange={(e) => setLab(e.target.value)}
+              >
+                <option value="" disable selected></option>
+                <option value="Lab. informática 01">Lab. informática 01</option>
+                <option value="Lab. informática 02">Lab. informática 02</option>
+                <option value="Lab. informática 03">Lab. informática 03</option>
+                <option value="Lab. informática 04">Lab. informática 04</option>
+                <option value="Lab. informática 05">Lab. informática 05</option>
+                <option value="Lab. informática 06">Lab. informática 06</option>
+                <option value="Lab. informática 07">Lab. informática 07</option>
+              </select>
+              <span className="focus-input" data-placeholder="Laboratório"></span>
             </div>
 
             <div className="wrap-input">

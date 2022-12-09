@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Modal from "react-modal";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import api from "../../Service/api.js"
 
 const customStyles = {
   content: {
@@ -19,42 +20,48 @@ const customStyles = {
 
 function Index({ isOpen, dataAceite }) {
   const [modalIsopen, setIsopen] = useState(isOpen);
-  console.log(dataAceite);
+  const [status_reqlabdb, setStatus_reqlabdb] = useState([]);
+  const [status_reqlab, setStatus_reqlab] = useState("");
+  const user_fin = sessionStorage.getItem('userName');
+  const [loading, setLoading] = useState("");
+
+  // console.log(user_fin, whatWasDone, status_reqlab)
+  useEffect(() => {
+    async function findStatus() {
+      const { data } = await api.get('/statusReqlab');
+      setStatus_reqlabdb(data)
+      console.log(data)
+    }
+    findStatus();
+  }, [status_reqlabdb]);
+
   function closeModal() {
     setIsopen(false);
   }
 
   async function handleSubmit(e) {
-    e.preventDefault(); // Evita que o formulario envie o dado e recarregue a página
-
+    e.preventDefault();
     const AceiteData = {
+      "user_fin": user_fin,
+      "status_reqLab": status_reqlab,
       "id": dataAceite.id,
     }
-
-    const { data } = await axios.put('http://localhost:3334/aceite', AceiteData);
-    toast.success(data.message, {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
-    window.location.reload(true);
-  }
-
-  async function handleDelete() {
-
-    const AceiteData = {
-      "id": dataAceite.id
-    }
-
     try {
-      await axios.delete(`http://localhost:3334/reqLabs/${dataAceite.id}`);
+      const { data } = await axios.put('http://localhost:3334/reqLabs', AceiteData);
+      toast.success(data.message, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
       window.location.reload(true);
     } catch (err) {
-      toast.error(`Houve um problema: ${err}`, {
+      setLoading("");
+      console.log(err);
+      toast.error("Não foi possível atualizar o status de solicitação",{
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -64,6 +71,8 @@ function Index({ isOpen, dataAceite }) {
         progress: undefined,
       });
     }
+
+
   }
 
   return (
@@ -73,10 +82,29 @@ function Index({ isOpen, dataAceite }) {
         onRequestClose={closeModal}
         style={customStyles}
       >
-        <h2 className="title-modal">Aceite de requisições</h2>
-        <form className="form-modal">
-          <button type="submit" name="action" onClick={handleSubmit}>Aceitar</button>
-          <button type="submit" name="action" onClick={handleDelete}>Negar</button>
+
+        <h2 className="title-modal">Atualizar a solicitação</h2>
+        <form className="form-modal form-modal-reqlab">
+          <section>
+            <div className="wrap-input">
+              <select
+                name="select"
+                className={status_reqlab !== "" ? "has-val input" : "input"}
+                type="text"
+                value={status_reqlab}
+                onChange={(e) => setStatus_reqlab(e.target.value)}
+              >
+                <option value="" disable selected></option>
+                {
+                  status_reqlabdb.map((status_reqlabdb) => (
+                    <option value={status_reqlabdb.id}>{status_reqlabdb.status_reqlab}</option>
+                  ))
+                }
+              </select>
+              <span className="focus-input" data-placeholder="Status da Manutenção"></span>
+            </div>
+          </section>
+          <button type="submit" name="action" onClick={handleSubmit}>Atualizar</button>
           <button onClick={() => { window.location.reload(true) }}>Cancelar</button>
         </form >
       </Modal >
