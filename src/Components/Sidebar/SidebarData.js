@@ -55,14 +55,16 @@ export const SidebarData = [
     path: "/aceite",
     icon: <AiIcons.AiFillQuestionCircle/>,
     cName: 'nav-text',
-    admin: "coordenador"
+    admin: "coordenador",
+    admin2: "professor"
     },
     {
     title: "Solicitações de manutenção",
     path: "/consulta-manutencao",
     icon: <AiIcons.AiFillQuestionCircle/>,
     cName: 'nav-text',
-    admin: "coordenador"
+    admin: "coordenador",
+    admin2: "professor"
     },
 
 ]

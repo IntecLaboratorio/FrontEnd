@@ -42,15 +42,15 @@ function App() {
           <Route path="/manutencao" element={<Manutencao />} />
           <Route path="/solicitacaoManutencao" element={<SolicitacaoManutencao />} />
           <Route path="/teste-pagination" element={<TesteTable />} />
+          <Route path="/aceite" element={<Teste />} />
+          <Route path="/consulta-manutencao" element={<MantencoesSolicitadas />} />
         </Route>
 
         <Route element={<ProtectedCoordenador />}>
-          <Route path="/aceite" element={<Teste />} />
           <Route path="/cadastro-patrimonio" element={<CadastroPatrimonio />} />
           <Route path="/endereco" element={<Endereco />} />
           <Route path="/cadastro-laboratorio" element={<CadastroLab />} />
           <Route path="/consulta-patrimonio" element={<ConsultarPatrimonio />} />
-          <Route path="/consulta-manutencao" element={<MantencoesSolicitadas />} />
         </Route>
 
         <Route element={<ProtectedAdmin/>}>

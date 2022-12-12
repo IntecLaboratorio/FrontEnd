@@ -91,7 +91,7 @@ function Table() {
                   <td>{formatDate(reqLab.data_req)}</td>
                   <td>{reqLab.fk_status_reqLab}</td>
                   <td>
-                    <button className="btn-accept" onClick={() => showModalAceite(reqLab)}>Selecionar</button>
+                  {(sessionStorage.getItem("typeUser") == 1) || (sessionStorage.getItem("typeUser") == 2) ? <button className="btn-accept" onClick={() => showModalAceite(reqLab)}>Selecionar</button>  : null}
                   </td>
                 </tr>
               ))
