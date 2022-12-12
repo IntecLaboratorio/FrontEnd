@@ -94,7 +94,7 @@ function Table() {
                   <td>{reqManutencao.user_req}</td>
                   <td>{reqManutencao.fk_status_manutencao == 1 ? "Em Manutenção" : "Manutenção Realizada"}</td>
                   <td>
-                    <button className="btn-accept" onClick={() => showModalAceite(reqManutencao)}>Selecionar</button>
+                    {(sessionStorage.getItem("typeUser") == 1) || (sessionStorage.getItem("typeUser") == 2) ? <button className="btn-accept" onClick={() => showModalAceite(reqManutencao)}>Selecionar</button> : null}
                   </td>
                 </tr>
               ))
