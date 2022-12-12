@@ -101,7 +101,7 @@ function Index({ isOpen, dataAceite }) {
                   ))
                 }
               </select>
-              <span className="focus-input" data-placeholder="Status da Manutenção"></span>
+              <span className="focus-input" data-placeholder="Status da requisição"></span>
             </div>
           </section>
           <button type="submit" name="action" onClick={handleSubmit}>Atualizar</button>
